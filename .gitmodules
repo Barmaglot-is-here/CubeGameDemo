@@ -1,0 +1,3 @@
+[submodule "Assets/UIManagement"]
+	path = Assets/UIManagement
+	url = https://github.com/Barmaglot-is-here/SimpleUnityUIManager

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.4.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1160 2000" style="enable-background:new 0 0 1160 2000;" xml:space="preserve">
+<style type="text/css">
+	.st0{display:none;fill:#D82121;}
+	.st1{display:none;fill:#E5E5E5;}
+	.st2{display:none;fill:#CCCCCC;}
+	.st3{display:none;fill:#FFFFFF;}
+	.st4{display:none;}
+	.st5{display:inline;fill:#CCCCCC;}
+	.st6{display:inline;fill:#FFFFFF;}
+	.st7{display:none;fill:#177DC9;}
+	.st8{display:inline;fill:#E5E5E5;}
+	.st9{display:inline;fill:#D82121;}
+	.st10{fill:#EC103E;}
+	.st11{fill:#E5E5E5;}
+</style>
+<rect y="313.3" class="st0" width="1160" height="1686.7"/>
+<rect x="60" y="1940" class="st1" width="1040" height="60"/>
+<polygon class="st2" points="60,2000 0,1940 0,1940 60,1940 "/>
+<polygon class="st2" points="1100,2000 1160,1940 1160,1940 1100,1940 "/>
+<path class="st3" d="M0,0v1940h1160V0H0z M210,1880L60,1730l150-150l150,150L210,1880z M580,1880l-150-150l150-150l150,150L580,1880
+	z M950,1880l-150-150l150-150l150,150L950,1880z"/>
+<g class="st4">
+	<polygon class="st5" points="149.8,1759.9 134.9,1745 119.9,1730 119.9,1789.9 119.8,1790 209.8,1880 299.8,1790 209.8,1699.9 	"/>
+	<polygon class="st5" points="284.9,1745 269.9,1760 299.9,1790 299.9,1730 	"/>
+	
+		<rect x="146.3" y="1666.3" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -1161.7496 655.1165)" class="st6" width="127.3" height="127.3"/>
+</g>
+<g class="st4">
+	<polygon class="st5" points="520,1759.9 505,1745 490,1730 490,1789.9 490,1790 580,1880 670,1790 580,1699.9 	"/>
+	<polygon class="st5" points="655,1745 640,1760 670,1790 670,1730 	"/>
+	
+		<rect x="516.4" y="1666.4" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -1053.4387 916.8692)" class="st6" width="127.3" height="127.3"/>
+</g>
+<g class="st4">
+	<polygon class="st5" points="889.9,1759.9 874.9,1745 859.9,1730 859.9,1789.9 859.9,1790 949.9,1880 1039.9,1790 949.9,1699.9 	
+		"/>
+	<polygon class="st5" points="1024.9,1745 1009.9,1760 1039.9,1790 1039.9,1730 	"/>
+	
+		<rect x="886.3" y="1666.4" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -945.0986 1178.4242)" class="st6" width="127.3" height="127.3"/>
+</g>
+<polygon class="st1" points="359.9,1730 209.9,1580 209.9,1580 209.9,1580 59.9,1730 89.9,1760 209.9,1640 329.9,1760 "/>
+<rect class="st7" width="1160" height="1580"/>
+<g class="st4">
+	<polygon class="st8" points="496,496 664,328 664,1168 496,1168 	"/>
+	<polygon class="st9" points="496,580 664,412 664,1252 496,1252 	"/>
+</g>
+<polygon class="st1" points="730,1730 580,1580 580,1580 580,1580 430,1730 460,1760 580,1640 700,1760 "/>
+<polygon class="st1" points="1099.9,1730 949.9,1580 949.9,1580 949.9,1580 799.9,1730 829.9,1760 949.9,1640 1069.9,1760 "/>
+<g>
+	<g>
+		<polygon class="st10" points="160,580 160,748 160,916 160,1084 160,1252 328,1252 328,1084 328,916 328,748 328,580 328,412 		
+			"/>
+		<polygon class="st11" points="328,412 160,580 160,520 328,352 		"/>
+	</g>
+	<g>
+		<polygon class="st10" points="1000,580 832,412 664,412 496,580 496,748 664,748 664,580 832,580 832,686.4 832,687 496,1084 
+			496,1252 664,1252 832,1252 1000,1252 1000,1084 832,1084 715.6,1084 1000,748.6 		"/>
+		<polygon class="st11" points="664,412 496,580 496,520 664,352 		"/>
+		<polygon class="st11" points="832,687 496,1084 496,1024 832,627 		"/>
+		<polygon class="st11" points="832,412 1000,580 1000,520 832,352 		"/>
+		<rect x="664" y="352" class="st11" width="168" height="60"/>
+		<polygon class="st11" points="1000,1084 715.6,1084 766.5,1024 1000,1024 		"/>
+	</g>
+</g>
+</svg>
