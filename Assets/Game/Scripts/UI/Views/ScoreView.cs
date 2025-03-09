@@ -1,7 +1,6 @@
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 using System.Collections;
+using TMPro;
+using UnityEngine;
 
 public class ScoreView : MonoBehaviour
 {
@@ -10,12 +9,12 @@ public class ScoreView : MonoBehaviour
 
     private IEnumerator _coroutine;
 
-    public void Show(int score, bool startAnimation = true)
+    public void Show(int score, bool playAnimation = true)
     {
         if (_coroutine != null)
             StopCoroutine(_coroutine);
 
-        if (startAnimation)
+        if (playAnimation)
         {
             _coroutine = ScoreAnimation(score);
 

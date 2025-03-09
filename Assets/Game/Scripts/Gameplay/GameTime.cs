@@ -1,9 +1,9 @@
 public static class GameTime
 {
-    public static float Value { get; set; }
+    public static float Scale { get; set; }
     
     static GameTime()
     {
-        Value = 1;
+        Scale = 1;
     }
 }
