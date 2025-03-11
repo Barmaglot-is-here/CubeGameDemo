@@ -18,18 +18,18 @@ public class ObstacleSpawnController
         _generator      = generator;
         _spawnDistance  = spawnDistance;
         _current        = Spawn();
-        _startPosition = _current.transform.localPosition.x;
+        _startPosition = _current.transform.position.x;
     }
 
     public void Update()
     {
-        float traveledDistance  = _current.transform.localPosition.x - _startPosition;
+        float traveledDistance  = _current.transform.position.x - _startPosition;
         traveledDistance        = Mathf.Abs(traveledDistance);
 
         if (traveledDistance >= _spawnDistance || !_current.gameObject.activeSelf)
         {
             _current        = Spawn();
-            _startPosition  = _current.transform.localPosition.x;
+            _startPosition  = _current.transform.position.x;
         }
     }
 

@@ -3,13 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPool<T> : IEnumerable<T> where T : MonoBehaviour
+public class ObjectPool<T> : IReadOnlyList<T> where T : MonoBehaviour
 {
     private readonly List<T> _list;
     private readonly Func<T> _spawnAction;
     private readonly Action<T> _resetAction;
 
     private int _current;
+
+    public int Count => _list.Count;
+    public T this[int index] => _list[index];
 
     public ObjectPool(Func<T> spawnAction, Action<T> resetAction)
     {

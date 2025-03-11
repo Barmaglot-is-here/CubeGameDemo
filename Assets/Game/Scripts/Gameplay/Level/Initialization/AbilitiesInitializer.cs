@@ -4,16 +4,16 @@ public class AbilitiesInitializer
 {
     public AbilityFactory Factory { get; }
 
-    public AbilitiesInitializer()
+    public AbilitiesInitializer(AbilitiesConfig config)
     {
         Factory = new();
-        Factory.AddMethod(SpeedFlyAbility);
+        Factory.AddMethod(() => SpeedFlyAbility(config.SpeedFlyConfig));
     }
 
-    private SpeedFlyAbility SpeedFlyAbility()
+    private SpeedFlyAbility SpeedFlyAbility(SpeedFlyConfig config)
     {
         Character character = GameObject.FindAnyObjectByType<Character>();
 
-        return new(0.9f, character);
+        return new(config.Duration, character);
     }
 }

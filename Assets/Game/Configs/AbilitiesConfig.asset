@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3937d7407cb78c46bd5aed19f1c89a6, type: 3}
-  m_Name: ObstacleSpawnSettings
+  m_Script: {fileID: 11500000, guid: 21b7fa740c0d8b24ea06f38082fb465d, type: 3}
+  m_Name: AbilitiesConfig
   m_EditorClassIdentifier: 
-  <Prefab>k__BackingField: {fileID: 2181922721589526779, guid: cc7523731e5c2b842918ca1fffc78ec1, type: 3}
-  <SpawnDistance>k__BackingField: 7
-  <MovementSpeed>k__BackingField: 2
+  <SpeedFlyConfig>k__BackingField: {fileID: 11400000, guid: 5218a7693b995bc4d9f933fbd7d5756d, type: 2}

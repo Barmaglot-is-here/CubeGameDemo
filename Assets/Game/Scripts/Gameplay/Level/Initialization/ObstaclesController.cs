@@ -1,32 +1,33 @@
 public class ObstaclesController
 {
-    private readonly ObstacleGenerator _obstacleGenerator;
-    private readonly ObstacleSpawner _obstacleSpawner;
-    private readonly ObjectPool<Obstacle> _obstaclePool;
-    private readonly ObstacleSpawnController _obstacleSpawnController;
-    private readonly ObstacleMovementController _obstacleMovementController;
+    private readonly ObstacleGenerator _generator;
+    private readonly ObstacleSpawner _spawner;
+    private readonly ObstacleSpawnController _spawnController;
+    private readonly ObstacleMovementController _movementController;
+
+    public readonly ObjectPool<Obstacle> Pool;
 
     public ObstaclesController(LevelData levelData, ObstacleSpawnSettings setings)
     {
-        _obstacleGenerator          = new();
-        _obstacleSpawner            = new(setings.Prefab, 
+        _generator          = new();
+        _spawner            = new(setings.Prefab, 
                                           levelData.ObstaclesContainer,
                                           levelData.ObstacleSpawnPoint);
-        _obstaclePool               = new(_obstacleSpawner.Spawn, ResetObstacle);
-        _obstacleMovementController = new(_obstaclePool, setings.MovementSpeed);
-        _obstacleSpawnController    = new(_obstaclePool, _obstacleGenerator,
+        Pool                = new(_spawner.Spawn, ResetObstacle);
+        _movementController = new(Pool, setings.MovementSpeed);
+        _spawnController    = new(Pool, _generator,
                                           setings.SpawnDistance);
     }
 
     private void ResetObstacle(Obstacle obstacle)
     {
-        _obstacleSpawner    .Reset(obstacle);
+        _spawner    .Reset(obstacle);
         obstacle.gameObject .SetActive(true);
     }
 
     public void Update()
     {
-        _obstacleSpawnController    .Update();
-        _obstacleMovementController .Update();
+        _spawnController    .Update();
+        _movementController .Update();
     }
 }

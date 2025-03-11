@@ -16,9 +16,13 @@ public class Level : MonoBehaviour
     [SerializeField]
     private DeathZone _deathZone;
 
+    [SerializeField]
+    private PlayModeScoreView _scoreView;
+
     private ObstaclesController _obstaclesController;
     private AbilitiesInitializer _abilitiesInitializer;
     private DeathHandleInitializer _deathHandleInitializer;
+    private ScoreCounter _scoreCounter;
 
     private void Awake()
     {
@@ -27,8 +31,11 @@ public class Level : MonoBehaviour
         data.ObstacleSpawnPoint = _obstaclesSpawnPoint;
 
         _obstaclesController    = new(data, _config.ObstacleSpawnSettings);
-        _abilitiesInitializer   = new();
+        _abilitiesInitializer   = new(_config.AbilitiesConfig);
         _deathHandleInitializer = new(_deathZone);
+        _scoreCounter           = new(_obstaclesController.Pool, _character);
+
+        _scoreCounter.OnCount += _scoreView.Show;
 
         _character.SetAbility(_abilitiesInitializer.Factory.Create<SpeedFlyAbility>());
     }
@@ -37,5 +44,6 @@ public class Level : MonoBehaviour
     {
         _obstaclesController.Update();
         _character          .Move();
+        _scoreCounter       .Update();
     }
 }

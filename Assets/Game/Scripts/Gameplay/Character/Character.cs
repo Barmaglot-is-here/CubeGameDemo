@@ -12,6 +12,8 @@ public class Character : MonoBehaviour
 
     public new Rigidbody2D rigidbody { get; private set; }
 
+    public Action OnDeath { get; set; }
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -28,4 +30,10 @@ public class Character : MonoBehaviour
     public void UseAbility()            => _ability?.Use();
 
     public void Move() => rigidbody.AddForceY(_moveForce * GameTime.Scale);
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Obstacle")
+            OnDeath?.Invoke();
+    }
 }

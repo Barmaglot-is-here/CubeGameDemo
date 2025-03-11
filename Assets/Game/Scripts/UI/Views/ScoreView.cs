@@ -9,7 +9,9 @@ public class ScoreView : MonoBehaviour
 
     private IEnumerator _coroutine;
 
-    public void Show(int score, bool playAnimation = true)
+    public void Show(int score) => Show(score, true);
+
+    public void Show(int score, bool playAnimation)
     {
         if (_coroutine != null)
             StopCoroutine(_coroutine);

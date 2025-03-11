@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: LevelConfig
   m_EditorClassIdentifier: 
   <ObstacleSpawnSettings>k__BackingField: {fileID: 11400000, guid: 5eadd67f9d4d4d844975b6a078423a81, type: 2}
+  <AbilitiesConfig>k__BackingField: {fileID: 11400000, guid: 1b93e1c0e163128478ce149a30e4d6f1, type: 2}
