@@ -12,6 +12,7 @@ public class DeathScreen : BaseWindow
     private Button _watchAdButton;
     [SerializeField]
     private PlayModeScoreView _scoreView;
+
     private void Awake()
     {
         _homeButton.onClick.AddListener(OnHomeButtonClick);

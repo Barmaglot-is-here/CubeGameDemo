@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ObstacleSpawnSettings", menuName = "Configs/ObstacleSpawnSettings")]
-public class ObstacleSpawnSettings : ScriptableObject
+[CreateAssetMenu(fileName = "ObstaclesSettings", menuName = "Configs/ObstaclesSettings")]
+public class ObstaclesSettings : ScriptableObject
 {
     [field: SerializeField]
     public GameObject Prefab { get; private set; }

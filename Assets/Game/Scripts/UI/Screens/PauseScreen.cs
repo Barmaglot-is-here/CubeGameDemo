@@ -1,6 +1,7 @@
 using UnityEngine;
 using UIManagement;
 using UnityEngine.UI;
+using StateManagement;
 
 public class PauseScreen : BaseWindow
 {
@@ -23,11 +24,18 @@ public class PauseScreen : BaseWindow
     private void OnUnpauseButtonClick()
     {
         UIManager.Hide<PauseScreen>();
+        UIManager.Show<PlayModeScreen>();
+
+        StateManager.SetState<PlayState>();
     }
 
     private void OnRestartButtonClick()
     {
         UIManager.Hide<PauseScreen>();
+        UIManager.Show<PlayModeScreen>();
+
+        StateManager.SetState<IdleState>();
+        StateManager.SetState<PlayState>();
     }
 
     private void OnHomeButtonClick()
@@ -37,5 +45,7 @@ public class PauseScreen : BaseWindow
         UIManager.Show<MainScreen>();
 
         _scoreView.gameObject.SetActive(false);
+
+        StateManager.SetState<IdleState>();
     }
 }

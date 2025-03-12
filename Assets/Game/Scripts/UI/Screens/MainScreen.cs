@@ -1,6 +1,7 @@
 using UnityEngine;
 using UIManagement;
 using UnityEngine.UI;
+using StateManagement;
 
 public class MainScreen : BaseWindow
 {
@@ -36,5 +37,7 @@ public class MainScreen : BaseWindow
         UIManager.Show<PlayModeScreen>();
 
         _scoreView.gameObject.SetActive(true);
+
+        StateManager.SetState<PlayState>();
     }
 }

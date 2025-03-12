@@ -1,49 +1,41 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class ScoreCounter
 {
     private readonly IReadOnlyList<Obstacle> _obstacles;
-    private readonly Character _character;
+    private readonly GameObject _scoreTriggerPrefab;
 
+    private int _prevObstaclesCount;
     private int _score;
-
-    private Type _strategyType;
-    private CountStrategy _strategy;
 
     public Action<int> OnCount { get; set; }
 
-    public ScoreCounter(IReadOnlyList<Obstacle> obstacles, Character character)
+    public ScoreCounter(IReadOnlyList<Obstacle> obstacles, GameObject scoreTriggerPrefab)
     {
-        _obstacles  = obstacles;
-        _character  = character;
-
-        SetStrategy<SingleObstacleCountStrategy>();
-    }
-
-    private void SetStrategy<T>() where T : CountStrategy
-    {
-        _strategyType = typeof(T);
-
-        if (_strategyType == typeof(SingleObstacleCountStrategy))
-            _strategy = new SingleObstacleCountStrategy(_character, _obstacles[0]);
-        else if (_strategyType == typeof(MultiObstacleCountStrategy))
-        {
-            int currentObstacleIndex = _score != 0 ? 1 : 0;
-
-            _strategy = new MultiObstacleCountStrategy(_character, _obstacles,
-                                                       currentObstacleIndex);
-        }
-        else
-            throw new NotImplementedException();
+        _obstacles          = obstacles;
+        _scoreTriggerPrefab = scoreTriggerPrefab;
     }
 
     public void Update()
     {
-        if (_obstacles.Count > 1 && _strategyType != typeof(MultiObstacleCountStrategy))
-            SetStrategy<MultiObstacleCountStrategy>();
+        if (_prevObstaclesCount < _obstacles.Count)
+        {
+            AddScoreCounter(_obstacles[_prevObstaclesCount]);
 
-        _strategy.Update(IncrementScore);
+            _prevObstaclesCount++;
+        }
+    }
+
+    private void AddScoreCounter(Obstacle obstacle)
+    {
+        var instance        = GameObject.Instantiate(_scoreTriggerPrefab,
+                                                     obstacle.transform);
+
+        var countComponent  = instance.GetComponent<ScoreCountComponent>();
+
+        countComponent.OnCharacterPassed = IncrementScore;
     }
 
     private void IncrementScore()

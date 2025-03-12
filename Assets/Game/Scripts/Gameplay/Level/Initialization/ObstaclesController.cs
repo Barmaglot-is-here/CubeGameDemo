@@ -7,7 +7,7 @@ public class ObstaclesController
 
     public readonly ObjectPool<Obstacle> Pool;
 
-    public ObstaclesController(LevelData levelData, ObstacleSpawnSettings setings)
+    public ObstaclesController(LevelData levelData, ObstaclesSettings setings)
     {
         _generator          = new();
         _spawner            = new(setings.Prefab, 
@@ -21,13 +21,23 @@ public class ObstaclesController
 
     private void ResetObstacle(Obstacle obstacle)
     {
-        _spawner    .Reset(obstacle);
-        obstacle.gameObject .SetActive(true);
+        _spawner           .Reset(obstacle);
+        obstacle.gameObject.SetActive(true);
     }
 
     public void Update()
     {
         _spawnController    .Update();
         _movementController .Update();
+    }
+
+    public void Reset()
+    {
+        foreach (var obstacle in Pool)
+        {
+            _spawner.Reset(obstacle);
+
+            obstacle.gameObject.SetActive(false);
+        }
     }
 }

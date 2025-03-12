@@ -1,14 +1,17 @@
 using System;
 using UnityEngine;
+using StateManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Character : MonoBehaviour
+public class Character : MonoBehaviour, IPlayable, IPausable, IResetable
 {
     [SerializeField]
     private CharacterConfig _config;
 
     private float _moveForce;
     private IAbility _ability;
+
+    private Vector2 _startPosition;
 
     public new Rigidbody2D rigidbody { get; private set; }
 
@@ -21,6 +24,11 @@ public class Character : MonoBehaviour
         _moveForce              = _config.MoveForce;
         rigidbody.mass          = _config.Mass;
         rigidbody.gravityScale  = _config.GravityScale;
+        rigidbody.simulated     = false;
+
+        _startPosition = transform.position;
+
+        StateManager.Add(this);
     }
 
     public void SetAbility(IAbility ability) => _ability = ability;
@@ -35,5 +43,14 @@ public class Character : MonoBehaviour
     {
         if (collision.tag == "Obstacle")
             OnDeath?.Invoke();
+    }
+
+    public void Play() => rigidbody.simulated = true;
+    public void Pause() => rigidbody.simulated = false;
+
+    void IResetable.Reset()
+    {
+        transform.position          = _startPosition;
+        rigidbody.linearVelocityY   = 0;
     }
 }

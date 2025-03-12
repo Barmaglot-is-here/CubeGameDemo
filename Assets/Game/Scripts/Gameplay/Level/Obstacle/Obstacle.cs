@@ -1,6 +1,7 @@
+using StateManagement;
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+public class Obstacle : MonoBehaviour, IPausable, IPlayable
 {
     private GameObject[] _sections;
 
@@ -18,6 +19,8 @@ public class Obstacle : MonoBehaviour
         }
 
         rigidbody = GetComponent<Rigidbody2D>();
+
+        StateManager.Add(this);
     }
 
     public void Construct(ObstacleData data)
@@ -30,4 +33,7 @@ public class Obstacle : MonoBehaviour
             section.SetActive(enabled);
         }
     }
+
+    public void Play() => rigidbody.simulated = true;
+    public void Pause() => rigidbody.simulated = false;
 }
