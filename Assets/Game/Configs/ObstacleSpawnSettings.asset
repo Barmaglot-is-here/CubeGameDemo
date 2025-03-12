@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Prefab>k__BackingField: {fileID: 2181922721589526779, guid: cc7523731e5c2b842918ca1fffc78ec1, type: 3}
   <SpawnDistance>k__BackingField: 7
-  <MovementSpeed>k__BackingField: 2
+  <MovementSpeed>k__BackingField: 20

@@ -20324,7 +20324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -40751,7 +40751,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -7871556540511652807, guid: b47f6c51505b5a14884dc9ca33c4db29, type: 3}
       propertyPath: m_SortingOrder
-      value: 104
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -3888481672020999207, guid: b47f6c51505b5a14884dc9ca33c4db29, type: 3}
       propertyPath: m_Name
@@ -40762,28 +40762,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8742538545776668643, guid: b47f6c51505b5a14884dc9ca33c4db29, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 8742538545776668643, guid: b47f6c51505b5a14884dc9ca33c4db29, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 8742538545776668643, guid: b47f6c51505b5a14884dc9ca33c4db29, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 8742538545776668643, guid: b47f6c51505b5a14884dc9ca33c4db29, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.017978232
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8742538545776668643, guid: b47f6c51505b5a14884dc9ca33c4db29, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.2734156
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8742538545776668643, guid: b47f6c51505b5a14884dc9ca33c4db29, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.0082924
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8742538545776668643, guid: b47f6c51505b5a14884dc9ca33c4db29, type: 3}
       propertyPath: m_LocalRotation.w
@@ -55232,14 +55220,14 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 20
   m_TargetDisplay: 0
 --- !u!114 &1686364147
 MonoBehaviour:
@@ -55739,7 +55727,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -7871556540511652807, guid: 725a45e324cf32445b51bd0fa02cf550, type: 3}
       propertyPath: m_SortingOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -3888481672020999207, guid: 725a45e324cf32445b51bd0fa02cf550, type: 3}
       propertyPath: m_Name
@@ -57374,7 +57362,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe1eb3ef3ffcb74a8d26fe5cd5cf5ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _score: {fileID: 1446485278}
+  _container: {fileID: 1741303434}
+  _defaultInstance: {fileID: 1446485278}
+  _spritePrefabs:
+  - {fileID: 3286163911610860551, guid: b47f6c51505b5a14884dc9ca33c4db29, type: 3}
+  - {fileID: 3286163911610860551, guid: 00ce88d10f04f0a4a8d78f7413734984, type: 3}
+  - {fileID: 3286163911610860551, guid: 5d72e893e71d2e04591f3d4844665cba, type: 3}
+  - {fileID: 3286163911610860551, guid: c79c581238fb4fd45ba5b68fdb252803, type: 3}
+  - {fileID: 3286163911610860551, guid: c8a49eaf85892f043a63806a7af043ab, type: 3}
+  - {fileID: 3286163911610860551, guid: adfa7d072987d1b47925a09e48369034, type: 3}
+  - {fileID: 3286163911610860551, guid: 0b21aedabb87d04499f297a80d4c0144, type: 3}
+  - {fileID: 3286163911610860551, guid: 1dbc79241417dc04a91274dfeebb9dab, type: 3}
+  - {fileID: 3286163911610860551, guid: cd18b146bd48cbb479f0af0dbb62e3b2, type: 3}
+  - {fileID: 3286163911610860551, guid: f0e64ea30dad7154e90d7479c2cc3f89, type: 3}
+  _digitsSpace: 0.6
 --- !u!4 &1741303434
 Transform:
   m_ObjectHideFlags: 0
@@ -57384,8 +57385,8 @@ Transform:
   m_GameObject: {fileID: 1741303432}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.017978232, y: -2.7484152, z: -0.0082924}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 2.525, z: 0}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1164190214}
