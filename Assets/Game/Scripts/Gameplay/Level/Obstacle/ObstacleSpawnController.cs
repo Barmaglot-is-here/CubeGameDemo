@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class ObstacleSpawnController
@@ -36,7 +37,7 @@ public class ObstacleSpawnController
     private Obstacle Spawn()
     {
         var obstacle    = _pool.GetNext();
-        var data        = _generator.Generate(obstacle.transform.childCount);
+        var data        = _generator.Generate(obstacle.Sections.Count());
 
         obstacle.Construct(data);
 

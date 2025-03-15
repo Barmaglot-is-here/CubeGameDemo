@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeathHandlersHub
+public class DeathManager
 {
     private readonly Dictionary<string, DeathHandler> _handlers;
 
-    public DeathHandlersHub()
+    public DeathManager()
     {
         _handlers = new();
     }

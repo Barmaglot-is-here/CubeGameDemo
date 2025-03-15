@@ -10,7 +10,18 @@ public class ScoreCounter
     private int _prevObstaclesCount;
     private int _score;
 
-    public Action<int> OnCount { get; set; }
+    private int Score 
+    { 
+        get => _score; 
+        set
+        {
+            _score = value;
+
+            OnScoreChanged?.Invoke(value);
+        }
+    }
+
+    public Action<int> OnScoreChanged { get; set; }
 
     public ScoreCounter(IReadOnlyList<Obstacle> obstacles, GameObject scoreTriggerPrefab)
     {
@@ -38,12 +49,7 @@ public class ScoreCounter
         countComponent.OnCharacterPassed = IncrementScore;
     }
 
-    private void IncrementScore()
-    {
-        _score++;
+    private void IncrementScore() => Score++;
 
-        OnCount?.Invoke(_score);
-    }
-
-    public void Reset() => _score = 0;
+    public void Reset() => Score = 0;
 }

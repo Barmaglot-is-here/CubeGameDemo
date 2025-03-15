@@ -13,6 +13,8 @@ public class SpeedFlyAbility : IAbility
     private readonly Rigidbody2D _rigidbody;
     private readonly Transform _transform;
 
+    private UniTask _currentTask;
+
     public SpeedFlyAbility(float duration, Character character)
     {
         _duration   = duration;
@@ -20,7 +22,13 @@ public class SpeedFlyAbility : IAbility
         _transform  = character.transform;
     }
 
-    void IAbility.Use() => AbilityTask().Forget();
+    void IAbility.Use()
+    {
+        if (_currentTask.Status != UniTaskStatus.Succeeded)
+            return;
+
+        _currentTask = AbilityTask();
+    }
 
     private async UniTask AbilityTask()
     {

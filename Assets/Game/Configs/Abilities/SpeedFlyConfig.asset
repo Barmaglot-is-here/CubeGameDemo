@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795d3440e39216c47b46833411bf1838, type: 3}
   m_Name: SpeedFlyConfig
   m_EditorClassIdentifier: 
-  <Duration>k__BackingField: 0.9
+  <Duration>k__BackingField: 1.3

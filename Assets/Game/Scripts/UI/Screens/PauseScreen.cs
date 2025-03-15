@@ -3,22 +3,30 @@ using UIManagement;
 using UnityEngine.UI;
 using StateManagement;
 
-public class PauseScreen : BaseWindow
+public class PauseScreen : BasePauseScreen
 {
     [SerializeField] 
     private Button _unpauseButton;
-    [SerializeField] 
-    private Button _restartButton;
-    [SerializeField] 
-    private Button _homeButton;
-    [SerializeField]
-    private PlayModeScoreView _scoreView;
-
-    private void Awake()
+    
+    protected override void Awake()
     {
-        _unpauseButton  .onClick.AddListener(OnUnpauseButtonClick);
-        _restartButton  .onClick.AddListener(OnRestartButtonClick);
-        _homeButton     .onClick.AddListener(OnHomeButtonClick);
+        base.Awake();
+
+        _unpauseButton.onClick.AddListener(OnUnpauseButtonClick);
+    }
+
+    protected override void OnRestartButtonClick()
+    {
+        base.OnRestartButtonClick();
+
+        UIManager.Hide<PauseScreen>();
+    }
+
+    protected override void OnHomeButtonClick()
+    {
+        base.OnHomeButtonClick();
+
+        UIManager.Hide<PauseScreen>();
     }
 
     private void OnUnpauseButtonClick()
@@ -27,25 +35,5 @@ public class PauseScreen : BaseWindow
         UIManager.Show<PlayModeScreen>();
 
         StateManager.SetState<PlayState>();
-    }
-
-    private void OnRestartButtonClick()
-    {
-        UIManager.Hide<PauseScreen>();
-        UIManager.Show<PlayModeScreen>();
-
-        StateManager.SetState<IdleState>();
-        StateManager.SetState<PlayState>();
-    }
-
-    private void OnHomeButtonClick()
-    {
-        UIManager.Hide<PauseScreen>();
-        UIManager.Hide<PlayModeScreen>();
-        UIManager.Show<MainScreen>();
-
-        _scoreView.gameObject.SetActive(false);
-
-        StateManager.SetState<IdleState>();
     }
 }

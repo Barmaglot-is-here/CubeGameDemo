@@ -1,4 +1,5 @@
 using StateManagement;
+using UIManagement;
 using UnityEngine;
 
 public class Level : MonoBehaviour, IPausable, IPlayable, IResetable
@@ -39,17 +40,28 @@ public class Level : MonoBehaviour, IPausable, IPlayable, IResetable
         _scoreCounter           = new(_obstaclesController.Pool, 
                                       _config.ScoreCounterConfig.ScoreTriggerPrefab);
 
-        _scoreCounter.OnCount += _scoreView.Show;
+        _scoreCounter.OnScoreChanged += _scoreView.Show;
 
         _character.SetAbility(_abilitiesInitializer.Factory.Create<SpeedFlyAbility>());
+        _character.OnDeath += OnCharacterDeath;
 
         StateManager.Add(this);
+    }
+
+    private void OnCharacterDeath()
+    {
+        StateManager.SetState<PauseState>();
+        UIManager   .Show<DeathScreen>();
     }
 
     public void Play() => _simulate = true;
     public void Pause() => _simulate = false;
 
-    void IResetable.Reset() => _obstaclesController.Reset();
+    void IResetable.Reset()
+    {
+        _obstaclesController.Reset();
+        _scoreCounter       .Reset();
+    }
 
     private void Update()
     {

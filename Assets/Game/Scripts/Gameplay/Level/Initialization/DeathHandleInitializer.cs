@@ -1,12 +1,12 @@
 public class DeathHandleInitializer
 {
-    private readonly DeathHandlersHub _handlersHub;
+    private readonly DeathManager _deathManager;
 
     public DeathHandleInitializer(DeathZone deathZone)
     {
-        _handlersHub = new();
-        _handlersHub.Add("Obstacle", new ObstacleDeathHandler());
+        _deathManager = new();
+        _deathManager.Add("Obstacle", new ObstacleDeathHandler());
 
-        deathZone.OnTrigger += _handlersHub.Handle;
+        deathZone.OnTrigger += _deathManager.Handle;
     }
 }

@@ -2,35 +2,29 @@ using UIManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DeathScreen : BaseWindow
+public class DeathScreen : BasePauseScreen
 {
     [SerializeField] 
-    private Button _homeButton;
-    [SerializeField] 
-    private Button _restartButton;
-    [SerializeField] 
     private Button _watchAdButton;
-    [SerializeField]
-    private PlayModeScoreView _scoreView;
 
-    private void Awake()
+    protected override void Awake()
     {
-        _homeButton.onClick.AddListener(OnHomeButtonClick);
-        _restartButton.onClick.AddListener(OnRestartButtonClick);
+        base.Awake();
+
         _watchAdButton.onClick.AddListener(OnWatchAdButtonClick);
     }
 
-    private void OnHomeButtonClick()
+    protected override void OnRestartButtonClick()
     {
-        UIManager.Hide<PauseScreen>();
-        UIManager.Hide<DeathScreen>();
-        UIManager.Show<MainScreen>();
+        base.OnRestartButtonClick();
 
-        _scoreView.gameObject.SetActive(false);
+        UIManager.Hide<DeathScreen>();
     }
 
-    private void OnRestartButtonClick()
+    protected override void OnHomeButtonClick()
     {
+        base.OnHomeButtonClick();
+
         UIManager.Hide<DeathScreen>();
     }
 

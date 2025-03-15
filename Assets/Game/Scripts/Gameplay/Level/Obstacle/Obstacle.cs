@@ -1,9 +1,12 @@
 using StateManagement;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Obstacle : MonoBehaviour, IPausable, IPlayable
 {
     private GameObject[] _sections;
+
+    public IEnumerable<GameObject> Sections => _sections;
 
     public new Rigidbody2D rigidbody { get; private set; }
 
