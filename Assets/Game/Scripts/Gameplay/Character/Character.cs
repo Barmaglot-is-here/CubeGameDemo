@@ -28,7 +28,7 @@ public class Character : MonoBehaviour, IPlayable, IPausable, IResetable
 
         _startPosition = transform.position;
 
-        StateManager.Add(this);
+        StateManager.Register(this);
     }
 
     public void SetAbility(IAbility ability) => _ability = ability;

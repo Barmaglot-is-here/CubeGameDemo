@@ -23,7 +23,7 @@ public class Obstacle : MonoBehaviour, IPausable, IPlayable
 
         rigidbody = GetComponent<Rigidbody2D>();
 
-        StateManager.Add(this);
+        StateManager.Register(this);
     }
 
     public void Construct(ObstacleData data)

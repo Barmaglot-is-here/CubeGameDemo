@@ -29,7 +29,7 @@ namespace StateManagement
             _currentState = _states[typeof(IdleState)];
         }
 
-        public static void Add(IGameStateProvider provider)
+        public static void Register(IGameStateProvider provider)
         {
             TryAdd(_playProviders,     provider);
             TryAdd(_pauseProviders,     provider);

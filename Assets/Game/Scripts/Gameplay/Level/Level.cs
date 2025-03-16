@@ -45,7 +45,7 @@ public class Level : MonoBehaviour, IPausable, IPlayable, IResetable
         _character.SetAbility(_abilitiesInitializer.Factory.Create<SpeedFlyAbility>());
         _character.OnDeath += OnCharacterDeath;
 
-        StateManager.Add(this);
+        StateManager.Register(this);
     }
 
     private void OnCharacterDeath()

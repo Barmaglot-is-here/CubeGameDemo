@@ -5,17 +5,17 @@ using UnityEngine.UI;
 
 public class BasePauseScreen : BaseWindow
 {
-    [SerializeField]
-    private Button _restartButton;
-    [SerializeField]
-    private Button _homeButton;
-    [SerializeField]
-    private PlayModeScoreView _scoreView;
+    [field: SerializeField]
+    protected Button RestartButton;
+    [field: SerializeField]
+    protected Button HomeButton;
+    [field: SerializeField]
+    protected PlayModeScoreView ScoreView { get; private set; }
 
     protected virtual void Awake()
     {
-        _restartButton.onClick.AddListener(OnRestartButtonClick);
-        _homeButton.onClick.AddListener(OnHomeButtonClick);
+        RestartButton.onClick.AddListener(OnRestartButtonClick);
+        HomeButton.onClick.AddListener(OnHomeButtonClick);
     }
 
     protected virtual void OnRestartButtonClick()
@@ -31,7 +31,7 @@ public class BasePauseScreen : BaseWindow
         UIManager.Hide<PlayModeScreen>();
         UIManager.Show<MainScreen>();
 
-        _scoreView.gameObject.SetActive(false);
+        ScoreView.gameObject.SetActive(false);
 
         StateManager.SetState<IdleState>();
     }

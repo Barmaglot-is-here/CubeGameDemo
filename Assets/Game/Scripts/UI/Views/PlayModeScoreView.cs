@@ -16,6 +16,16 @@ public class PlayModeScoreView : MonoBehaviour
 
     private List<SpriteRenderer> _spriteInstances;
 
+    public int OrderInLayer 
+    {
+        get => _spriteInstances[0].sortingOrder;
+        set
+        {
+            foreach (var instance in _spriteInstances)
+                instance.sortingOrder = value;
+        }
+    }
+
     public void Awake()
     {
         _spriteInstances    = new();
