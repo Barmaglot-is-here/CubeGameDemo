@@ -54,13 +54,27 @@ public class Level : MonoBehaviour, IPausable, IPlayable, IResetable
         UIManager   .Show<DeathScreen>();
     }
 
-    public void Play() => _simulate = true;
-    public void Pause() => _simulate = false;
+    void IPlayable.Play()
+    {
+        _simulate = true;
+
+        GameTime.Continue();
+    }
+
+    void IPausable.Pause()
+    {
+        _simulate = false;
+
+        GameTime.Pause();
+    }
 
     void IResetable.Reset()
     {
         _obstaclesController.Reset();
         _scoreCounter       .Reset();
+        _scoreView          .Reset();
+
+        GameTime.Reset();
     }
 
     private void Update()
@@ -71,5 +85,7 @@ public class Level : MonoBehaviour, IPausable, IPlayable, IResetable
         _obstaclesController.Update();
         _character          .Move();
         _scoreCounter       .Update();
+
+        Debug.Log(GameTime.Scale);
     }
 }

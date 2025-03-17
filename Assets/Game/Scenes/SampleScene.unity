@@ -36006,9 +36006,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b519d185893fa2b4c921f7c3e546becd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RestartButton: {fileID: 0}
-  HomeButton: {fileID: 0}
-  <ScoreView>k__BackingField: {fileID: 0}
+  RestartButton: {fileID: 1544686049}
+  HomeButton: {fileID: 1258152828}
+  <ScoreView>k__BackingField: {fileID: 1741303433}
   _unpauseButton: {fileID: 18911848}
 --- !u!1 &1024439734
 GameObject:
@@ -47937,7 +47937,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timerSlider: {fileID: 768451557}
   _closeButton: {fileID: 34274193}
-  _config: {fileID: 11400000, guid: 78bd85b0ed468504984513af47760e2b, type: 2}
+  _addDuration: 3
 --- !u!1 &1418212593
 GameObject:
   m_ObjectHideFlags: 0

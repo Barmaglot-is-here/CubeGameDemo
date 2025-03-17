@@ -33,13 +33,13 @@ public class ScoreCounter
     {
         if (_prevObstaclesCount < _obstacles.Count)
         {
-            AddScoreCounter(_obstacles[_prevObstaclesCount]);
+            AddCounter(_obstacles[_prevObstaclesCount]);
 
             _prevObstaclesCount++;
         }
     }
 
-    private void AddScoreCounter(Obstacle obstacle)
+    private void AddCounter(Obstacle obstacle)
     {
         var instance        = GameObject.Instantiate(_scoreTriggerPrefab,
                                                      obstacle.transform);
@@ -51,5 +51,5 @@ public class ScoreCounter
 
     private void IncrementScore() => Score++;
 
-    public void Reset() => Score = 0;
+    public void Reset() => _score = 0;
 }

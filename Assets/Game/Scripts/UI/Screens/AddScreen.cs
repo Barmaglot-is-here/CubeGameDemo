@@ -14,9 +14,7 @@ public class AddScreen : BaseWindow
     private Button _closeButton;
 
     [SerializeField]
-    private AddConfig _config;
-
-    private float AddDuration => _config.Duration;
+    private float _addDuration;
 
     private Stopwatch _timer;
 
@@ -46,9 +44,9 @@ public class AddScreen : BaseWindow
     {
         _timer.Start();
 
-        while (_timer.Elapsed.Seconds < AddDuration)
+        while (_timer.Elapsed.Seconds < _addDuration)
         {
-            _timerSlider.value = Convert(_timer.Elapsed, AddDuration);
+            _timerSlider.value = Convert(_timer.Elapsed, _addDuration);
 
             await UniTask.Yield();
         }

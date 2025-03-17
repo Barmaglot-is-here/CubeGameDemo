@@ -1,9 +1,27 @@
 public static class GameTime
 {
-    public static float Scale { get; set; }
-    
-    static GameTime()
+    private static float _savedValue;
+
+    public static float BaseScale { get; set; }
+    public static float Multiplier { get; set; }
+    public static float Scale => BaseScale * Multiplier;
+
+    static GameTime() => Reset();
+
+    public static void Pause()
     {
-        Scale = 1;
+        _savedValue = Multiplier;
+
+        Multiplier = 0;
+    }
+
+    public static void Continue()
+    {
+        Multiplier = _savedValue;
+    }
+
+    public static void Reset()
+    {
+        Multiplier = BaseScale = _savedValue = 1;
     }
 }

@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4f5405b56ce584bbbbbf49f224f34f, type: 3}
   m_Name: CharacterConfig
   m_EditorClassIdentifier: 
-  _defaultAbility: {fileID: 1519697888376483110, guid: bea795a5320788a44a59955d9d543113, type: 3}
   <MoveForce>k__BackingField: 0.4
   <Mass>k__BackingField: 0.4
   <GravityScale>k__BackingField: 0.4

@@ -28,7 +28,7 @@ public class PlayModeScoreView : MonoBehaviour
 
     public void Awake()
     {
-        _spriteInstances    = new();
+        _spriteInstances = new();
 
         var firstSprite = _defaultInstance.GetComponent<SpriteRenderer>();
         _spriteInstances.Add(firstSprite);
@@ -41,7 +41,7 @@ public class PlayModeScoreView : MonoBehaviour
         {
             if (_spriteInstances.Count < i)
             {
-                var sprite      = AddNew(_defaultInstance);
+                var sprite = AddNew(_defaultInstance);
 
                 _spriteInstances.Add(sprite);
             }
@@ -52,6 +52,20 @@ public class PlayModeScoreView : MonoBehaviour
         }
 
         ResizeView();
+    }
+
+    public void Reset()
+    {
+        for (int i = 1; i < _spriteInstances.Count; i++)
+        {
+            var instance = _spriteInstances[i];
+
+            _spriteInstances.Remove(instance);
+
+            Destroy(instance.gameObject);
+        }
+
+        _spriteInstances[0].sprite = _spritePrefabs[0];
     }
 
     private IEnumerable<int> GetDigits(int number)

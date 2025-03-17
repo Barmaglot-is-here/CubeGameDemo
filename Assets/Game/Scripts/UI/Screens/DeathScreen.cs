@@ -28,7 +28,9 @@ public class DeathScreen : BasePauseScreen
         PlayShowAnimation(RestartButton.transform, 0.3f);
 
         ShowScoreView();
-        PlayShowAnimation(ScoreView.transform, 0.5f);
+
+        foreach (Transform number in ScoreView.transform)
+            PlayShowAnimation(number, 0.5f);
     }
 
     private void PlayShowAnimation(Transform target, float delay)

@@ -1,8 +1,7 @@
 using Cysharp.Threading.Tasks;
-using System;
+using System.Threading;
 using UnityEngine;
 
-[Serializable]
 public class SpeedFlyAbility : IAbility
 {
     private const int ABILITY_TIME_SCALE_MODIFIER = 3;
@@ -14,6 +13,7 @@ public class SpeedFlyAbility : IAbility
     private readonly Transform _transform;
 
     private UniTask _currentTask;
+    private CancellationTokenSource _cs;
 
     public SpeedFlyAbility(float duration, Character character)
     {
@@ -27,15 +27,19 @@ public class SpeedFlyAbility : IAbility
         if (_currentTask.Status != UniTaskStatus.Succeeded)
             return;
 
-        _currentTask = AbilityTask();
+        _cs = new();
+
+        _currentTask = AbilityTask(_cs);
     }
 
-    private async UniTask AbilityTask()
+    void IAbility.Cancel() => _cs?.Cancel();
+
+    private async UniTask AbilityTask(CancellationTokenSource cs)
     {
         Apply();
 
         float time = 0;
-        while (time < _duration)
+        while (time < _duration && !cs.IsCancellationRequested)
         {
             time += Time.deltaTime * GameTime.Scale;
 
@@ -47,19 +51,19 @@ public class SpeedFlyAbility : IAbility
 
     private void Apply()
     {
-        _rigidbody.simulated = false;
+        _rigidbody.constraints = RigidbodyConstraints2D.FreezePositionY;
 
         _transform.localScale /= CHARACTER_SCALE_MODIFIER;
 
-        GameTime.Scale *= ABILITY_TIME_SCALE_MODIFIER;
+        GameTime.Multiplier = ABILITY_TIME_SCALE_MODIFIER;
     }
 
     private void Disaply()
     {
-        _rigidbody.simulated = true;
+        _rigidbody.constraints = _rigidbody.constraints ^ RigidbodyConstraints2D.FreezePositionY;
 
         _transform.localScale *= CHARACTER_SCALE_MODIFIER;
 
-        GameTime.Scale /= ABILITY_TIME_SCALE_MODIFIER;
+        GameTime.Multiplier = 1;
     }
 }

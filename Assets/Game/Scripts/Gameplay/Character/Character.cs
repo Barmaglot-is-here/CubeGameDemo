@@ -53,5 +53,7 @@ public class Character : MonoBehaviour, IPlayable, IPausable, IResetable
         transform.position          = _startPosition;
         rigidbody.linearVelocityY   = 0;
         ChangeDirectionUp();
+
+        _ability.Cancel();
     }
 }
