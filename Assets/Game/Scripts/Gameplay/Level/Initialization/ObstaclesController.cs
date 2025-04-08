@@ -25,11 +25,8 @@ public class ObstaclesController
         obstacle.gameObject.SetActive(true);
     }
 
-    public void Update()
-    {
-        _spawnController    .Update();
-        _movementController .Update();
-    }
+    public void Update()        => _spawnController.Update();
+    public void FixedUpdate()   => _movementController.FixedUpdate();
 
     public void Reset()
     {

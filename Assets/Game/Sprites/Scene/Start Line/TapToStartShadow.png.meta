@@ -1,37 +1,16 @@
 fileFormatVersion: 2
-guid: 3cce6d25fcf731f44a0cc8ec62a2503a
+guid: 2d828589359f25c41bcc43ec4f52d299
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1648697662176420124
-    second: TapToStart_0
+      213: 5608534942024249659
+    second: TapToStartShadow_0
   - first:
-      213: -5752680301452967295
-    second: TapToStart_1
+      213: 1301358033656441427
+    second: TapToStartShadow_1
   - first:
-      213: -1734877439056321967
-    second: TapToStart_2
-  - first:
-      213: 3521437851955584554
-    second: TapToStart_3
-  - first:
-      213: 4743601211360975736
-    second: TapToStart_4
-  - first:
-      213: -8346450427179977630
-    second: TapToStart_5
-  - first:
-      213: -8443718097193965458
-    second: TapToStart_6
-  - first:
-      213: -3936944916554721888
-    second: TapToStart_7
-  - first:
-      213: 1578183864443992231
-    second: TapToStart_8
-  - first:
-      213: 132622796481383301
-    second: TapToStart_9
+      213: -4734178078743738173
+    second: TapToStartShadow_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -124,7 +103,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WebGL
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -137,7 +116,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -153,13 +132,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TapToStart_1
+      name: TapToStartShadow_1
       rect:
         serializedVersion: 2
-        x: 612
-        y: 1725
-        width: 1080
-        height: 973
+        x: 1056
+        y: 319
+        width: 303
+        height: 169
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,8 +147,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 182428daebf5a20b0800000000000000
-      internalID: -5752680301452967295
+      spriteID: 35a61b99c3a5f0210800000000000000
+      internalID: 1301358033656441427
       vertices: []
       indices: 
       edges: []
@@ -178,7 +157,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: d2d776dfe53427a4a984cc04d739c934
+    spriteID: 465d41eb522a525459c50d7895f01f9f
     internalID: 0
     vertices: []
     indices: 
@@ -188,7 +167,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      TapToStart_1: -5752680301452967295
+      TapToStartShadow_1: 1301358033656441427
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

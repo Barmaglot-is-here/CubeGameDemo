@@ -12,7 +12,7 @@ public class ObstacleMovementController
         _velocity   = -movementSpeed;
     }
 
-    public void Update()
+    public void FixedUpdate()
     {
         foreach (var obstacle in _obstacles)
             obstacle.rigidbody.linearVelocityX = _velocity * GameTime.Scale;

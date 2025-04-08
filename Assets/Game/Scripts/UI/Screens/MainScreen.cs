@@ -1,7 +1,7 @@
-using UnityEngine;
-using UIManagement;
-using UnityEngine.UI;
 using StateManagement;
+using UIManagement;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class MainScreen : BaseWindow
 {
@@ -31,6 +31,7 @@ public class MainScreen : BaseWindow
     private void OnSkinsButtonCkick() => UIManager.Show<SkinsScreen>();
     private void OnLevelsButtonCkick() => UIManager.Show<LevelsScreen>();
     private void OnScoreTableButtonCkick() => UIManager.Show<ScoreTableScreen>();
+
     private void OnPlayButtonCkick()
     {
         UIManager.Hide<MainScreen>();

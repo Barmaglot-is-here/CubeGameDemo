@@ -83,9 +83,12 @@ public class Level : MonoBehaviour, IPausable, IPlayable, IResetable
             return;
 
         _obstaclesController.Update();
-        _character          .Move();
         _scoreCounter       .Update();
+    }
 
-        Debug.Log(GameTime.Scale);
+    private void FixedUpdate()
+    {
+        _obstaclesController.FixedUpdate();
+        _character          .Move();
     }
 }

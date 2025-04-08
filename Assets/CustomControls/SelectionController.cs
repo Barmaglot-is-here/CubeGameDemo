@@ -17,7 +17,7 @@ public class SelectionController : MonoBehaviour
 
     public void SelectNext()
     {
-        if (_currentSelectionIndex < _selectionPoints.Length)
+        if (_currentSelectionIndex < _selectionPoints.Length - 1)
             _currentSelectionIndex++;
 
         SelectCurrent();

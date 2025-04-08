@@ -1,6 +1,6 @@
+using StateManagement;
 using System;
 using UnityEngine;
-using StateManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Character : MonoBehaviour, IPlayable, IPausable, IResetable
