@@ -6,19 +6,20 @@ using UnityEngine;
 public class ObjectPool<T> : IReadOnlyList<T> where T : MonoBehaviour
 {
     private readonly List<T> _list;
-    private readonly Func<T> _spawnAction;
-    private readonly Action<T> _resetAction;
+    private readonly Func<T> _createFunc;
 
     private int _current;
+
+    public Action<T> OnCreate;
+    public Action<T> OnReset;
 
     public int Count => _list.Count;
     public T this[int index] => _list[index];
 
-    public ObjectPool(Func<T> spawnAction, Action<T> resetAction)
+    public ObjectPool(Func<T> createFunc)
     {
-        _list           = new();
-        _spawnAction    = spawnAction;
-        _resetAction    = resetAction;
+        _list       = new();
+        _createFunc = createFunc;
     }
 
     public T GetNext()
@@ -27,15 +28,17 @@ public class ObjectPool<T> : IReadOnlyList<T> where T : MonoBehaviour
 
         if (_list.Count == 0 || _list[_current].gameObject.activeSelf)
         {
-            obj = _spawnAction.Invoke();
+            obj = _createFunc.Invoke();
 
             _list.Add(obj);
+
+            OnCreate?.Invoke(obj);
         }
         else
         {
             obj = _list[_current];
 
-            _resetAction.Invoke(obj);
+            OnReset.Invoke(obj);
 
             _current = ++_current % _list.Count;
         }

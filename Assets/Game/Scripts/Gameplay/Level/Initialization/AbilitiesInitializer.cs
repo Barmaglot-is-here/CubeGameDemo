@@ -1,16 +1,15 @@
 using UnityEngine;
 
-public class AbilitiesInitializer
+public static class AbilitiesInitializer
 {
-    public AbilityFactory Factory { get; }
-
-    public AbilitiesInitializer(AbilitiesConfig config)
+    public static void CreateFactory(AbilitiesConfig config, out AbilitiesFactory factory)
     {
-        Factory = new();
-        Factory.AddMethod(() => SpeedFlyAbility(config.SpeedFlyConfig));
+        factory = new();
+
+        factory.AddMethod(() => SpeedFlyAbility(config.SpeedFlyConfig));
     }
 
-    private SpeedFlyAbility SpeedFlyAbility(SpeedFlyConfig config)
+    private static SpeedFlyAbility SpeedFlyAbility(SpeedFlyConfig config)
     {
         Character character = GameObject.FindAnyObjectByType<Character>();
 

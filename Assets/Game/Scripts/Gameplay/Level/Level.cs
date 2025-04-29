@@ -1,58 +1,49 @@
 using StateManagement;
-using UIManagement;
 using UnityEngine;
 
 public class Level : MonoBehaviour, IPausable, IPlayable, IResetable
 {
     [SerializeField]
     private LevelConfig _config;
-
     [SerializeField]
-    private Character _character;
-
+    private LevelPrefabs _prefabs;
     [SerializeField]
-    private Transform _obstaclesContainer;
-    [SerializeField]
-    private Transform _obstaclesSpawnPoint;
+    private LevelData _data;
 
-    [SerializeField]
-    private DeathZone _deathZone;
+    [field: SerializeField]
+    public Character Character { get; private set; }
 
+    [Space]
     [SerializeField]
     private PlayModeScoreView _scoreView;
 
+    private LevelMovementController _movementController;
     private ObstaclesController _obstaclesController;
-    private AbilitiesInitializer _abilitiesInitializer;
-    private DeathHandleInitializer _deathHandleInitializer;
+    private StartLineController _startLineController;
     private ScoreCounter _scoreCounter;
 
     private bool _simulate;
 
     private void Awake()
     {
-        LevelData data          = new();
-        data.ObstaclesContainer = _obstaclesContainer;
-        data.ObstacleSpawnPoint = _obstaclesSpawnPoint;
+        _movementController     = new(_config.ObjectsSpeed);
+        _obstaclesController    = new(_data.ObstaclesData, _config.ObstaclesSettings,
+                                      _prefabs.ObstaclePrefab, _movementController);
+        _startLineController    = new(_data.StartLine, _movementController);
 
-        _obstaclesController    = new(data, _config.ObstaclesSettings);
-        _abilitiesInitializer   = new(_config.AbilitiesConfig);
-        _deathHandleInitializer = new(_deathZone);
-        _scoreCounter           = new(_obstaclesController.Pool, 
-                                      _config.ScoreCounterConfig.ScoreTriggerPrefab);
-
+        _scoreCounter           = new(_obstaclesController.Pool,
+                                      _prefabs.ScoreTriggerPrefab);
         _scoreCounter.OnScoreChanged += _scoreView.Show;
 
-        _character.SetAbility(_abilitiesInitializer.Factory.Create<SpeedFlyAbility>());
-        _character.OnDeath += OnCharacterDeath;
+        AbilitiesInitializer    .CreateFactory(_config.AbilitiesConfig, 
+                                               out var abilitiesFactory);
+        DeathHandleInitializer  .Init(_data.DeathZone);
+        CharacterInitializer    .Init(Character, abilitiesFactory);
 
         StateManager.Register(this);
     }
 
-    private void OnCharacterDeath()
-    {
-        StateManager.SetState<PauseState>();
-        UIManager   .Show<DeathScreen>();
-    }
+    private void Start() => _obstaclesController.Start();
 
     void IPlayable.Play()
     {
@@ -71,6 +62,7 @@ public class Level : MonoBehaviour, IPausable, IPlayable, IResetable
     void IResetable.Reset()
     {
         _obstaclesController.Reset();
+        _startLineController.Reset();
         _scoreCounter       .Reset();
         _scoreView          .Reset();
 
@@ -83,12 +75,14 @@ public class Level : MonoBehaviour, IPausable, IPlayable, IResetable
             return;
 
         _obstaclesController.Update();
-        _scoreCounter       .Update();
     }
 
     private void FixedUpdate()
     {
-        _obstaclesController.FixedUpdate();
-        _character          .Move();
+        if (!_simulate)
+            return;
+
+        _movementController.FixedUpdate();
+        Character          .Move();
     }
 }

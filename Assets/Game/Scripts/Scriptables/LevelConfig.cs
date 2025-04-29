@@ -4,9 +4,9 @@ using UnityEngine;
 public class LevelConfig : ScriptableObject
 {
     [field: SerializeField]
-    public ObstaclesSettings ObstaclesSettings { get; private set; }
+    public float ObjectsSpeed { get; private set; }
     [field: SerializeField]
-    public ScoreCounterConfig ScoreCounterConfig { get; private set; }
+    public ObstaclesSettings ObstaclesSettings { get; private set; }
     [field: SerializeField]
     public AbilitiesConfig AbilitiesConfig { get; private set; }
 }

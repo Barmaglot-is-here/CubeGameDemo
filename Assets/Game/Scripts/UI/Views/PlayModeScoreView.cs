@@ -21,8 +21,15 @@ public class PlayModeScoreView : MonoBehaviour
         get => _spriteInstances[0].sortingOrder;
         set
         {
-            foreach (var instance in _spriteInstances)
-                instance.sortingOrder = value;
+            for (int i = 0; i < _spriteInstances.Count; i++)
+            {
+                var instance = _spriteInstances[i];
+
+                if (instance == null)
+                    _spriteInstances.Remove(instance);
+                else
+                    instance.sortingOrder = value;
+            }
         }
     }
 

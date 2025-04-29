@@ -18,8 +18,12 @@ public class ObstacleSpawnController
         _pool           = pool;
         _generator      = generator;
         _spawnDistance  = spawnDistance;
+    }
+
+    public void Start()
+    {
         _current        = Spawn();
-        _startPosition = _current.transform.position.x;
+        _startPosition  = _current.transform.position.x;
     }
 
     public void Update()

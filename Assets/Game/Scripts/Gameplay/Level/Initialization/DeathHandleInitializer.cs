@@ -1,12 +1,11 @@
-public class DeathHandleInitializer
+public static class DeathHandleInitializer
 {
-    private readonly DeathManager _deathManager;
-
-    public DeathHandleInitializer(DeathZone deathZone)
+    public static void Init(DeathZone deathZone)
     {
-        _deathManager = new();
-        _deathManager.Add("Obstacle", new ObstacleDeathHandler());
+        DeathManager deathManager = new();
+        deathManager.Add("Obstacle",    new ObstacleDeathHandler());
+        deathManager.Add("StartLine",   new StartLineDeathHandler());
 
-        deathZone.OnTrigger += _deathManager.Handle;
+        deathZone.OnTrigger += deathManager.Handle;
     }
 }

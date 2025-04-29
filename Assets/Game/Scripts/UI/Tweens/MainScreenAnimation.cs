@@ -59,7 +59,7 @@ public class MainScreenAnimation : MonoBehaviour
         DOTween.Sequence()
             .Join
             (
-                DOVirtual.Float(startPoint, endPoint, 0.2f, newPosition =>
+                DOVirtual.Float(startPoint, endPoint, 0.3f, newPosition =>
                 {
                     transform.anchoredPosition = new(transform.anchoredPosition.x, 
                                                      newPosition);
@@ -82,14 +82,14 @@ public class MainScreenAnimation : MonoBehaviour
         DOTween.Sequence()
             .Join
             (
-                DOVirtual.Vector3(Vector3.zero, targetScale, 0.2f, scale =>
+                DOVirtual.Vector3(Vector3.zero, targetScale, 0.3f, scale =>
                 {
                     _scoreTransform.localScale = scale;
                 })
             )
             .Join
             (
-                DOVirtual.Float(0, 1, 0.2f, alpha =>
+                DOVirtual.Float(0, 1, 0.3f, alpha =>
                 {
                     _scoreImage.color = new(targetColor.r, targetColor.g, targetColor.b, alpha);
                 })

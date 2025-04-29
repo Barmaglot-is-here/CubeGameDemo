@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 
-public class AbilityFactory
+public class AbilitiesFactory
 {
     private readonly Dictionary<Type, object> _factoryMethods;
 
-    public AbilityFactory()
+    public AbilitiesFactory()
     {
         _factoryMethods = new();
     }

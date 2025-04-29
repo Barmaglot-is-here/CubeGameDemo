@@ -108,16 +108,6 @@ CompositeCollider2D:
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
-  - m_Collider: {fileID: 5762065413229690622}
-    m_ColliderPaths:
-    - - X: 5800000
-        Y: 13400000
-      - X: -3800000
-        Y: 13400000
-      - X: -3800000
-        Y: 3800000
-      - X: 5800000
-        Y: 3800000
   - m_Collider: {fileID: 555358297711804538}
     m_ColliderPaths:
     - - X: 5800000
@@ -128,16 +118,6 @@ CompositeCollider2D:
         Y: 13399999
       - X: 5800000
         Y: 13399999
-  - m_Collider: {fileID: 4960849972569129887}
-    m_ColliderPaths:
-    - - X: 5800000
-        Y: 32600002
-      - X: -3800000
-        Y: 32600002
-      - X: -3800000
-        Y: 23000002
-      - X: 5800000
-        Y: 23000002
   - m_Collider: {fileID: 531935821088419398}
     m_ColliderPaths:
     - - X: 5800000
@@ -148,6 +128,16 @@ CompositeCollider2D:
         Y: 51800004
       - X: 5800000
         Y: 51800004
+  - m_Collider: {fileID: 4960849972569129887}
+    m_ColliderPaths:
+    - - X: 5800000
+        Y: 32600002
+      - X: -3800000
+        Y: 32600002
+      - X: -3800000
+        Y: 23000002
+      - X: 5800000
+        Y: 23000002
   - m_Collider: {fileID: 165863083265667758}
     m_ColliderPaths:
     - - X: 5800000
@@ -168,16 +158,6 @@ CompositeCollider2D:
         Y: 42200004
       - X: 5800000
         Y: 42200004
-  - m_Collider: {fileID: 7478456818251946579}
-    m_ColliderPaths:
-    - - X: 5800000
-        Y: 3800000
-      - X: -3800000
-        Y: 3800000
-      - X: -3800000
-        Y: -5800000
-      - X: 5800000
-        Y: -5800000
   - m_Collider: {fileID: 6311880675083009185}
     m_ColliderPaths:
     - - X: 5800000
@@ -188,6 +168,26 @@ CompositeCollider2D:
         Y: 32600000
       - X: 5800000
         Y: 32600000
+  - m_Collider: {fileID: 5762065413229690622}
+    m_ColliderPaths:
+    - - X: 5800000
+        Y: 13400000
+      - X: -3800000
+        Y: 13400000
+      - X: -3800000
+        Y: 3800000
+      - X: 5800000
+        Y: 3800000
+  - m_Collider: {fileID: 7478456818251946579}
+    m_ColliderPaths:
+    - - X: 5800000
+        Y: 3800000
+      - X: -3800000
+        Y: 3800000
+      - X: -3800000
+        Y: -5800000
+      - X: 5800000
+        Y: -5800000
   m_CompositePaths:
     m_Paths:
     - - {x: 0.5799707, y: -0.58}
@@ -218,10 +218,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6087613114400446818}
     m_Modifications:
-    - target: {fileID: 757148016746970232, guid: 8ee7216e232df1144a01aa98f693b07c, type: 3}
-      propertyPath: m_SortingOrder
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 5929593166208175000, guid: 8ee7216e232df1144a01aa98f693b07c, type: 3}
       propertyPath: m_Name
       value: 6
@@ -297,10 +293,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6087613114400446818}
     m_Modifications:
-    - target: {fileID: 757148016746970232, guid: 8ee7216e232df1144a01aa98f693b07c, type: 3}
-      propertyPath: m_SortingOrder
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 5929593166208175000, guid: 8ee7216e232df1144a01aa98f693b07c, type: 3}
       propertyPath: m_Name
       value: 1
@@ -376,10 +368,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6087613114400446818}
     m_Modifications:
-    - target: {fileID: 757148016746970232, guid: 8ee7216e232df1144a01aa98f693b07c, type: 3}
-      propertyPath: m_SortingOrder
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 5929593166208175000, guid: 8ee7216e232df1144a01aa98f693b07c, type: 3}
       propertyPath: m_Name
       value: 5
@@ -455,10 +443,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6087613114400446818}
     m_Modifications:
-    - target: {fileID: 757148016746970232, guid: 8ee7216e232df1144a01aa98f693b07c, type: 3}
-      propertyPath: m_SortingOrder
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 5929593166208175000, guid: 8ee7216e232df1144a01aa98f693b07c, type: 3}
       propertyPath: m_Name
       value: 2
@@ -534,10 +518,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6087613114400446818}
     m_Modifications:
-    - target: {fileID: 757148016746970232, guid: 8ee7216e232df1144a01aa98f693b07c, type: 3}
-      propertyPath: m_SortingOrder
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 5929593166208175000, guid: 8ee7216e232df1144a01aa98f693b07c, type: 3}
       propertyPath: m_Name
       value: 4
@@ -613,7 +593,7 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6087613114400446818}
     m_Modifications:
-    - target: {fileID: 757148016746970232, guid: 8ee7216e232df1144a01aa98f693b07c, type: 3}
+    - target: {fileID: 5217096531380672495, guid: 8ee7216e232df1144a01aa98f693b07c, type: 3}
       propertyPath: m_SortingOrder
       value: 4
       objectReference: {fileID: 0}
@@ -692,10 +672,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6087613114400446818}
     m_Modifications:
-    - target: {fileID: 757148016746970232, guid: 8ee7216e232df1144a01aa98f693b07c, type: 3}
-      propertyPath: m_SortingOrder
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 5929593166208175000, guid: 8ee7216e232df1144a01aa98f693b07c, type: 3}
       propertyPath: m_Name
       value: 7
@@ -771,10 +747,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6087613114400446818}
     m_Modifications:
-    - target: {fileID: 757148016746970232, guid: 8ee7216e232df1144a01aa98f693b07c, type: 3}
-      propertyPath: m_SortingOrder
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 5929593166208175000, guid: 8ee7216e232df1144a01aa98f693b07c, type: 3}
       propertyPath: m_Name
       value: 8
