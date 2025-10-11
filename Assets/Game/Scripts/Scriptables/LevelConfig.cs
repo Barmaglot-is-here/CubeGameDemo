@@ -4,9 +4,11 @@ using UnityEngine;
 public class LevelConfig : ScriptableObject
 {
     [field: SerializeField]
-    public float ObjectsSpeed { get; private set; }
+    public float StartSpeed { get; private set; }
     [field: SerializeField]
-    public ObstaclesSettings ObstaclesSettings { get; private set; }
+    public float MaxSpeed { get; private set; }
     [field: SerializeField]
-    public AbilitiesConfig AbilitiesConfig { get; private set; }
+    public float SpeedGrow { get; private set; }
+    [field: SerializeField]
+    public float SpawnDistance { get; private set; }
 }

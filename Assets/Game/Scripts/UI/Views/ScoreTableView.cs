@@ -6,20 +6,20 @@ public class ScoreTableView : MonoBehaviour
     [SerializeField]
     private Transform _content;
     [SerializeField]
-    private ScoreTableRecordView _prefab;
+    private ScoreRecordView _prefab;
 
-    public void Fill(IEnumerable<ScoreTableRecordData> datas)
+    public void Fill(IEnumerable<ScoreRecordData> datas)
     {
         foreach (var data in datas)
             CreateView(data);
     }
 
-    private ScoreTableRecordView CreateView(ScoreTableRecordData data)
+    private ScoreRecordView CreateView(ScoreRecordData data)
     {
         var instance    = Instantiate(_prefab, _content);
-        var view        = instance.GetComponent<ScoreTableRecordView>();
+        var view        = instance.GetComponent<ScoreRecordView>();
         
-        view.Init(data);
+        view.Show(data);
 
         return instance;
     }

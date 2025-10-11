@@ -1,88 +1,84 @@
 using StateManagement;
 using UnityEngine;
 
-public class Level : MonoBehaviour, IPausable, IPlayable, IResetable
+[DefaultExecutionOrder(-1000)]
+public class Level : MonoBehaviour, IResetable, IPausable, IPlayable, IStartable
 {
     [SerializeField]
+    private LevelType _type;
+    [SerializeField]
     private LevelConfig _config;
-    [SerializeField]
-    private LevelPrefabs _prefabs;
-    [SerializeField]
-    private LevelData _data;
 
-    [field: SerializeField]
-    public Character Character { get; private set; }
-
-    [Space]
-    [SerializeField]
-    private PlayModeScoreView _scoreView;
-
-    private LevelMovementController _movementController;
-    private ObstaclesController _obstaclesController;
-    private StartLineController _startLineController;
     private ScoreCounter _scoreCounter;
+    private LevelSpeedController _speedController;
+    private MovementController _movementController;
+    private SpawnController _spawnController;
 
-    private bool _simulate;
+    public static ServiceManager Services { get; private set; } = new();
+    public static Simulation Simulation { get; private set; } = new();
 
     private void Awake()
     {
-        _movementController     = new(_config.ObjectsSpeed);
-        _obstaclesController    = new(_data.ObstaclesData, _config.ObstaclesSettings,
-                                      _prefabs.ObstaclePrefab, _movementController);
-        _startLineController    = new(_data.StartLine, _movementController);
-
-        _scoreCounter           = new(_obstaclesController.Pool,
-                                      _prefabs.ScoreTriggerPrefab);
-        _scoreCounter.OnScoreChanged += _scoreView.Show;
-
-        AbilitiesInitializer    .CreateFactory(_config.AbilitiesConfig, 
-                                               out var abilitiesFactory);
-        DeathHandleInitializer  .Init(_data.DeathZone);
-        CharacterInitializer    .Init(Character, abilitiesFactory);
+        InitFields();
+        RegisterServices();
+        RegisterEvents();
 
         StateManager.Register(this);
     }
 
-    private void Start() => _obstaclesController.Start();
-
-    void IPlayable.Play()
+    private void InitFields()
     {
-        _simulate = true;
-
-        GameTime.Continue();
+        _scoreCounter       = new();
+        _speedController    = new(_config.MaxSpeed, _config.SpeedGrow);
+        _movementController = new(_config.StartSpeed);
+        _spawnController    = new(GetLoader(_type), _config.SpawnDistance,
+                                  Services.Get<ObstacleFactory>());
     }
 
-    void IPausable.Pause()
+    private void RegisterServices()
     {
-        _simulate = false;
+        Services.Add(_scoreCounter);
+        Services.Add(_movementController);
+        Services.Add(_spawnController);
+    }
 
-        GameTime.Pause();
+    private void RegisterEvents()
+    {
+        _scoreCounter.OnScoreChanged += _speedController.Update;
+
+        Simulation.OnUpdate         += _spawnController.Update;
+        Simulation.OnFixedUpdate    += _movementController.FixedUpdate;
+        Simulation.OnDisabled       += _movementController.Pause;
+    }
+
+    private ILevelLoader GetLoader(LevelType type)
+    {
+        return new ObstacleGenerator();
     }
 
     void IResetable.Reset()
     {
-        _obstaclesController.Reset();
-        _startLineController.Reset();
-        _scoreCounter       .Reset();
-        _scoreView          .Reset();
+        _scoreCounter.Reset();
+        _spawnController.Reset();
 
         GameTime.Reset();
     }
 
-    private void Update()
-    {
-        if (!_simulate)
-            return;
+    void IStartable.Start() => _spawnController.Start();
 
-        _obstaclesController.Update();
+    private void Update() => Simulation.Update();
+    private void FixedUpdate() => Simulation.FixedUpdate();
+
+    void IPausable.Pause()
+    {
+        Simulation.Disable();
+
+        GameTime.Pause();
     }
-
-    private void FixedUpdate()
+    void IPlayable.Play()
     {
-        if (!_simulate)
-            return;
+        Simulation.Enable();
 
-        _movementController.FixedUpdate();
-        Character          .Move();
+        GameTime.Play();
     }
 }

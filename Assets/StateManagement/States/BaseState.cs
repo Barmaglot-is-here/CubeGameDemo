@@ -1,18 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace StateManagement
 {
     public abstract class BaseState
     {
-        internal void Handle(Type nextState)
-        {
-            if (CanTransit(nextState))
-                MakeTransition(nextState);
-            else
-                throw new InvalidTransitionException(this.GetType().ToString(), nextState.ToString());
-        }
+        internal abstract IEnumerable<Type> SupportedStates { get; }
 
-        protected abstract bool CanTransit(Type nextState);
-        protected abstract void MakeTransition(Type nextState);
+        internal virtual void Enter() { }
+        internal virtual void Exit() { }
     }
 }

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8772c7fd094d34048a4023d5a1a57e67, type: 3}
+  m_Name: SkinList
+  m_EditorClassIdentifier: 
+  <Skins>k__BackingField:
+  - <CharacterData>k__BackingField:
+      <Sprite>k__BackingField: {fileID: 3286163911610860551, guid: 5b5e55b54ae09b54085fa6822a6cbe9c, type: 3}
+      <Shadow>k__BackingField: {fileID: 3286163911610860551, guid: 916cfcad94280d14cb6359d343fc1874, type: 3}
+    <ObstacleData>k__BackingField:
+      <Sprite>k__BackingField: {fileID: 3286163911610860551, guid: 725a45e324cf32445b51bd0fa02cf550, type: 3}
+      <Shadow>k__BackingField: {fileID: 3286163911610860551, guid: 18548eaf2b32b604e8b903fdc7bca2a4, type: 3}
+  - <CharacterData>k__BackingField:
+      <Sprite>k__BackingField: {fileID: 3286163911610860551, guid: f564a27861bf2454e8e3c06cf3a48e2d, type: 3}
+      <Shadow>k__BackingField: {fileID: 3286163911610860551, guid: 9d45fa93a3128004ca1e5d134e7bd02a, type: 3}
+    <ObstacleData>k__BackingField:
+      <Sprite>k__BackingField: {fileID: 3286163911610860551, guid: b41a5f2f637ccf14daeb34a2bd3f84de, type: 3}
+      <Shadow>k__BackingField: {fileID: 3286163911610860551, guid: 27234b4ed1d82c545af0bba41e8e5ca8, type: 3}

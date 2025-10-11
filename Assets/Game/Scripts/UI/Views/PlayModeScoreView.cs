@@ -33,7 +33,7 @@ public class PlayModeScoreView : MonoBehaviour
         }
     }
 
-    public void Awake()
+    private void Awake()
     {
         _spriteInstances = new();
 
@@ -72,11 +72,17 @@ public class PlayModeScoreView : MonoBehaviour
             Destroy(instance.gameObject);
         }
 
-        _spriteInstances[0].sprite = _spritePrefabs[0];
+        _spriteInstances[0].sprite                  = _spritePrefabs[0];
+        _spriteInstances[0].transform.localPosition = Vector2.zero;
+
+        CenterContainer();
     }
 
     private IEnumerable<int> GetDigits(int number)
     {
+        if (number == 0)
+            yield return 0;
+
         for (; number != 0;)
         {
             int digit = number / 10;

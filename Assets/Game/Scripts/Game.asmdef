@@ -5,12 +5,14 @@
         "GUID:126994365c9d2174585d1666217fcae0",
         "GUID:6055be8ebefd69e48b49212b09b47b2f",
         "GUID:6546d7765b4165b40850b3667f981c26",
-        "GUID:a1beb3fdd23237b4fa1fdf07d40d394c",
         "GUID:f51ebe6a0ceec4240a699833d6309b23",
-        "GUID:ae32262e39da53841b730171e9a8c6f4",
-        "GUID:68550284b645f4b9894995579f34290a"
+        "GUID:68550284b645f4b9894995579f34290a",
+        "GUID:ae32262e39da53841b730171e9a8c6f4"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Android",
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

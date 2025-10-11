@@ -44,6 +44,7 @@ public class DeathScreen : BasePauseScreen
         base.OnRestartButtonClick();
 
         UIManager.Hide<DeathScreen>();
+        UIManager.Show<PlayModeScreen>();
     }
 
     protected override void OnHomeButtonClick()

@@ -15,7 +15,7 @@ public static class GameTime
         Multiplier = 0;
     }
 
-    public static void Continue()
+    public static void Play()
     {
         Multiplier = _savedValue;
     }

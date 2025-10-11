@@ -1,5 +1,4 @@
 using Cysharp.Threading.Tasks;
-using StateManagement;
 using System;
 using System.Diagnostics;
 using UIManagement;
@@ -28,8 +27,9 @@ public class AddScreen : BaseWindow
     private void OnCloseButtonClick()
     {
         UIManager.Hide<AddScreen>();
+        UIManager.Show<PlayModeScreen>();
 
-        StateManager.SetState<PlayState>();
+        CharacterRebirth.Invoke();
     }
 
     private void OnEnable()
@@ -46,7 +46,7 @@ public class AddScreen : BaseWindow
 
         while (_timer.Elapsed.Seconds < _addDuration)
         {
-            _timerSlider.value = Convert(_timer.Elapsed, _addDuration);
+            _timerSlider.value = CalculateProgression(_timer.Elapsed, _addDuration);
 
             await UniTask.Yield();
         }
@@ -55,7 +55,6 @@ public class AddScreen : BaseWindow
         _closeButton.gameObject.SetActive(true);
     }
 
-    //Переименовать метод
-    private float Convert(TimeSpan span, float target) 
-        => (float)span.TotalMilliseconds / (target * 1000);
+    private float CalculateProgression(TimeSpan currentTime, float targetTime) 
+        => (float)currentTime.TotalSeconds / targetTime;
 }

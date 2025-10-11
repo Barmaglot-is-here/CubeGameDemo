@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44e26393d664d4940aee6e292dd735db, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c650bf823f75a64db1fef41fd0ddbb8, type: 3}
   m_Name: LevelConfig
   m_EditorClassIdentifier: 
-  <ObjectsSpeed>k__BackingField: 2
-  <ObstaclesSettings>k__BackingField: {fileID: 11400000, guid: 5eadd67f9d4d4d844975b6a078423a81, type: 2}
-  <AbilitiesConfig>k__BackingField: {fileID: 11400000, guid: 1b93e1c0e163128478ce149a30e4d6f1, type: 2}
+  <StartSpeed>k__BackingField: 2
+  <MaxSpeed>k__BackingField: 3
+  <SpeedGrow>k__BackingField: 0.025
+  <SpawnDistance>k__BackingField: 7

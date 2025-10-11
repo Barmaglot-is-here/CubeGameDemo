@@ -1,18 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace StateManagement
 {
     public class PauseState : BaseState
     {
-        protected override bool CanTransit(Type nextState) 
-            => nextState == typeof(IdleState) || nextState == typeof(PlayState);
-
-        protected override void MakeTransition(Type nextState)
+        internal override IEnumerable<Type> SupportedStates
         {
-            if (nextState == typeof(IdleState))
-                StateManager.Reset();
-            else
-                StateManager.Play();
+            get
+            {
+                yield return typeof(IdleState);
+                yield return typeof(PlayState);
+            }
         }
+
+        internal override void Enter() => StateManager.Pause();
     }
 }
