@@ -2,39 +2,35 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbilitiesFactory : MonoBehaviour
+namespace Game.Abilities
 {
-    [field: SerializeField]
-    private AbilitiesConfig _config;
-
-    private Dictionary<Type, object> _factoryMethods;
-
-    private void Awake()
+    public class AbilitiesFactory : MonoBehaviour
     {
-        _factoryMethods = new();
+        [field: SerializeField]
+        private AbilitiesConfig _config;
 
-        Add(() => SpeedFlyAbility(_config.SpeedFlyConfig));
-    }
+        private Dictionary<Type, object> _factoryMethods;
 
-    private void Add<T>(Func<T> func) where T : IAbility
-    {
-        Type type = typeof(T);
+        private void Awake()
+        {
+            _factoryMethods = new();
 
-        _factoryMethods.Add(type, func);
-    }
+            Add(() => new GrowAbility(_config.GrowAbilityConfig));
+        }
 
-    private static SpeedFlyAbility SpeedFlyAbility(SpeedFlyConfig config)
-    {
-        Character character = GameObject.FindAnyObjectByType<Character>();
+        private void Add<T>(Func<T> func) where T : IAbility
+        {
+            Type type = typeof(T);
 
-        return new(config.Duration, character);
-    }
+            _factoryMethods.Add(type, func);
+        }
 
-    public IAbility Create<T>() where T : IAbility
-    {
-        Type type = typeof(T);
-        object @delegate = _factoryMethods[type];
+        public IAbility Create<T>() where T : IAbility
+        {
+            Type type = typeof(T);
+            object @delegate = _factoryMethods[type];
 
-        return ((Func<T>)@delegate).Invoke();
+            return ((Func<T>)@delegate).Invoke();
+        }
     }
 }

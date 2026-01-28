@@ -1,59 +1,52 @@
 using StateManagement;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
-public class Character : MonoBehaviour, IPlayable, IPausable, IResetable
+namespace Game.Level.Entities
 {
-    [SerializeField]
-    private CharacterConfig _config;
-    
-    private AbilitiesFactory _abilitiesFactory;
-    private CharacterMovementComponent _movementComponent;
-
-    private IAbility _ability;
-
-    private Vector2 _startPosition;
-
-    public new Rigidbody2D rigidbody { get; private set; }
-
-    private void Awake()
+    [RequireComponent(typeof(Rigidbody2D))]
+    public class Character : MonoBehaviour, IPlayable, IPausable, IResetable
     {
-        _abilitiesFactory   = Level.Services.Get<AbilitiesFactory>();
-        rigidbody           = GetComponent<Rigidbody2D>();
-        _movementComponent  = new(rigidbody, _config);
-        _startPosition      = transform.position;
+        [SerializeField]
+        private CharacterConfig _config;
 
-        rigidbody.simulated = false;
+        private Vector2 _startPosition;
 
-        Level.Simulation.OnFixedUpdate += OnFixedUpdate;
+        public CharacterMovementComponent movement { get; private set; }
+        public Dash dash { get; private set; }
+        public new Rigidbody2D rigidbody { get; private set; }
 
-        StateManager.Register(this);
-    }
+        private void Awake()
+        {
+            rigidbody = GetComponent<Rigidbody2D>();
+            movement = new(rigidbody, _config);
+            dash = new(_config.DashDuration, this);
+            _startPosition = transform.position;
 
-    private void Start()
-    {
-        _ability = _abilitiesFactory.Create<SpeedFlyAbility>();
-    }
+            rigidbody.simulated = false;
 
-    private void OnFixedUpdate() => _movementComponent.Move();
+            Level.Simulation.OnFixedUpdate += OnFixedUpdate;
 
-    public void SetAbility(IAbility ability) => _ability = ability;
+            StateManager.Register(this);
+        }
 
-    public void ChangeDirectionUp() => _movementComponent.ChangeDirectionUp();
-    public void ChangeDirectionDown() => _movementComponent.ChangeDirectionDown();
-    public void Move() => _movementComponent.Move();
-    public void UseAbility() => _ability?.Use();
+        private void OnFixedUpdate() => movement.Move();
 
-    void IPlayable.Play() => rigidbody.simulated = true;
-    void IPausable.Pause() => rigidbody.simulated = false;
+        public void ChangeDirectionUp() => movement.ChangeDirectionUp();
+        public void ChangeDirectionDown() => movement.ChangeDirectionDown();
+        public void Dash() => dash.Enter();
+        public void Move() => movement.Move();
 
-    void IResetable.Reset()
-    {
-        transform.position          = _startPosition;
-        rigidbody.linearVelocityY   = 0;
+        void IPlayable.Play() => rigidbody.simulated = true;
+        void IPausable.Pause() => rigidbody.simulated = false;
 
-        ChangeDirectionUp();
+        void IResetable.Reset()
+        {
+            transform.position = _startPosition;
+            rigidbody.linearVelocityY = 0;
 
-        _ability.Cancel();
+            ChangeDirectionUp();
+
+            dash.Cancel();
+        }
     }
 }

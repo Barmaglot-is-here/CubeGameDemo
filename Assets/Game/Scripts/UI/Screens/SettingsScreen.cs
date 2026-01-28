@@ -1,4 +1,7 @@
-public class SettingsScreen : BaseSubscreen
+namespace Game.UI
 {
-    
+    public class SettingsScreen : BaseSubscreen
+    {
+
+    }
 }

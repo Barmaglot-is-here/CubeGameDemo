@@ -1,34 +1,42 @@
+using StateManagement;
 using UnityEngine;
 
-public class Obstacle : MovableObject
+namespace Game.Level.Entities
 {
-    private GameObject[] _sections;
-
-    public int SectionsCount => _sections.Length;
-
-    private void Awake()
+    public class Obstacle : MovableObject, IResetable
     {
-        _sections = GetSections();
-    }
+        private GameObject[] _sections;
 
-    private GameObject[] GetSections()
-    {
-        var sections = new GameObject[transform.childCount];
+        public int SectionsCount => _sections.Length;
 
-        for (int i = 0; i < transform.childCount; i++)
-            sections[i] = transform.GetChild(i).gameObject;
-
-        return sections;
-    }
-
-    public void Build(ObstacleData data)
-    {
-        for (int i = 0; i < SectionsCount; i++)
+        private void Awake()
         {
-            var section = _sections[i];
-            var enabled = data.SectionEnabled[i];
+            _sections = GetSections();
 
-            section.SetActive(enabled);
+            StateManager.Register(this);
         }
+
+        private GameObject[] GetSections()
+        {
+            var sections = new GameObject[transform.childCount];
+
+            for (int i = 0; i < transform.childCount; i++)
+                sections[i] = transform.GetChild(i).gameObject;
+
+            return sections;
+        }
+
+        public void Build(ObstacleData data)
+        {
+            for (int i = 0; i < SectionsCount; i++)
+            {
+                var section = _sections[i];
+                var enabled = data.SectionEnabled[i];
+
+                section.SetActive(enabled);
+            }
+        }
+
+        void IResetable.Reset() => gameObject.SetActive(false);
     }
 }

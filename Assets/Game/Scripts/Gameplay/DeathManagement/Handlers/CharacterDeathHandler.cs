@@ -1,15 +1,23 @@
+using Game.Level;
+using Game.UI;
 using StateManagement;
 using UIManagement;
 using UnityEngine;
 
-public class CharacterDeathHandler : DeathHandler
+namespace Game
 {
-    public override string Tag => "Player";
-
-    public override void Handle(GameObject gameObject)
+    public class CharacterDeathHandler : DeathHandler
     {
-        StateManager.SetState<PauseState>();
-        UIManager.Hide<PlayModeScreen>();
-        UIManager.Show<DeathScreen>();
+        public override void Handle(GameObject gameObject)
+        {
+            var scoreCounter = Level.Level.Services.Get<ScoreCounter>();
+
+            GameData.Score = scoreCounter.Score;
+            GameData.Save();
+
+            StateManager.SetState<PauseState>();
+            UIManager.Hide<PlayModeScreen>();
+            UIManager.Show<DeathScreen>();
+        }
     }
 }

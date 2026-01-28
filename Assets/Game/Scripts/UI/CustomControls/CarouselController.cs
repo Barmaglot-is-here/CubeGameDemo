@@ -1,31 +1,33 @@
 using UnityEngine;
-using CustomControls;
 
-public class CarouselController : MonoBehaviour
+namespace CustomControls
 {
-    [SerializeField]
-    private Carousel _carousel;
-    [SerializeField]
-    private SelectionController _selectionController;
-    [SerializeField]
-    private SwipeManager _swipeManager;
-
-    private void Awake()
+    public class CarouselController : MonoBehaviour
     {
-        _swipeManager.OnSwipe += OnSwipe;
-    }
+        [SerializeField]
+        private Carousel _carousel;
+        [SerializeField]
+        private SelectionController _selectionController;
+        [SerializeField]
+        private SwipeManager _swipeManager;
 
-    private void OnSwipe(SwipeDirection direction)
-    {
-        if (direction == SwipeDirection.Up)
+        private void Awake()
         {
-            _carousel           .ScrollNext();
-            _selectionController.SelectNext();
+            _swipeManager.OnSwipe += OnSwipe;
         }
-        else if (direction == SwipeDirection.Down)
+
+        private void OnSwipe(SwipeDirection direction)
         {
-            _carousel           .ScrolLast();
-            _selectionController.SelectLast();
+            if (direction == SwipeDirection.Up)
+            {
+                _carousel.ScrollNext();
+                _selectionController.SelectNext();
+            }
+            else if (direction == SwipeDirection.Down)
+            {
+                _carousel.ScrolLast();
+                _selectionController.SelectLast();
+            }
         }
     }
 }

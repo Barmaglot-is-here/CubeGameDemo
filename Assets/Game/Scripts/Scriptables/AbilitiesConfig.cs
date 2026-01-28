@@ -1,8 +1,11 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "AbilitiesConfig", menuName = "Configs/AbilitiesConfig")]
-public class AbilitiesConfig : ScriptableObject
+namespace Game
 {
-    [field: SerializeField]
-    public SpeedFlyConfig SpeedFlyConfig { get; private set; }
+    [CreateAssetMenu(fileName = "AbilitiesConfig", menuName = "Configs/AbilitiesConfig")]
+    public class AbilitiesConfig : ScriptableObject
+    {
+        [field: SerializeField]
+        public GrowAbilityConfig GrowAbilityConfig { get; private set; }
+    }
 }

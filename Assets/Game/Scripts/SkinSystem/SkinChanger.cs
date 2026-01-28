@@ -1,31 +1,33 @@
-using System;
 using System.Collections.Generic;
 
-public static class SkinChanger
+namespace Game.SkinSystem
 {
-    private static Skin _currentSkin;
-
-    private static readonly List<BaseSkinView> _views;
-
-    static SkinChanger()
+    public static class SkinChanger
     {
-        _views = new();
-    }
+        private static Skin _currentSkin;
 
-    public static void Add(BaseSkinView view)
-    {
-        _views.Add(view);
+        private static readonly List<BaseSkinView> _views;
 
-        //obstacleSkin.Set(_currentSkin.ObstacleData);
-    }
+        static SkinChanger()
+        {
+            _views = new();
+        }
 
-    public static void Set(Skin skin)
-    {
-        _currentSkin = skin;
+        public static void Add(BaseSkinView view)
+        {
+            _views.Add(view);
 
-        //_characterSkin.Set(skin.CharacterData);
+            //obstacleSkin.Set(_currentSkin.ObstacleData);
+        }
 
-        //foreach (var obstacleSkin in _obstacleSkins)
-        //    obstacleSkin.Set(skin.ObstacleData);
+        public static void Set(Skin skin)
+        {
+            _currentSkin = skin;
+
+            //_characterSkin.Set(skin.CharacterData);
+
+            //foreach (var obstacleSkin in _obstacleSkins)
+            //    obstacleSkin.Set(skin.ObstacleData);
+        }
     }
 }

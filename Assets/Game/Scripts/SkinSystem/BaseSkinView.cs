@@ -1,13 +1,16 @@
 using UnityEngine;
 
-public abstract class BaseSkinView : MonoBehaviour
+namespace Game.SkinSystem
 {
-    public abstract string Tag { get; }
-
-    private void Awake()
+    public abstract class BaseSkinView : MonoBehaviour
     {
-        SkinChanger.Add(this);
-    }
+        public abstract string Tag { get; }
 
-    public abstract void SetView(ViewData data);
+        private void Awake()
+        {
+            SkinChanger.Add(this);
+        }
+
+        public abstract void SetView(ViewData data);
+    }
 }

@@ -1,17 +1,23 @@
-public static class DeathManager
+namespace Game
 {
-    private static readonly DeathRouter _router;
-
-    static DeathManager()
+    public static class DeathManager
     {
-        _router = new();
-        _router.Add(new CharacterDeathHandler());
-        _router.Add(new ObstacleDeathHandler());
-        _router.Add(new StartLineDeathHandler());
-    }
+        private static readonly DeathRouter _router;
 
-    public static void Add(DeathTrigger trigger)
-    {
-        trigger.OnTrigger += _router.Route;
+        static DeathManager()
+        {
+            _router = new();
+            _router.Add("Player", new CharacterDeathHandler());
+            _router.Add("Obstacle", new UniversalDeathHandler());
+            _router.Add("StartLine", new UniversalDeathHandler());
+            _router.Add("Ability", new UniversalDeathHandler());
+        }
+
+        public static void Replace(string tag, DeathHandler handler) => _router[tag] = handler;
+
+        public static void Add(DeathTrigger trigger)
+        {
+            trigger.OnTrigger += _router.Route;
+        }
     }
 }

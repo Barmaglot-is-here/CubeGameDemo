@@ -1,31 +1,34 @@
 using System;
 using UnityEngine;
 
-public class DistanceTracker
+namespace Game.Level
 {
-    private readonly float _targetDistance;
-    private readonly Action _onDistanceCovered;
-    private readonly Transform _startPoint;
-
-    private Transform _target;
-
-    public DistanceTracker(Transform startPoint, float targetDistance, 
-                           Action onDistanceCovered)
+    public class DistanceTracker
     {
-        _startPoint         = startPoint;
-        _targetDistance     = targetDistance;  
-        _onDistanceCovered  = onDistanceCovered;
-    }
+        private readonly float _targetDistance;
+        private readonly Action _onDistanceCovered;
+        private readonly Transform _startPoint;
 
-    public void SetTarget(Transform target) => _target = target;
+        private Transform _target;
 
-    public void Update()
-    {
-        var distanceTraveled    = _startPoint.transform.position.x 
-                                - _target.transform.position.x;
-        distanceTraveled        = Math.Abs(distanceTraveled);
+        public DistanceTracker(Transform startPoint, float targetDistance,
+                               Action onDistanceCovered)
+        {
+            _startPoint = startPoint;
+            _targetDistance = targetDistance;
+            _onDistanceCovered = onDistanceCovered;
+        }
 
-        if (distanceTraveled >= _targetDistance)
-            _onDistanceCovered?.Invoke();
+        public void SetTarget(Transform target) => _target = target;
+
+        public void Update()
+        {
+            var distanceTraveled = _startPoint.transform.position.x
+                                    - _target.transform.position.x;
+            distanceTraveled = Math.Abs(distanceTraveled);
+
+            if (distanceTraveled >= _targetDistance)
+                _onDistanceCovered?.Invoke();
+        }
     }
 }

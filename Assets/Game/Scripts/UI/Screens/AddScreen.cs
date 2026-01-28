@@ -5,56 +5,59 @@ using UIManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AddScreen : BaseWindow
+namespace Game.UI
 {
-    [SerializeField]
-    private Slider _timerSlider;
-    [SerializeField]
-    private Button _closeButton;
-
-    [SerializeField]
-    private float _addDuration;
-
-    private Stopwatch _timer;
-
-    private void Awake()
+    public class AddScreen : BaseWindow
     {
-        _timer = new();
+        [SerializeField]
+        private Slider _timerSlider;
+        [SerializeField]
+        private Button _closeButton;
 
-        _closeButton.onClick.AddListener(OnCloseButtonClick);
-    }
+        [SerializeField]
+        private float _addDuration;
 
-    private void OnCloseButtonClick()
-    {
-        UIManager.Hide<AddScreen>();
-        UIManager.Show<PlayModeScreen>();
+        private Stopwatch _timer;
 
-        CharacterRebirth.Invoke();
-    }
-
-    private void OnEnable()
-    {
-        _closeButton.gameObject.SetActive(false);
-        _timer.Reset();
-
-        StartTimerTask().Forget();
-    }
-
-    private async UniTask StartTimerTask()
-    {
-        _timer.Start();
-
-        while (_timer.Elapsed.Seconds < _addDuration)
+        private void Awake()
         {
-            _timerSlider.value = CalculateProgression(_timer.Elapsed, _addDuration);
+            _timer = new();
 
-            await UniTask.Yield();
+            _closeButton.onClick.AddListener(OnCloseButtonClick);
         }
 
-        _timer.Stop();
-        _closeButton.gameObject.SetActive(true);
-    }
+        private void OnCloseButtonClick()
+        {
+            UIManager.Hide<AddScreen>();
+            UIManager.Show<PlayModeScreen>();
 
-    private float CalculateProgression(TimeSpan currentTime, float targetTime) 
-        => (float)currentTime.TotalSeconds / targetTime;
+            CharacterRebirth.Invoke();
+        }
+
+        private void OnEnable()
+        {
+            _closeButton.gameObject.SetActive(false);
+            _timer.Reset();
+
+            StartTimerTask().Forget();
+        }
+
+        private async UniTask StartTimerTask()
+        {
+            _timer.Start();
+
+            while (_timer.Elapsed.Seconds < _addDuration)
+            {
+                _timerSlider.value = CalculateProgression(_timer.Elapsed, _addDuration);
+
+                await UniTask.Yield();
+            }
+
+            _timer.Stop();
+            _closeButton.gameObject.SetActive(true);
+        }
+
+        private float CalculateProgression(TimeSpan currentTime, float targetTime)
+            => (float)currentTime.TotalSeconds / targetTime;
+    }
 }

@@ -1,39 +1,42 @@
-using UnityEngine;
-using UIManagement;
-using UnityEngine.UI;
 using StateManagement;
+using UIManagement;
+using UnityEngine;
+using UnityEngine.UI;
 
-public class PauseScreen : BasePauseScreen
+namespace Game.UI
 {
-    [SerializeField] 
-    private Button _unpauseButton;
-    
-    protected override void Awake()
+    public class PauseScreen : BasePauseScreen
     {
-        base.Awake();
+        [SerializeField]
+        private Button _unpauseButton;
 
-        _unpauseButton.onClick.AddListener(OnUnpauseButtonClick);
-    }
+        protected override void Awake()
+        {
+            base.Awake();
 
-    protected override void OnRestartButtonClick()
-    {
-        base.OnRestartButtonClick();
+            _unpauseButton.onClick.AddListener(OnUnpauseButtonClick);
+        }
 
-        UIManager.Hide<PauseScreen>();
-    }
+        protected override void OnRestartButtonClick()
+        {
+            base.OnRestartButtonClick();
 
-    protected override void OnHomeButtonClick()
-    {
-        base.OnHomeButtonClick();
+            UIManager.Hide<PauseScreen>();
+        }
 
-        UIManager.Hide<PauseScreen>();
-    }
+        protected override void OnHomeButtonClick()
+        {
+            base.OnHomeButtonClick();
 
-    private void OnUnpauseButtonClick()
-    {
-        UIManager.Hide<PauseScreen>();
-        UIManager.Show<PlayModeScreen>();
+            UIManager.Hide<PauseScreen>();
+        }
 
-        StateManager.SetState<PlayState>();
+        private void OnUnpauseButtonClick()
+        {
+            UIManager.Hide<PauseScreen>();
+            UIManager.Show<PlayModeScreen>();
+
+            StateManager.SetState<PlayState>();
+        }
     }
 }

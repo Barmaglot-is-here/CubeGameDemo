@@ -1,16 +1,19 @@
+using Game.Tools;
 using UnityEngine;
-using UIManagement;
 
-public class ScoreTableScreen : BaseSubscreen
+namespace Game.UI
 {
-    [SerializeField]
-    private ScoreTableView _scoreTableView;
-
-    [ContextMenu("GenerateTable")]
-    private void GenerateTable()
+    public class ScoreTableScreen : BaseSubscreen
     {
-        var records = FakeScoreTableGenerator.Generate(100);
+        [SerializeField]
+        private ScoreTableView _scoreTableView;
 
-        _scoreTableView.Fill(records);
+        [ContextMenu("GenerateTable")]
+        private void GenerateTable()
+        {
+            var records = FakeScoreTableGenerator.Generate(100);
+
+            _scoreTableView.Fill(records);
+        }
     }
 }

@@ -1,21 +1,24 @@
 using StateManagement;
 using UnityEngine;
 
-public class StartLine : MovableObject, IResetable
+namespace Game.Level.Entities
 {
-    private Vector2 _startPosition;
-
-    private void Awake()
+    public class StartLine : MovableObject, IResetable
     {
-        _startPosition = transform.localPosition;
+        private Vector2 _startPosition;
 
-        StateManager.Register(this);
-    }
+        private void Awake()
+        {
+            _startPosition = transform.localPosition;
 
-    void IResetable.Reset()
-    {
-        transform.localPosition = _startPosition;
+            StateManager.Register(this);
+        }
 
-        gameObject.SetActive(true);
+        void IResetable.Reset()
+        {
+            transform.localPosition = _startPosition;
+
+            gameObject.SetActive(true);
+        }
     }
 }

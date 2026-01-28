@@ -1,27 +1,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeathRouter
+namespace Game
 {
-    private readonly Dictionary<string, DeathHandler> _handlers;
-
-    public DeathRouter()
+    public class DeathRouter
     {
-        _handlers = new();
-    }
+        private readonly Dictionary<string, DeathHandler> _handlers;
 
-    public void Add(DeathHandler handler)
-    {
-        string tag = handler.Tag;
+        public DeathHandler this[string tag] { get => _handlers[tag]; set => _handlers[tag] = value; }
 
-        _handlers.Add(tag, handler);
-    }
+        public DeathRouter()
+        {
+            _handlers = new();
+        }
 
-    public void Route(GameObject gameObject)
-    {
-        if (!gameObject.activeSelf || gameObject.tag == "Untagged")
-            return;
+        public void Add(string tag, DeathHandler handler)
+            => _handlers.Add(tag, handler);
 
-        _handlers[gameObject.tag].Handle(gameObject);
+        public void Route(GameObject gameObject)
+        {
+            if (!gameObject.activeSelf || gameObject.tag == "Untagged")
+                return;
+
+            _handlers[gameObject.tag].Handle(gameObject);
+        }
     }
 }

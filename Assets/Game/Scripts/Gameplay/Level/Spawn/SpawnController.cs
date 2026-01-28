@@ -1,44 +1,49 @@
-public class SpawnController
+using Game.Abilities;
+using Game.Level.Entities;
+
+namespace Game.Level
 {
-    private readonly ObstacleFactory _factory;
-    private readonly DistanceTracker _distanceTracker;
-
-    private readonly ILevelLoader _loader;
-
-    private Obstacle _current;
-
-    public SpawnController(ILevelLoader loader, float spawnDistance, ObstacleFactory factory)
+    public class SpawnController
     {
-        _factory            = factory;
-        _distanceTracker    = new(_factory.SpawnPoint, spawnDistance, SpawnNext);
+        private readonly EntitiesFactory _factory;
+        private readonly DistanceTracker _distanceTracker;
 
-        _loader = loader;
-    }
+        private readonly ILevelLoader _loader;
 
-    public void Update() => _distanceTracker.Update();
+        private Obstacle _currentObstacle;
 
-    private void SpawnNext()
-    {
-        _current = Spawn();
+        public SpawnController(ILevelLoader loader, float spawnDistance,
+                               EntitiesFactory factory)
+        {
+            var spawnPoint = LevelData.SpawnPoint.transform;
 
-        _distanceTracker.SetTarget(_current.transform);
-    }
+            _loader = loader;
+            _factory = factory;
+            _distanceTracker = new(spawnPoint, spawnDistance, SpawnNext);
+        }
 
-    private Obstacle Spawn()
-    {
-        var obstacle    = _factory.Create();
-        var data        = _loader.GetNext();
+        public void Update() => _distanceTracker.Update();
 
-        obstacle.Build(data);
+        private void SpawnNext()
+        {
+            var chunk = _loader.GetNext();
 
-        return obstacle;
-    }
+            _currentObstacle = Spawn(chunk.ObstacleData);
+            Spawn(chunk.Ability);
 
-    public void Start() => SpawnNext();
+            _distanceTracker.SetTarget(_currentObstacle.transform);
+        }
 
-    public void Reset()
-    {
-        foreach (var obstacle in _factory.Pool)
-            obstacle.gameObject.SetActive(false);
+        private Obstacle Spawn(ObstacleData data)
+            => _factory.CreateObstacle(data);
+
+        private Ability Spawn(IAbility ability)
+        {
+            var container = _factory.CreateAbility(ability);
+
+            return null;
+        }
+
+        public void Start() => SpawnNext();
     }
 }

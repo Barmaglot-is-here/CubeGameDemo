@@ -1,26 +1,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreTableView : MonoBehaviour
+namespace Game.UI
 {
-    [SerializeField]
-    private Transform _content;
-    [SerializeField]
-    private ScoreRecordView _prefab;
-
-    public void Fill(IEnumerable<ScoreRecordData> datas)
+    public class ScoreTableView : MonoBehaviour
     {
-        foreach (var data in datas)
-            CreateView(data);
-    }
+        [SerializeField]
+        private Transform _content;
+        [SerializeField]
+        private GameObject _prefab;
 
-    private ScoreRecordView CreateView(ScoreRecordData data)
-    {
-        var instance    = Instantiate(_prefab, _content);
-        var view        = instance.GetComponent<ScoreRecordView>();
-        
-        view.Show(data);
+        public void Fill(IEnumerable<ScoreRecordData> datas)
+        {
+            foreach (var data in datas)
+                CreateView(data);
+        }
 
-        return instance;
+        private ScoreRecordView CreateView(ScoreRecordData data)
+        {
+            var instance    = Instantiate(_prefab, _content);
+            var view        = instance.GetComponent<ScoreRecordView>();
+
+            view.Show(data);
+
+            return view;
+        }
     }
 }

@@ -1,9 +1,12 @@
-public struct ObstacleData
+namespace Game.Level.Entities
 {
-    public bool[] SectionEnabled { get; set; }
-
-    public ObstacleData(bool[] sectionEnabled)
+    public struct ObstacleData
     {
-        SectionEnabled = sectionEnabled;
+        public bool[] SectionEnabled { get; set; }
+
+        public ObstacleData(bool[] sectionEnabled)
+        {
+            SectionEnabled = sectionEnabled;
+        }
     }
 }

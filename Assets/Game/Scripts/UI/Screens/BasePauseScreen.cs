@@ -3,36 +3,39 @@ using UIManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BasePauseScreen : BaseWindow
+namespace Game.UI
 {
-    [field: SerializeField]
-    protected Button RestartButton;
-    [field: SerializeField]
-    protected Button HomeButton;
-    [field: SerializeField]
-    protected PlayModeScoreView ScoreView { get; private set; }
-
-    protected virtual void Awake()
+    public class BasePauseScreen : BaseWindow
     {
-        RestartButton.onClick.AddListener(OnRestartButtonClick);
-        HomeButton.onClick.AddListener(OnHomeButtonClick);
-    }
+        [field: SerializeField]
+        protected Button RestartButton;
+        [field: SerializeField]
+        protected Button HomeButton;
+        [field: SerializeField]
+        protected PlayModeScoreView ScoreView { get; private set; }
 
-    protected virtual void OnRestartButtonClick()
-    {
-        UIManager.Show<PlayModeScreen>();
+        protected virtual void Awake()
+        {
+            RestartButton.onClick.AddListener(OnRestartButtonClick);
+            HomeButton.onClick.AddListener(OnHomeButtonClick);
+        }
 
-        StateManager.SetState<IdleState>();
-        StateManager.SetState<PlayState>();
-    }
+        protected virtual void OnRestartButtonClick()
+        {
+            UIManager.Show<PlayModeScreen>();
 
-    protected virtual void OnHomeButtonClick()
-    {
-        UIManager.Hide<PlayModeScreen>();
-        UIManager.Show<MainScreen>();
+            StateManager.SetState<IdleState>();
+            StateManager.SetState<PlayState>();
+        }
 
-        ScoreView.gameObject.SetActive(false);
+        protected virtual void OnHomeButtonClick()
+        {
+            UIManager.Hide<PlayModeScreen>();
+            UIManager.Show<MainScreen>();
 
-        StateManager.SetState<IdleState>();
+            ScoreView.gameObject.SetActive(false);
+
+            StateManager.SetState<IdleState>();
+        }
     }
 }

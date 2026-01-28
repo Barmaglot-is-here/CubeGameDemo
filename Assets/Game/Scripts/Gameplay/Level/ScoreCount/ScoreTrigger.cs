@@ -1,13 +1,16 @@
 using System;
 using UnityEngine;
 
-public class ScoreTrigger : MonoBehaviour
+namespace Game.Level
 {
-    public Action OnTrigger { get; set; }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class ScoreTrigger : MonoBehaviour
     {
-        if (collision.tag == "Obstacle")
-            OnTrigger.Invoke();
+        public Action OnTrigger { get; set; }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.tag == "Obstacle")
+                OnTrigger.Invoke();
+        }
     }
 }

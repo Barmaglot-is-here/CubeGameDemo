@@ -1,4 +1,7 @@
-public class LevelLoader : ILevelLoader
+namespace Game.Level.Loading
 {
-    public ObstacleData GetNext() => throw new System.NotImplementedException();
+    public class LevelLoader : ILevelLoader
+    {
+        public LevelChunk GetNext() => throw new System.NotImplementedException();
+    }
 }

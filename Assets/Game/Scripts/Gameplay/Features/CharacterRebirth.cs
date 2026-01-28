@@ -1,67 +1,72 @@
 using Cysharp.Threading.Tasks;
+using Game.Level;
+using Game.Level.Entities;
 using StateManagement;
 using UnityEngine;
 
-public static class CharacterRebirth
+namespace Game
 {
-    private const float SAFE_TIME = 2.0f;
-
-    private static readonly Character _character;
-
-    static CharacterRebirth()
+    public static class CharacterRebirth
     {
-        _character = GameObject.FindFirstObjectByType<Character>();
-    }
+        private const float SAFE_TIME = 2.0f;
 
-    public static void Invoke() => Run().Forget();
+        private static readonly Character _character;
 
-    private static async UniTask Run()
-    {
-        Enable();
-
-        await Update(SAFE_TIME);
-
-        Disable();
-    }
-
-    private static async UniTask Update(float time)
-    {
-        float timeElapsed = 0;
-
-        while (timeElapsed < time)
+        static CharacterRebirth()
         {
-            timeElapsed += Time.deltaTime;
-
-            _character.Move();
-
-            await UniTask.WaitForFixedUpdate();
+            _character = Object.FindFirstObjectByType<Character>();
         }
-    }
 
-    private static void Enable()
-    {
-        DisableObstacles();
+        public static void Invoke() => Run().Forget();
 
-        StateManager.SetState<PlayState>();
+        private static async UniTask Run()
+        {
+            Enable();
 
-        Level.Simulation.Disable();
-    }
+            await Update(SAFE_TIME);
 
-    private static void Disable()
-    {
-        Level.Simulation.Enable();
+            Disable();
+        }
 
-        var spawnController = Level.Services.Get<SpawnController>();
+        private static async UniTask Update(float time)
+        {
+            float timeElapsed = 0;
 
-        spawnController.Start();
-    }
+            while (timeElapsed < time)
+            {
+                timeElapsed += Time.deltaTime;
 
-    private static void DisableObstacles()
-    {
-        var obstacles = GameObject.FindObjectsByType<Obstacle>(FindObjectsInactive.Exclude,
-                                                               FindObjectsSortMode.None);
+                _character.Move();
 
-        foreach (var obstacle in obstacles)
-            obstacle.gameObject.SetActive(false);
+                await UniTask.WaitForFixedUpdate();
+            }
+        }
+
+        private static void Enable()
+        {
+            DisableObstacles();
+
+            StateManager.SetState<PlayState>();
+
+            Level.Level.Simulation.Disable();
+        }
+
+        private static void Disable()
+        {
+            Level.Level.Simulation.Enable();
+
+            var spawnController = Level.Level.Services.Get<SpawnController>();
+
+            spawnController.Start();
+        }
+
+        private static void DisableObstacles()
+        {
+            var obstacles = Object.FindObjectsByType<Obstacle>(FindObjectsInactive.Exclude,
+                                                                   FindObjectsSortMode.None);
+
+            foreach (var obstacle in obstacles)
+                obstacle.gameObject.SetActive(false);
+        }
     }
 }

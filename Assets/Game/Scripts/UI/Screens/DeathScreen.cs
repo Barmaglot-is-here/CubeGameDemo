@@ -1,62 +1,64 @@
-using DG.Tweening;
 using UIManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DeathScreen : BasePauseScreen
+namespace Game.UI
 {
-    [SerializeField] 
-    private Button _watchAdButton;
-
-    private Canvas _canvas;
-
-    private int _defaultScoreViewOrder;
-
-    protected override void Awake()
+    public class DeathScreen : BasePauseScreen
     {
-        base.Awake();
+        [SerializeField]
+        private Button _watchAdButton;
 
-        _watchAdButton.onClick.AddListener(OnWatchAdButtonClick);
+        private Canvas _canvas;
 
-        _canvas = GetComponent<Canvas>();
-    }
+        private int _defaultScoreViewOrder;
 
-    private void OnEnable()
-    {
-        ShowScoreView();
-    }
+        protected override void Awake()
+        {
+            base.Awake();
 
-    private void ShowScoreView()
-    {
-        _defaultScoreViewOrder = ScoreView.OrderInLayer;
-        ScoreView.OrderInLayer = _canvas.sortingOrder + 1;
-    }
+            _watchAdButton.onClick.AddListener(OnWatchAdButtonClick);
 
-    private void HideScoreView()
-    {
-        ScoreView.OrderInLayer = _defaultScoreViewOrder;
-    }
+            _canvas = GetComponent<Canvas>();
+        }
 
-    private void OnDisable() => HideScoreView();
+        private void OnEnable()
+        {
+            ShowScoreView();
+        }
 
-    protected override void OnRestartButtonClick()
-    {
-        base.OnRestartButtonClick();
+        private void ShowScoreView()
+        {
+            _defaultScoreViewOrder = ScoreView.OrderInLayer;
+            ScoreView.OrderInLayer = _canvas.sortingOrder + 1;
+        }
 
-        UIManager.Hide<DeathScreen>();
-        UIManager.Show<PlayModeScreen>();
-    }
+        private void HideScoreView()
+        {
+            ScoreView.OrderInLayer = _defaultScoreViewOrder;
+        }
 
-    protected override void OnHomeButtonClick()
-    {
-        base.OnHomeButtonClick();
+        private void OnDisable() => HideScoreView();
 
-        UIManager.Hide<DeathScreen>();
-    }
+        protected override void OnRestartButtonClick()
+        {
+            base.OnRestartButtonClick();
 
-    private void OnWatchAdButtonClick()
-    {
-        UIManager.Hide<DeathScreen>();
-        UIManager.Show<AddScreen>();
+            UIManager.Hide<DeathScreen>();
+            UIManager.Show<PlayModeScreen>();
+        }
+
+        protected override void OnHomeButtonClick()
+        {
+            base.OnHomeButtonClick();
+
+            UIManager.Hide<DeathScreen>();
+        }
+
+        private void OnWatchAdButtonClick()
+        {
+            UIManager.Hide<DeathScreen>();
+            UIManager.Show<AddScreen>();
+        }
     }
 }

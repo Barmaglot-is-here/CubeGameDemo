@@ -1,21 +1,22 @@
-using UnityEngine;
-
-public class LevelSpeedController
+namespace Game.Level
 {
-    private readonly float _maxSpeed;
-    private readonly float _speedGrow;
-
-    public LevelSpeedController(float maxSpeed, float speedGrow)
+    public class LevelSpeedController
     {
-        _maxSpeed   = maxSpeed;
-        _speedGrow  = speedGrow;
-    }
+        private readonly float _maxSpeed;
+        private readonly float _speedGrow;
 
-    public void Update(int score)
-    {
-        if (GameTime.BaseScale >= _maxSpeed)
-            return;
+        public LevelSpeedController(float maxSpeed, float speedGrow)
+        {
+            _maxSpeed = maxSpeed;
+            _speedGrow = speedGrow;
+        }
 
-        GameTime.BaseScale = 1 + score * _speedGrow;
+        public void Update(int score)
+        {
+            if (GameTime.BaseScale >= _maxSpeed)
+                return;
+
+            GameTime.BaseScale = 1 + score * _speedGrow;
+        }
     }
 }

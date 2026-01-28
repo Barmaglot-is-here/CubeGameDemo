@@ -1,18 +1,22 @@
+using Game.Level;
 using UnityEngine;
 
-[DefaultExecutionOrder(-9000)]
-public class FactoriesRegistrator : MonoBehaviour
+namespace Game
 {
-    [SerializeField]
-    private ObstacleFactory _obstacleFactory;
-    [SerializeField]
-    private AbilitiesFactory _abilitiesFactory;
-
-    private void Awake()
+    [DefaultExecutionOrder(-9000)]
+    public class FactoriesRegistrator : MonoBehaviour
     {
-        var services = Level.Services;
+        [SerializeField]
+        private EntitiesFactory _entitiesFactory;
+        [SerializeField]
+        private Abilities.AbilitiesFactory _abilitiesFactory;
 
-        services.Add(_obstacleFactory);
-        services.Add(_abilitiesFactory);
+        private void Awake()
+        {
+            var services = Level.Level.Services;
+
+            services.Add(_entitiesFactory);
+            services.Add(_abilitiesFactory);
+        }
     }
 }

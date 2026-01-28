@@ -1,7 +1,7 @@
-using UnityEngine;
-using UIManagement;
-
-public class SkinsScreen : BaseSubscreen
+namespace Game.UI
 {
-    
+    public class SkinsScreen : BaseSubscreen
+    {
+
+    }
 }

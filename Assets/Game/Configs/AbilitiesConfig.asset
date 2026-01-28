@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21b7fa740c0d8b24ea06f38082fb465d, type: 3}
   m_Name: AbilitiesConfig
   m_EditorClassIdentifier: 
-  <SpeedFlyConfig>k__BackingField: {fileID: 11400000, guid: 5218a7693b995bc4d9f933fbd7d5756d, type: 2}
+  <GrowAbilityConfig>k__BackingField: {fileID: 11400000, guid: 6d34a822935897b4fb76ba346720b83c, type: 2}

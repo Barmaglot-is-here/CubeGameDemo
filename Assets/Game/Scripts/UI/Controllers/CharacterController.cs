@@ -1,34 +1,38 @@
 using CustomControls;
+using Game.Level.Entities;
 using UnityEngine;
 
-public class CharacterController : MonoBehaviour
+namespace Game.UI
 {
-    [SerializeField]
-    private Character _character;
-    [SerializeField]
-    private SwipeManager _swipeManager;
-
-    private void Awake()
+    public class CharacterController : MonoBehaviour
     {
-        _swipeManager.OnSwipe += OnSwipe;
-    }
+        [SerializeField]
+        private Character _character;
+        [SerializeField]
+        private SwipeManager _swipeManager;
 
-    private void OnSwipe(SwipeDirection direction)
-    {
-        switch (direction)
+        private void Awake()
         {
-            case SwipeDirection.Up:
-                _character.ChangeDirectionUp();
+            _swipeManager.OnSwipe += OnSwipe;
+        }
 
-                break;
-            case SwipeDirection.Down:
-                _character.ChangeDirectionDown();
+        private void OnSwipe(SwipeDirection direction)
+        {
+            switch (direction)
+            {
+                case SwipeDirection.Up:
+                    _character.ChangeDirectionUp();
 
-                break;
-            case SwipeDirection.Right:
-                _character.UseAbility();
+                    break;
+                case SwipeDirection.Down:
+                    _character.ChangeDirectionDown();
 
-                break;
+                    break;
+                case SwipeDirection.Right:
+                    _character.Dash();
+
+                    break;
+            }
         }
     }
 }

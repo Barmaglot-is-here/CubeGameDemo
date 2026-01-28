@@ -1,11 +1,15 @@
-using StateManagement;
 using UnityEngine;
 
-public class Autopause : MonoBehaviour
+namespace Game.Features
 {
+    public class Autopause : MonoBehaviour
+    {
+#if !UNITY_EDITOR
     private void OnApplicationPause(bool pause)
     {
         if (pause)
             StateManager.SetState<PauseState>();
+    }
+#endif
     }
 }

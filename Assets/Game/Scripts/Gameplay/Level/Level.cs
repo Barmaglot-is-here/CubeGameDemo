@@ -1,84 +1,92 @@
+using Game.Core;
+using Game.Level.Generation;
 using StateManagement;
 using UnityEngine;
 
-[DefaultExecutionOrder(-1000)]
-public class Level : MonoBehaviour, IResetable, IPausable, IPlayable, IStartable
+namespace Game.Level
 {
-    [SerializeField]
-    private LevelType _type;
-    [SerializeField]
-    private LevelConfig _config;
-
-    private ScoreCounter _scoreCounter;
-    private LevelSpeedController _speedController;
-    private MovementController _movementController;
-    private SpawnController _spawnController;
-
-    public static ServiceManager Services { get; private set; } = new();
-    public static Simulation Simulation { get; private set; } = new();
-
-    private void Awake()
+    [DefaultExecutionOrder(-1000)]
+    public class Level : MonoBehaviour, IResetable, IPausable, IPlayable, IStartable
     {
-        InitFields();
-        RegisterServices();
-        RegisterEvents();
+        [SerializeField]
+        private LevelType _type;
+        [SerializeField]
+        private LevelConfig _config;
 
-        StateManager.Register(this);
-    }
+        private ScoreCounter _scoreCounter;
+        private LevelSpeedController _speedController;
+        private MovementController _movementController;
+        private SpawnController _spawnController;
 
-    private void InitFields()
-    {
-        _scoreCounter       = new();
-        _speedController    = new(_config.MaxSpeed, _config.SpeedGrow);
-        _movementController = new(_config.StartSpeed);
-        _spawnController    = new(GetLoader(_type), _config.SpawnDistance,
-                                  Services.Get<ObstacleFactory>());
-    }
+        public static ServiceManager Services { get; private set; } = new();
+        public static Simulation Simulation { get; private set; } = new();
 
-    private void RegisterServices()
-    {
-        Services.Add(_scoreCounter);
-        Services.Add(_movementController);
-        Services.Add(_spawnController);
-    }
+        private void Awake()
+        {
+            InitFields();
+            RegisterServices();
+            RegisterEvents();
 
-    private void RegisterEvents()
-    {
-        _scoreCounter.OnScoreChanged += _speedController.Update;
+            StateManager.Register(this);
+        }
 
-        Simulation.OnUpdate         += _spawnController.Update;
-        Simulation.OnFixedUpdate    += _movementController.FixedUpdate;
-        Simulation.OnDisabled       += _movementController.Pause;
-    }
+        private void InitFields()
+        {
+            _scoreCounter           = new();
+            _speedController        = new(_config.MaxSpeed, _config.SpeedGrow);
+            _movementController     = new(_config.StartSpeed);
+            _spawnController        = new(DefaultLoader(), _config.SpawnDistance,
+                                          Services.Get<EntitiesFactory>());
+        }
 
-    private ILevelLoader GetLoader(LevelType type)
-    {
-        return new ObstacleGenerator();
-    }
+        //Temp
+        private ILevelLoader DefaultLoader()
+            => new LevelGenerator(11, Services.Get<Abilities.AbilitiesFactory>());
 
-    void IResetable.Reset()
-    {
-        _scoreCounter.Reset();
-        _spawnController.Reset();
+        private void RegisterServices()
+        {
+            Services.Add(_scoreCounter);
+            Services.Add(_movementController);
+            Services.Add(_spawnController);
+        }
 
-        GameTime.Reset();
-    }
+        private void RegisterEvents()
+        {
+            _scoreCounter.OnScoreChanged += _speedController.Update;
 
-    void IStartable.Start() => _spawnController.Start();
+            Simulation.OnUpdate += _spawnController.Update;
+            Simulation.OnFixedUpdate += _movementController.FixedUpdate;
+            Simulation.OnDisabled += _movementController.Pause;
+        }
 
-    private void Update() => Simulation.Update();
-    private void FixedUpdate() => Simulation.FixedUpdate();
+        public void SetupLoader(ILevelLoader loader)
+        {
 
-    void IPausable.Pause()
-    {
-        Simulation.Disable();
+        }
 
-        GameTime.Pause();
-    }
-    void IPlayable.Play()
-    {
-        Simulation.Enable();
+        void IResetable.Reset()
+        {
+            _scoreCounter.Reset();
 
-        GameTime.Play();
+            GameTime.Reset();
+        }
+
+        void IStartable.Start() => _spawnController.Start();
+
+        private void Update() => Simulation.Update();
+        private void FixedUpdate() => Simulation.FixedUpdate();
+
+        void IPausable.Pause()
+        {
+            Simulation.Disable();
+
+            GameTime.Pause();
+        }
+        void IPlayable.Play()
+        {
+            Simulation.Enable();
+
+            GameTime.Play();
+        }
     }
 }

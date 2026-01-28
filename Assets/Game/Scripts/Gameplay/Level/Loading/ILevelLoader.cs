@@ -1,4 +1,7 @@
-public interface ILevelLoader
+namespace Game.Level
 {
-    ObstacleData GetNext();
+    public interface ILevelLoader
+    {
+        LevelChunk GetNext();
+    }
 }

@@ -1,8 +1,9 @@
 using UnityEngine;
 
-public abstract class DeathHandler
+namespace Game
 {
-    public abstract string Tag { get; }
-
-    public abstract void Handle(GameObject gameObject);
+    public abstract class DeathHandler
+    {
+        public abstract void Handle(GameObject gameObject);
+    }
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Obstacle
   - StartLine
+  - Ability
   layers:
   - Default
   - TransparentFX

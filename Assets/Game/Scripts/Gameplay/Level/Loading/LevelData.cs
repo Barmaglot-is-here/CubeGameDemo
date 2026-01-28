@@ -1,13 +1,17 @@
+using Game.Level.Entities;
 using System.Collections.Generic;
 
-public struct LevelData_
+namespace Game.Level.Loading
 {
-    public readonly Queue<ObstacleData> ObstacleData;
-    public readonly float Speed;
-
-    public LevelData_(Queue<ObstacleData> obstacleData, float speed)
+    public struct LevelData
     {
-        ObstacleData    = obstacleData;
-        Speed           = speed;
+        public readonly Queue<ObstacleData> ObstacleData;
+        public readonly float Speed;
+
+        public LevelData(Queue<ObstacleData> obstacleData, float speed)
+        {
+            ObstacleData = obstacleData;
+            Speed = speed;
+        }
     }
 }

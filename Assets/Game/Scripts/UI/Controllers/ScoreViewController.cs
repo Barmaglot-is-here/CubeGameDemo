@@ -1,29 +1,33 @@
+using Game.Level;
 using StateManagement;
 using UnityEngine;
 
-public class ScoreViewController : MonoBehaviour, IResetable
+namespace Game.UI
 {
-    [SerializeField]
-    private PlayModeScoreView _scoreView;
-
-    private ScoreCounter _scoreCounter;
-
-    private void Awake()
+    public class ScoreViewController : MonoBehaviour, IResetable
     {
-        _scoreCounter = Level.Services.Get<ScoreCounter>();
+        [SerializeField]
+        private PlayModeScoreView _scoreView;
 
-        StateManager.Register(this);
+        private ScoreCounter _scoreCounter;
+
+        private void Awake()
+        {
+            _scoreCounter = Level.Level.Services.Get<ScoreCounter>();
+
+            StateManager.Register(this);
+        }
+
+        private void OnEnable()
+        {
+            _scoreCounter.OnScoreChanged += _scoreView.Show;
+        }
+
+        private void OnDisable()
+        {
+            _scoreCounter.OnScoreChanged -= _scoreView.Show;
+        }
+
+        void IResetable.Reset() => _scoreView.Reset();
     }
-
-    private void OnEnable()
-    {
-        _scoreCounter.OnScoreChanged += _scoreView.Show;
-    }
-
-    private void OnDisable()
-    {
-        _scoreCounter.OnScoreChanged -= _scoreView.Show;
-    }
-
-    void IResetable.Reset() => _scoreView.Reset();
 }
