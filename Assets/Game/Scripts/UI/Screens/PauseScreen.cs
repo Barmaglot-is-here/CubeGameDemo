@@ -34,7 +34,6 @@ namespace Game.UI
         private void OnUnpauseButtonClick()
         {
             UIManager.Hide<PauseScreen>();
-            UIManager.Show<PlayModeScreen>();
 
             StateManager.SetState<PlayState>();
         }

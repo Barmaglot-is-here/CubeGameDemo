@@ -4,7 +4,7 @@ using Game.Level.Entities;
 using StateManagement;
 using UnityEngine;
 
-namespace Game
+namespace Game.Features
 {
     public static class CharacterRebirth
     {
@@ -63,7 +63,7 @@ namespace Game
         private static void DisableObstacles()
         {
             var obstacles = Object.FindObjectsByType<Obstacle>(FindObjectsInactive.Exclude,
-                                                                   FindObjectsSortMode.None);
+                                                               FindObjectsSortMode.None);
 
             foreach (var obstacle in obstacles)
                 obstacle.gameObject.SetActive(false);

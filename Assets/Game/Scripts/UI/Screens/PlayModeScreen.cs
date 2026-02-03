@@ -13,7 +13,6 @@ namespace Game.UI
 
         private void OnPauseButtonClick()
         {
-            UIManager.Hide<PlayModeScreen>();
             UIManager.Show<PauseScreen>();
 
             StateManager.SetState<PauseState>();

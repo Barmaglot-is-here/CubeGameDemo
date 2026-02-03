@@ -1,31 +1,57 @@
+using Cysharp.Threading.Tasks;
 using System;
+using System.Threading;
+using UnityEngine;
 
 namespace Game.Abilities
 {
     public static class AbilitySystem
     {
-        private static IAbility _currentAbility;
+        public static BaseAbility CurrentAbility;
 
-        public static event Action<IAbility> OnUse;
+        public static event Action<BaseAbility> OnUse;
         public static event Action<float> OnUpdate;
         public static event Action OnExit;
 
-        public static void Run(IAbility ability, Action onEnter, Action onExit)
+        private static UniTask _task;
+
+        static AbilitySystem()
         {
-            if (_currentAbility != null)
-                Cancel(_currentAbility);
-
-            OnExit = onExit;
-            TaskManager.Run(ability, ability.Duration, onEnter, OnExit, OnUpdate);
-            OnUse?.Invoke(ability);
-
-            _currentAbility = ability;
+            OnExit += () => CurrentAbility = null;
         }
 
-        public static void Cancel(IAbility ability)
+        public static void Run(BaseAbility ability, CancellationToken cs, Action onEnter, Action onExit)
         {
-            if (TaskManager.IsRunning(ability))
-                TaskManager.Cancel(ability);
+            CurrentAbility?.Cancel();
+
+            onExit += OnExit;
+
+            _task = UpdateTask(ability.Duration, cs, onEnter, onExit, OnUpdate);
+
+            OnUse?.Invoke(ability);
+
+            CurrentAbility = ability;
+        }
+
+
+        private static async UniTask UpdateTask(float duration, CancellationToken cs,
+                                                Action onEnter,
+                                                Action onExit,
+                                                Action<float> onUpdate)
+        {
+            onEnter();
+
+            float time = 0;
+            while (time < duration)
+            {
+                time += Time.deltaTime * GameTime.Scale;
+
+                onUpdate.Invoke(time);
+
+                await UniTask.Yield(cs);
+            }
+
+            onExit();
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Game.Level.Entities
         public void Enter()
         {
             if (!_isLocked && !TaskManager.IsRunning(this))
-                TaskManager.Run(this, _duration, Apply, Disaply);
+                TaskManager.Run(this, _duration, Apply, Disapply);
         }
 
         public void Lock() => _isLocked = true;
@@ -33,14 +33,14 @@ namespace Game.Level.Entities
 
         private void Apply()
         {
-            _rigidbody.constraints = RigidbodyConstraints2D.FreezePositionY;
+            _rigidbody.constraints ^= RigidbodyConstraints2D.FreezePositionY;
 
             _transform.localScale /= CHARACTER_SCALE_MODIFIER;
 
             GameTime.Multiplier = TIME_SCALE_MODIFIER;
         }
 
-        private void Disaply()
+        private void Disapply()
         {
             _rigidbody.constraints ^= RigidbodyConstraints2D.FreezePositionY;
 
@@ -49,6 +49,6 @@ namespace Game.Level.Entities
             GameTime.Multiplier = 1;
         }
 
-        public void Cancel() => TaskManager.Cancel(this);
+        public void Cancel() => TaskManager.CancelIfRunning(this);
     }
 }

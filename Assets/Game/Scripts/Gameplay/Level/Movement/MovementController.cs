@@ -5,7 +5,7 @@ namespace Game.Level
 {
     public class MovementController
     {
-        private readonly Queue<Rigidbody2D> _bodies;
+        private readonly List<Rigidbody2D> _bodies;
         private readonly float _movementSpeed;
 
         public MovementController(float speed)
@@ -14,7 +14,8 @@ namespace Game.Level
             _movementSpeed = speed;
         }
 
-        public void Add(Rigidbody2D rigidbody) => _bodies.Enqueue(rigidbody);
+        public void Add(Rigidbody2D rigidbody) => _bodies.Add(rigidbody);
+        public void Remove(Rigidbody2D rigidbody) => _bodies.Remove(rigidbody);
 
         public void FixedUpdate()
         {

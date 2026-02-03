@@ -1,4 +1,3 @@
-using Game.Core;
 using Game.Level.Generation;
 using StateManagement;
 using UnityEngine;
@@ -9,10 +8,9 @@ namespace Game.Level
     public class Level : MonoBehaviour, IResetable, IPausable, IPlayable, IStartable
     {
         [SerializeField]
-        private LevelType _type;
-        [SerializeField]
         private LevelConfig _config;
 
+        [SerializeField]
         private ScoreCounter _scoreCounter;
         private LevelSpeedController _speedController;
         private MovementController _movementController;
@@ -32,7 +30,6 @@ namespace Game.Level
 
         private void InitFields()
         {
-            _scoreCounter           = new();
             _speedController        = new(_config.MaxSpeed, _config.SpeedGrow);
             _movementController     = new(_config.StartSpeed);
             _spawnController        = new(DefaultLoader(), _config.SpawnDistance,
@@ -59,16 +56,9 @@ namespace Game.Level
             Simulation.OnDisabled += _movementController.Pause;
         }
 
-        public void SetupLoader(ILevelLoader loader)
-        {
-
-        }
-
         void IResetable.Reset()
         {
-            _scoreCounter.Reset();
-
-            GameTime.Reset();
+            _speedController.Reset();
         }
 
         void IStartable.Start() => _spawnController.Start();
@@ -80,13 +70,14 @@ namespace Game.Level
         {
             Simulation.Disable();
 
-            GameTime.Pause();
+            _speedController.Pause();
         }
+
         void IPlayable.Play()
         {
             Simulation.Enable();
 
-            GameTime.Play();
+            _speedController.Play();
         }
     }
 }

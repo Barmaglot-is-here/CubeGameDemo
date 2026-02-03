@@ -9,18 +9,15 @@ namespace Game.Level.Entities
         [SerializeField]
         private CharacterConfig _config;
 
-        private Vector2 _startPosition;
-
         public CharacterMovementComponent movement { get; private set; }
         public Dash dash { get; private set; }
         public new Rigidbody2D rigidbody { get; private set; }
 
         private void Awake()
         {
-            rigidbody = GetComponent<Rigidbody2D>();
-            movement = new(rigidbody, _config);
-            dash = new(_config.DashDuration, this);
-            _startPosition = transform.position;
+            rigidbody       = GetComponent<Rigidbody2D>();
+            movement        = new(rigidbody, _config);
+            dash            = new(_config.DashDuration, this);
 
             rigidbody.simulated = false;
 
@@ -41,7 +38,6 @@ namespace Game.Level.Entities
 
         void IResetable.Reset()
         {
-            transform.position = _startPosition;
             rigidbody.linearVelocityY = 0;
 
             ChangeDirectionUp();

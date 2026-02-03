@@ -6,10 +6,10 @@ namespace StateManagement
 {
     public static class StateManager
     {
-        private static readonly RunableCollection<IPlayable> _playProviders;
-        private static readonly RunableCollection<IPausable> _pauseProviders;
-        private static readonly RunableCollection<IResetable> _resetProviders;
-        private static readonly RunableCollection<IStartable> _startProviders;
+        private static readonly List<IPlayable> _playProviders;
+        private static readonly List<IPausable> _pauseProviders;
+        private static readonly List<IResetable> _resetProviders;
+        private static readonly List<IStartable> _startProviders;
 
         private static readonly Dictionary<Type, BaseState> _states;
 
@@ -17,10 +17,10 @@ namespace StateManagement
 
         static StateManager()
         {
-            _playProviders      = new((IPlayable provider)      => provider.Play());
-            _pauseProviders     = new((IPausable provider)      => provider.Pause());
-            _resetProviders     = new((IResetable provider)     => provider.Reset());
-            _startProviders     = new((IStartable provider)     => provider.Start());
+            _playProviders      = new();
+            _pauseProviders     = new();
+            _resetProviders     = new();
+            _startProviders     = new();
 
             _states = new()
             {
@@ -40,10 +40,24 @@ namespace StateManagement
             TryAdd(_startProviders, provider);
         }
 
-        private static void TryAdd<T>(RunableCollection<T> collection, IGameStateProvider provider)
+        public static void Unregister(IGameStateProvider provider)
+        {
+            TryRemove(_playProviders, provider);
+            TryRemove(_pauseProviders, provider);
+            TryRemove(_resetProviders, provider);
+            TryRemove(_startProviders, provider);
+        }
+
+        private static void TryAdd<T>(List<T> collection, IGameStateProvider provider)
         {
             if (provider is T TProvider)
                 collection.Add(TProvider);
+        }
+
+        private static void TryRemove<T>(List<T> collection, IGameStateProvider provider)
+        {
+            if (provider is T TProvider)
+                collection.Remove(TProvider);
         }
 
         public static void SetState<T>() where T : BaseState
@@ -61,9 +75,9 @@ namespace StateManagement
             _currentState.Enter();
         }
 
-        internal static void Play()     => _playProviders.Run();
-        internal static void Pause()    => _pauseProviders.Run();
-        internal static void Reset()    => _resetProviders.Run();
-        internal static void Start()    => _startProviders.Run();
+        internal static void Play()     => _playProviders.ForEach(p => p.Play());
+        internal static void Pause()    => _pauseProviders.ForEach(p => p.Pause());
+        internal static void Reset()    => _resetProviders.ForEach(p => p.Reset());
+        internal static void Start()    => _startProviders.ForEach(p => p.Start());
     }
 }

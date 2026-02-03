@@ -22,7 +22,7 @@ namespace Game.UI
             AbilitySystem.OnExit    -= HideView;
         }
 
-        private void OnUse(IAbility ability)
+        private void OnUse(BaseAbility ability)
         {
             ShowView();
 

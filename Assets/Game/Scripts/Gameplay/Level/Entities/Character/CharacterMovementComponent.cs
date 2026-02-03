@@ -1,4 +1,3 @@
-using Game;
 using System;
 using UnityEngine;
 
@@ -15,10 +14,10 @@ namespace Game.Level.Entities
 
         public CharacterMovementComponent(Rigidbody2D rigidbody, CharacterConfig config)
         {
-            _rigidbody = rigidbody;
-            _rigidbody.mass = config.Mass;
+            _rigidbody              = rigidbody;
+            _rigidbody.mass         = config.Mass;
             _rigidbody.gravityScale = config.GravityScale;
-            _moveForce = config.MoveForce;
+            _moveForce              = config.MoveForce;
         }
 
         public void ChangeDirectionUp() => _moveForce = Math.Abs(_moveForce);

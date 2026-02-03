@@ -1,4 +1,5 @@
 using Game.Abilities;
+using UnityEngine;
 
 namespace Game.Level.Generation
 {
@@ -11,9 +12,13 @@ namespace Game.Level.Generation
             _factory = factory;
         }
 
-        public IAbility Generate()
+        public BaseAbility Generate()
         {
-            return _factory.Create<GrowAbility>();
+            var chance = Random.Range(0, 100);
+
+            if (chance >= 50)
+                return _factory.Create<GrowAbility>();
+            else return null;
         }
     }
 }

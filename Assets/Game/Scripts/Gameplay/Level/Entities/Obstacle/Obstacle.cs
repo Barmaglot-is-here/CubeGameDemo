@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Level.Entities
 {
-    public class Obstacle : MovableObject, IResetable
+    public class Obstacle : MonoBehaviour, IResetable
     {
         private GameObject[] _sections;
 

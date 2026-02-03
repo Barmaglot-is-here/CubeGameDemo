@@ -18,14 +18,14 @@ namespace Game.Abilities
             Add(() => new GrowAbility(_config.GrowAbilityConfig));
         }
 
-        private void Add<T>(Func<T> func) where T : IAbility
+        private void Add<T>(Func<T> func) where T : BaseAbility
         {
             Type type = typeof(T);
 
             _factoryMethods.Add(type, func);
         }
 
-        public IAbility Create<T>() where T : IAbility
+        public T Create<T>() where T : BaseAbility
         {
             Type type = typeof(T);
             object @delegate = _factoryMethods[type];

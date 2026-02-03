@@ -7,38 +7,27 @@ namespace Game.Level
     public class AbilitiesFactory : MonoBehaviour
     {
         [SerializeField]
-        private GameObject _prefab;
-        [SerializeField]
         private Transform _container;
         [SerializeField]
-        private AbilitiesViewConfig _viewConfig;
+        private GameObject _prefab;
 
-        private ObjectPool<Ability> _pool;
+        [SerializeField]
+        private Sprite _growAbilitySprite;
 
-        private void Awake()
-        {
-            _pool = new(Instantiate, Reset);
-        }
-
-        private Ability Instantiate()
+        private AbilityContainer Instantiate()
         {
             var instance    = Instantiate(_prefab, _container, true);
-            var ability     = instance.GetComponent<Ability>();
+            var ability     = instance.GetComponent<AbilityContainer>();
 
             return ability;
         }
 
-        private void Reset(Ability container)
+        public AbilityContainer Create(BaseAbility ability)
         {
-            container.gameObject.SetActive(true);
-        }
-
-        public Ability Create(IAbility ability)
-        {
-            var container = _pool.GetNext();
+            var container = Instantiate();
 
             var pos     = GetRandomPosition();
-            var view    = GetView(ability.GetType());
+            var view    = _growAbilitySprite;
 
             container.transform.localPosition = pos;
             container.Setup(ability, view);
@@ -55,14 +44,9 @@ namespace Game.Level
             var instance = Instantiate(_prefab, _container, true);
             instance.transform.localPosition = pos;
 
-            var container = instance.GetComponent<Ability>();
+            var container = instance.GetComponent<AbilityContainer>();
         }
 #endif
-
-        private Sprite GetView(System.Type abilityType)
-        {
-            return _viewConfig.GrowAbilitySprite;
-        }
 
         private Vector3 GetRandomPosition()
         {

@@ -26,9 +26,6 @@ namespace Game
             _tasks[key] = UpdateTask(duration, _cs[key], onEnter, onExit, onUpdate);
         }
 
-        public static bool IsRunning(object key)
-            => _tasks.ContainsKey(key) && _tasks[key].Status != UniTaskStatus.Succeeded;
-
         private static async UniTask UpdateTask(float duration, CancellationTokenSource cs, 
                                                 Action onEnter, 
                                                 Action onExit, 
@@ -49,6 +46,13 @@ namespace Game
             onExit();
         }
 
-        public static void Cancel(object obj) => _cs[obj]?.Cancel();
+        public static void CancelIfRunning(object obj)
+        {
+            if (IsRunning(obj))
+                _cs[obj].Cancel();
+        }
+
+        public static bool IsRunning(object key)
+            => _tasks.ContainsKey(key) && _tasks[key].Status != UniTaskStatus.Succeeded;
     }
 }

@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Game.Debug
+namespace Game.InGameDebug
 {
     public class GameSpeedDisplay : MonoBehaviour
     {

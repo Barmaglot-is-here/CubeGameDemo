@@ -17,9 +17,9 @@ namespace Game.Level
         {
             var spawnPoint = LevelData.SpawnPoint.transform;
 
-            _loader = loader;
-            _factory = factory;
-            _distanceTracker = new(spawnPoint, spawnDistance, SpawnNext);
+            _loader             = loader;
+            _factory            = factory;
+            _distanceTracker    = new(spawnPoint, spawnDistance, SpawnNext);
         }
 
         public void Update() => _distanceTracker.Update();
@@ -29,7 +29,9 @@ namespace Game.Level
             var chunk = _loader.GetNext();
 
             _currentObstacle = Spawn(chunk.ObstacleData);
-            Spawn(chunk.Ability);
+
+            if (chunk.Ability != null)
+                Spawn(chunk.Ability);
 
             _distanceTracker.SetTarget(_currentObstacle.transform);
         }
@@ -37,11 +39,11 @@ namespace Game.Level
         private Obstacle Spawn(ObstacleData data)
             => _factory.CreateObstacle(data);
 
-        private Ability Spawn(IAbility ability)
+        private AbilityContainer Spawn(BaseAbility ability)
         {
-            var container = _factory.CreateAbility(ability);
+            var container = _factory.CreateContainer(ability);
 
-            return null;
+            return container;
         }
 
         public void Start() => SpawnNext();

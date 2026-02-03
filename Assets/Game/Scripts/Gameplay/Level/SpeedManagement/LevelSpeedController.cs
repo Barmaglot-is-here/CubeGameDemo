@@ -18,5 +18,9 @@ namespace Game.Level
 
             GameTime.BaseScale = 1 + score * _speedGrow;
         }
+
+        public void Play() => GameTime.Play();
+        public void Pause() => GameTime.Pause();
+        public void Reset() => GameTime.Reset();
     }
 }
