@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Level.Entities
 {
-    public class CharacterController : MonoBehaviour, IPausable, IPlayable
+    public class InputManager : MonoBehaviour, IPausable, IPlayable
     {
         [SerializeField]
         private Character _character;
