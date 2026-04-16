@@ -1,7 +1,7 @@
 using Cysharp.Threading.Tasks;
 using Game.Level;
 using Game.Level.Entities;
-using StateManagement;
+using GameLoopManagement;
 using UnityEngine;
 
 namespace Game.Features
@@ -11,10 +11,12 @@ namespace Game.Features
         private const float SAFE_TIME = 2.0f;
 
         private static readonly Character _character;
+        private static readonly Level.Level _level;
 
         static CharacterRebirth()
         {
-            _character = Object.FindFirstObjectByType<Character>();
+            _character  = Object.FindFirstObjectByType<Character>();
+            _level      = Object.FindFirstObjectByType<Level.Level>();
         }
 
         public static void Invoke() => Run().Forget();
@@ -46,14 +48,14 @@ namespace Game.Features
         {
             DisableObstacles();
 
-            StateManager.SetState<PlayState>();
+            GameLoop.SetState<PlayState>();
 
-            Level.Level.Simulation.Disable();
+            _level.DisbableSimutation();
         }
 
         private static void Disable()
         {
-            Level.Level.Simulation.Enable();
+            _level.EnableSimulation();
 
             var spawnController = Level.Level.Services.Get<SpawnController>();
 

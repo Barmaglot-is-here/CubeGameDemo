@@ -1,12 +1,12 @@
 using Game.Abilities;
-using StateManagement;
+using GameLoopManagement;
 using UnityEngine;
 
 namespace Game.Level.Entities
 {
     [RequireComponent(typeof(SpriteRenderer))]
     [RequireComponent(typeof(BoxCollider2D))]
-    public class AbilityContainer : MonoBehaviour, IResetable
+    public class AbilityContainer : MonoBehaviour
     {
         private SpriteRenderer _view;
         public BaseAbility Ability;
@@ -15,7 +15,7 @@ namespace Game.Level.Entities
         {
             _view = GetComponent<SpriteRenderer>();
 
-            StateManager.Register(this);
+            GameLoop.Register(OnReset, FunctionType.Reset);
         }
 
         public void Setup(BaseAbility ability, Sprite sprite)
@@ -25,8 +25,8 @@ namespace Game.Level.Entities
             _view.sprite = sprite;
         }
 
-        void IResetable.Reset() => Destroy(gameObject);
+        private void OnReset() => Destroy(gameObject);
 
-        private void OnDestroy() => StateManager.Unregister(this);
+        private void OnDestroy() => GameLoop.Unregister(OnReset, FunctionType.Reset);
     }
 }

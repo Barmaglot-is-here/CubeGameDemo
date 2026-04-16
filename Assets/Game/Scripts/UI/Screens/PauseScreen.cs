@@ -1,4 +1,4 @@
-using StateManagement;
+using GameLoopManagement;
 using UIManagement;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,7 +35,7 @@ namespace Game.UI
         {
             UIManager.Hide<PauseScreen>();
 
-            StateManager.SetState<PlayState>();
+            GameLoop.SetState<PlayState>();
         }
     }
 }

@@ -1,15 +1,15 @@
-﻿using StateManagement;
+﻿using GameLoopManagement;
 using UnityEngine;
 
 namespace Game.Level.Entities
 {
-    class StartLine : MonoBehaviour, IResetable
+    class StartLine : MonoBehaviour
     {
         private void Awake()
         {
-            StateManager.Register(this);
+            GameLoop.Register(OnReset, FunctionType.Reset);
         }
 
-        void IResetable.Reset() => gameObject.SetActive(true);
+        private void OnReset() => gameObject.SetActive(true);
     }
 }

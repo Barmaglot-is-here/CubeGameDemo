@@ -1,10 +1,10 @@
 using Game.Level;
-using StateManagement;
+using GameLoopManagement;
 using UnityEngine;
 
 namespace Game.UI
 {
-    public class ScoreViewController : MonoBehaviour, IResetable
+    public class ScoreViewController : MonoBehaviour
     {
         [SerializeField]
         private PlayModeScoreView _scoreView;
@@ -15,7 +15,7 @@ namespace Game.UI
         {
             _scoreCounter = Level.Level.Services.Get<ScoreCounter>();
 
-            StateManager.Register(this);
+            GameLoop.Register(OnReset, FunctionType.Reset);
         }
 
         private void OnEnable()
@@ -28,6 +28,6 @@ namespace Game.UI
             _scoreCounter.OnScoreChanged -= _scoreView.Show;
         }
 
-        void IResetable.Reset() => _scoreView.Reset();
+        private void OnReset() => _scoreView.Reset();
     }
 }

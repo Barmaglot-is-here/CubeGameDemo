@@ -1,17 +1,16 @@
 ﻿using Game.Abilities;
-using StateManagement;
+using GameLoopManagement;
 using UnityEngine;
 
 namespace Game.Level
 {
-    public class OnResetAbilityDisable : MonoBehaviour, IResetable
+    public class OnResetAbilityDisable : MonoBehaviour
     {
         private void Awake()
         {
-            StateManager.Register(this);
+            GameLoop.Register(OnReset, FunctionType.Reset);
         }
 
-        void IResetable.Reset() 
-            => AbilitySystem.CurrentAbility?.Cancel();
+        private void OnReset() => AbilitySystem.CurrentAbility?.Cancel();
     }
 }

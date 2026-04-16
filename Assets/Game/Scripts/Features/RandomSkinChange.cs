@@ -1,18 +1,18 @@
 using Game.SkinSystem;
-using StateManagement;
+using GameLoopManagement;
 using UnityEngine;
 
 namespace Game.Features
 {
-    public class RandomSkinChange : MonoBehaviour, IResetable
+    public class RandomSkinChange : MonoBehaviour
     {
         [SerializeField]
         private SkinList _skinList;
 
-        private void Awake() => StateManager.Register(this);
+        private void Awake() => GameLoop.Register(OnReset, FunctionType.Reset);
         private void Start() => SetRandomSkin();
 
-        void IResetable.Reset() => SetRandomSkin();
+        private void OnReset() => SetRandomSkin();
 
         private void SetRandomSkin()
         {

@@ -1,11 +1,8 @@
 {
-    "name": "StateManagement",
-    "rootNamespace": "",
+    "name": "GameLoop",
+    "rootNamespace": "GameLoop",
     "references": [],
-    "includePlatforms": [
-        "Android",
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

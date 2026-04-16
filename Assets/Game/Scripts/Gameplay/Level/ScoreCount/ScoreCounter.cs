@@ -1,13 +1,12 @@
-using StateManagement;
+using GameLoopManagement;
 using System;
 using UnityEngine;
 
 namespace Game.Level
 {
-    public class ScoreCounter : MonoBehaviour, IResetable
+    public class ScoreCounter
     {
-        [SerializeField]
-        private ScoreTrigger _scoreTrigger;
+        private readonly ScoreTrigger _scoreTrigger;
 
         private int _score;
         public int Score
@@ -23,15 +22,17 @@ namespace Game.Level
 
         public event Action<int> OnScoreChanged;
 
-        private void Awake()
+        public ScoreCounter()
         {
+            _scoreTrigger = GameObject.FindFirstObjectByType<ScoreTrigger>();
+
             _scoreTrigger.OnTrigger += IncrementScore;
 
-            StateManager.Register(this);
+            GameLoop.Register(OnReset, FunctionType.Reset);
         }
 
         private void IncrementScore() => Score++;
 
-        void IResetable.Reset() => Score = 0;
+        private void OnReset() => Score = 0;
     }
 }

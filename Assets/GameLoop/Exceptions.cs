@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace StateManagement
+namespace GameLoopManagement
 {
 
 	[Serializable]

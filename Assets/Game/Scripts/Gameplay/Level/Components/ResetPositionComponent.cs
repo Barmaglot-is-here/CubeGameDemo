@@ -1,19 +1,19 @@
-﻿using StateManagement;
+﻿using GameLoopManagement;
 using UnityEngine;
 
 namespace Game.Level
 {
-    public sealed class ResetPositionComponent : MonoBehaviour, IResetable
+    public sealed class ResetPositionComponent : MonoBehaviour
     {
         private Vector2 _startPosition;
 
         private void Awake()
         {
-            StateManager.Register(this);
+            GameLoop.Register(OnReset, FunctionType.Reset);
 
             _startPosition = transform.position;
         }
 
-        void IResetable.Reset() => transform.position = _startPosition;
+        private void OnReset() => transform.position = _startPosition;
     }
 }

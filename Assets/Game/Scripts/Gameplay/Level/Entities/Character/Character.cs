@@ -1,10 +1,10 @@
-using StateManagement;
+using GameLoopManagement;
 using UnityEngine;
 
 namespace Game.Level.Entities
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Character : MonoBehaviour, IPlayable, IPausable, IResetable
+    public class Character : MonoBehaviour
     {
         [SerializeField]
         private CharacterConfig _config;
@@ -21,9 +21,10 @@ namespace Game.Level.Entities
 
             rigidbody.simulated = false;
 
-            Level.Simulation.OnFixedUpdate += OnFixedUpdate;
-
-            StateManager.Register(this);
+            GameLoop.Register(Play, FunctionType.Play);
+            GameLoop.Register(Pause, FunctionType.Pause);
+            GameLoop.Register(OnReset, FunctionType.Reset);
+            GameLoop.Register(OnFixedUpdate, FunctionType.FixedUpdate);
         }
 
         private void OnFixedUpdate() => movement.Move();
@@ -33,10 +34,10 @@ namespace Game.Level.Entities
         public void Dash() => dash.Enter();
         public void Move() => movement.Move();
 
-        void IPlayable.Play() => rigidbody.simulated = true;
-        void IPausable.Pause() => rigidbody.simulated = false;
+        private void Play() => rigidbody.simulated = true;
+        private void Pause() => rigidbody.simulated = false;
 
-        void IResetable.Reset()
+        private void OnReset()
         {
             rigidbody.linearVelocityY = 0;
 

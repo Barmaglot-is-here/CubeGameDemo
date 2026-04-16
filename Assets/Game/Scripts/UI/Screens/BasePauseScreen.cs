@@ -1,4 +1,4 @@
-using StateManagement;
+using GameLoopManagement;
 using UIManagement;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,8 +24,8 @@ namespace Game.UI
         {
             UIManager.Show<PlayModeScreen>();
 
-            StateManager.SetState<IdleState>();
-            StateManager.SetState<PlayState>();
+            GameLoop.SetState<IdleState>();
+            GameLoop.SetState<PlayState>();
         }
 
         protected virtual void OnHomeButtonClick()
@@ -35,7 +35,7 @@ namespace Game.UI
 
             ScoreView.gameObject.SetActive(false);
 
-            StateManager.SetState<IdleState>();
+            GameLoop.SetState<IdleState>();
         }
     }
 }

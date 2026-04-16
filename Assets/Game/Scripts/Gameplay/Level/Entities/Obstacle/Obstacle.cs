@@ -1,9 +1,9 @@
-using StateManagement;
+using GameLoopManagement;
 using UnityEngine;
 
 namespace Game.Level.Entities
 {
-    public class Obstacle : MonoBehaviour, IResetable
+    public class Obstacle : MonoBehaviour
     {
         private GameObject[] _sections;
 
@@ -13,7 +13,7 @@ namespace Game.Level.Entities
         {
             _sections = GetSections();
 
-            StateManager.Register(this);
+            GameLoop.Register(OnReset, FunctionType.Reset);
         }
 
         private GameObject[] GetSections()
@@ -37,6 +37,6 @@ namespace Game.Level.Entities
             }
         }
 
-        void IResetable.Reset() => gameObject.SetActive(false);
+        private void OnReset() => gameObject.SetActive(false);
     }
 }

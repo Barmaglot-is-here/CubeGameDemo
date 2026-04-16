@@ -1,10 +1,10 @@
 using CustomControls;
-using StateManagement;
+using GameLoopManagement;
 using UnityEngine;
 
 namespace Game.Level.Entities
 {
-    public class InputManager : MonoBehaviour, IPausable, IPlayable
+    public class InputManager : MonoBehaviour
     {
         [SerializeField]
         private Character _character;
@@ -15,7 +15,8 @@ namespace Game.Level.Entities
 
         private void Awake()
         {
-            StateManager.Register(this);
+            GameLoop.Register(Play, FunctionType.Play);
+            GameLoop.Register(Pause, FunctionType.Pause);
         }
 
         private void OnEnable()
@@ -28,8 +29,8 @@ namespace Game.Level.Entities
             _swipeManager.OnSwipe -= OnSwipe;
         }
 
-        void IPlayable.Play() => _isPaused = false;
-        void IPausable.Pause() => _isPaused = true;
+        private void Play() => _isPaused = false;
+        private void Pause() => _isPaused = true;
 
         private void OnSwipe(SwipeDirection direction)
         {

@@ -1,5 +1,5 @@
 ﻿using Game.UI;
-using StateManagement;
+using GameLoopManagement;
 using UIManagement;
 using UnityEngine;
 
@@ -17,7 +17,7 @@ namespace Game.Level.Entities
 
         private void OnDeath()
         {
-            StateManager.SetState<PauseState>();
+            GameLoop.SetState<PauseState>();
             UIManager.Hide<PlayModeScreen>();
             UIManager.Show<DeathScreen>();
         }

@@ -1,5 +1,5 @@
+using GameLoopManagement;
 using UnityEngine;
-using StateManagement;
 
 namespace Game.Features
 {
@@ -9,7 +9,7 @@ namespace Game.Features
     private void OnApplicationPause(bool pause)
     {
         if (pause)
-            StateManager.SetState<PauseState>();
+            GameLoop.SetState<PauseState>();
     }
 #endif
     }

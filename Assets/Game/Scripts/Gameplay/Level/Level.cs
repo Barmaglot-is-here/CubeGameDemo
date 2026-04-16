@@ -1,35 +1,33 @@
 using Game.Level.Generation;
-using StateManagement;
+using GameLoopManagement;
+using System;
 using UnityEngine;
 
 namespace Game.Level
 {
     [DefaultExecutionOrder(-1000)]
-    public class Level : MonoBehaviour, IResetable, IPausable, IPlayable, IStartable
+    public class Level : MonoBehaviour
     {
         [SerializeField]
         private LevelConfig _config;
 
-        [SerializeField]
         private ScoreCounter _scoreCounter;
         private LevelSpeedController _speedController;
         private MovementController _movementController;
         private SpawnController _spawnController;
 
         public static ServiceManager Services { get; private set; } = new();
-        public static Simulation Simulation { get; private set; } = new();
 
         private void Awake()
         {
             InitFields();
             RegisterServices();
             RegisterEvents();
-
-            StateManager.Register(this);
         }
 
         private void InitFields()
         {
+            _scoreCounter           = new();
             _speedController        = new(_config.MaxSpeed, _config.SpeedGrow);
             _movementController     = new(_config.StartSpeed);
             _spawnController        = new(DefaultLoader(), _config.SpawnDistance,
@@ -47,37 +45,33 @@ namespace Game.Level
             Services.Add(_spawnController);
         }
 
+        public void EnableSimulation()
+        {
+            throw new NotImplementedException();
+
+            GameLoop.Register(_spawnController.Update, FunctionType.Update);
+            GameLoop.Register(_movementController.FixedUpdate, FunctionType.FixedUpdate);
+        }
+
+        public void DisbableSimutation()
+        {
+            throw new NotImplementedException();
+
+            GameLoop.Unregister(_spawnController.Update, FunctionType.Update);
+            GameLoop.Unregister(_movementController.FixedUpdate, FunctionType.FixedUpdate);
+        }
+
         private void RegisterEvents()
         {
             _scoreCounter.OnScoreChanged += _speedController.Update;
 
-            Simulation.OnUpdate += _spawnController.Update;
-            Simulation.OnFixedUpdate += _movementController.FixedUpdate;
-            Simulation.OnDisabled += _movementController.Pause;
-        }
-
-        void IResetable.Reset()
-        {
-            _speedController.Reset();
-        }
-
-        void IStartable.Start() => _spawnController.Start();
-
-        private void Update() => Simulation.Update();
-        private void FixedUpdate() => Simulation.FixedUpdate();
-
-        void IPausable.Pause()
-        {
-            Simulation.Disable();
-
-            _speedController.Pause();
-        }
-
-        void IPlayable.Play()
-        {
-            Simulation.Enable();
-
-            _speedController.Play();
+            GameLoop.Register(_spawnController.Start, FunctionType.Start);
+            GameLoop.Register(_speedController.Play, FunctionType.Play);
+            GameLoop.Register(_speedController.Reset, FunctionType.Reset);
+            GameLoop.Register(_speedController.Pause, FunctionType.Pause);
+            GameLoop.Register(_spawnController.Update, FunctionType.Update);
+            GameLoop.Register(_movementController.FixedUpdate, FunctionType.FixedUpdate);
+            GameLoop.Register(_movementController.Pause, FunctionType.Pause);
         }
     }
 }

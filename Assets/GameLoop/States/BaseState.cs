@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace StateManagement
+namespace GameLoopManagement
 {
     public abstract class BaseState
     {

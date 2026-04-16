@@ -5,9 +5,9 @@
   <Project Path="DOTween.Modules.csproj" />
   <Project Path="UniTask.Addressables.csproj" />
   <Project Path="AudioButton.csproj" />
-  <Project Path="StateManagement.csproj" />
   <Project Path="UniTask.TextMeshPro.csproj" />
   <Project Path="UniTask.DOTween.csproj" />
+  <Project Path="GameLoop.csproj" />
   <Project Path="UIManagement.csproj" />
   <Project Path="UniTask.Editor.csproj" />
   <Project Path="Editor.csproj" />
