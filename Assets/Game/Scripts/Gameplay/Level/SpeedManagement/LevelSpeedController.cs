@@ -13,10 +13,10 @@ namespace Game.Level
 
         public void Update(int score)
         {
-            if (GameTime.BaseScale >= _maxSpeed)
-                return;
-
             GameTime.BaseScale = 1 + score * _speedGrow;
+
+            if (GameTime.BaseScale >= _maxSpeed)
+                GameTime.BaseScale = _maxSpeed;
         }
 
         public void Play() => GameTime.Play();

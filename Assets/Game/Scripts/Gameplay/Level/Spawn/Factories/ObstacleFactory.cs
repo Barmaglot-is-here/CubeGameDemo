@@ -38,6 +38,6 @@ namespace Game.Level
         private void Reset(Obstacle obstacle) => obstacle.gameObject.SetActive(true);
 
         private Vector2 GetSpawnPosition() =>
-            new(LevelData.SpawnPoint.localPosition.x, _prefab.transform.localPosition.y);
+            new(LevelData.SpawnPoint.position.x, _prefab.transform.position.y);
     }
 }
