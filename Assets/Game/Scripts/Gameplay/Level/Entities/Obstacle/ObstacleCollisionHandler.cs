@@ -1,5 +1,5 @@
 ﻿using Game.UI;
-using GameLoopManagement;
+using GameCycleManagement;
 using UIManagement;
 using UnityEngine;
 

@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace GameLoopManagement
+namespace GameCycleManagement
 {
-    public class PlayState : BaseState
+    public class PauseState : BaseState
     {
         internal override IEnumerable<Type> SupportedStates
         {
             get
             {
-                yield return typeof(PauseState);
                 yield return typeof(IdleState);
+                yield return typeof(PlayState);
             }
         }
 
-        internal override void Enter() => GameLoop.Invoke(FunctionType.Play);
+        internal override void Enter() => GameLoop.Invoke(FunctionType.Pause);
     }
 }

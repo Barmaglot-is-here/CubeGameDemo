@@ -1,4 +1,4 @@
-using GameLoopManagement;
+using GameCycleManagement;
 using UIManagement;
 using UnityEngine;
 using UnityEngine.UI;

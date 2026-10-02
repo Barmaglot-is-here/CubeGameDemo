@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GameLoopManagement
+namespace GameCycleManagement
 {
 
 	[Serializable]

@@ -1,5 +1,5 @@
 using Game.Level;
-using GameLoopManagement;
+using GameCycleManagement;
 using UnityEngine;
 
 namespace Game.UI

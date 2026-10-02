@@ -1,4 +1,4 @@
-﻿namespace GameLoopManagement
+﻿namespace GameCycleManagement
 {
     public enum FunctionType
     {

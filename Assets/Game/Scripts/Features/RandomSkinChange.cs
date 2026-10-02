@@ -1,5 +1,5 @@
 using Game.SkinSystem;
-using GameLoopManagement;
+using GameCycleManagement;
 using UnityEngine;
 
 namespace Game.Features

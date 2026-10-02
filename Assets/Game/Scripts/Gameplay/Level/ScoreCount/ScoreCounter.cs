@@ -1,4 +1,4 @@
-using GameLoopManagement;
+using GameCycleManagement;
 using System;
 using UnityEngine;
 

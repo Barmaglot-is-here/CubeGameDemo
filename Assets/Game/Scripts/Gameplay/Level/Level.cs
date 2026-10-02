@@ -1,5 +1,5 @@
 using Game.Level.Generation;
-using GameLoopManagement;
+using GameCycleManagement;
 using System;
 using UnityEngine;
 

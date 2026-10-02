@@ -1,6 +1,6 @@
 {
     "name": "GameLoop",
-    "rootNamespace": "GameLoop",
+    "rootNamespace": "GameCycleManagement",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

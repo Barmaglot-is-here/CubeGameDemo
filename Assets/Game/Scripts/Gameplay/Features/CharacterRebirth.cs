@@ -1,7 +1,7 @@
 using Cysharp.Threading.Tasks;
 using Game.Level;
 using Game.Level.Entities;
-using GameLoopManagement;
+using GameCycleManagement;
 using UnityEngine;
 
 namespace Game.Features
