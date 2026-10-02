@@ -1,7 +1,7 @@
 ﻿<Solution>
   <Project Path="Game.csproj" />
-  <Project Path="DOTween.Modules.csproj" />
   <Project Path="AudioButton.csproj" />
+  <Project Path="DOTween.Modules.csproj" />
   <Project Path="GameLoop.csproj" />
   <Project Path="UIManagement.csproj" />
   <Project Path="Editor.csproj" />

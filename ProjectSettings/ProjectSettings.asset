@@ -66,6 +66,9 @@ PlayerSettings:
   useOSAutorotation: 1
   use32BitDisplayBuffer: 1
   preserveFramebufferAlpha: 0
+  adjustIOSFPSUsingThermalState: 1
+  thermalStateSeriousIOSFPS: 30
+  thermalStateCriticalIOSFPS: 15
   disableDepthAndStencilBuffers: 0
   androidStartInFullscreen: 1
   androidRenderOutsideSafeArea: 0
@@ -114,6 +117,7 @@ PlayerSettings:
   xboxEnableGuest: 0
   xboxEnablePIXSampling: 0
   metalFramebufferOnly: 0
+  metalUseMetalDisplayLink: 0
   xboxOneResolution: 0
   xboxOneSResolution: 0
   xboxOneXResolution: 3
@@ -717,23 +721,25 @@ PlayerSettings:
   webWasm2023: 0
   webEnableSubmoduleStrippingCompatibility: 0
   scriptingDefineSymbols:
-    Android: DOTWEEN
-    EmbeddedLinux: DOTWEEN
-    GameCoreScarlett: DOTWEEN
-    GameCoreXboxOne: DOTWEEN
-    LinuxHeadlessSimulation: DOTWEEN
-    Nintendo Switch: DOTWEEN
-    PS4: DOTWEEN
-    PS5: DOTWEEN
-    QNX: DOTWEEN
+    Android: DOTWEEN;DOTWEEN_NOPHYSICS
+    EmbeddedLinux: DOTWEEN;DOTWEEN_NOPHYSICS
+    GameCoreScarlett: DOTWEEN;DOTWEEN_NOPHYSICS
+    GameCoreXboxOne: DOTWEEN;DOTWEEN_NOPHYSICS
+    Kepler: DOTWEEN;DOTWEEN_NOPHYSICS
+    LinuxHeadlessSimulation: DOTWEEN;DOTWEEN_NOPHYSICS
+    Nintendo Switch: DOTWEEN;DOTWEEN_NOPHYSICS
+    Nintendo Switch 2: DOTWEEN;DOTWEEN_NOPHYSICS
+    PS4: DOTWEEN;DOTWEEN_NOPHYSICS
+    PS5: DOTWEEN;DOTWEEN_NOPHYSICS
+    QNX: DOTWEEN;DOTWEEN_NOPHYSICS
     ReservedCFE: DOTWEEN
-    Standalone: DOTWEEN
-    VisionOS: DOTWEEN
-    WebGL: DOTWEEN
-    Windows Store Apps: DOTWEEN
-    XboxOne: DOTWEEN
-    iPhone: DOTWEEN
-    tvOS: DOTWEEN
+    Standalone: DOTWEEN;DOTWEEN_NOPHYSICS
+    VisionOS: DOTWEEN;DOTWEEN_NOPHYSICS
+    WebGL: DOTWEEN;DOTWEEN_NOPHYSICS
+    Windows Store Apps: DOTWEEN;DOTWEEN_NOPHYSICS
+    XboxOne: DOTWEEN;DOTWEEN_NOPHYSICS
+    iPhone: DOTWEEN;DOTWEEN_NOPHYSICS
+    tvOS: DOTWEEN;DOTWEEN_NOPHYSICS
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

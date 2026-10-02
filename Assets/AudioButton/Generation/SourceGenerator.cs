@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -5,35 +6,36 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-#if UNITY_EDITOR
 namespace AudioButton
 {
     internal static class SourceGenerator
     {
         public static void Generate(IEnumerable<AudioClip> sources)
         {
-
-            var result      = EnumGenerator.Gen(sources.Select(source => source.name));
+            var result      = EnumGenerationUtility.Gen(sources.Select(source => source.name));
             string savePath = Application.dataPath + "/AudioButton/SoundId.cs";
 
             try
             {
+                if (!IsContentChanged(savePath, result))
+                    return;
+
                 Save(result, savePath);
             }
             catch (Exception ex)
             {
                 Debug.LogError(ex);
+
+                return;
             }
 
             AssetDatabase.Refresh();
         }
 
-        private static void Save(string content, string path)
-        {
-            Debug.Log(path);
+        private static bool IsContentChanged(string filePath, string content) 
+            => File.Exists(filePath) && File.ReadAllText(filePath) != content;
 
-            File.WriteAllText(path, content);
-        }
+        private static void Save(string content, string path) => File.WriteAllText(path, content);
     }
 }
 #endif

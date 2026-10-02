@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace AudioButton
 {
-    internal static class EnumGenerator
+    internal static class EnumGenerationUtility
     {
         private const string FILE_FORMAT = "" +
             "namespace AudioButton\r\n" +
@@ -12,7 +12,7 @@ namespace AudioButton
             "\t{\r\n" +
             "{0}" +
             "\t}\r\n" +
-            "}";
+            "}\r\n";
         private const string LINE_FORMAT = "\t\t{0},\r\n";
 
         public static string Gen(IEnumerable<string> sources)
