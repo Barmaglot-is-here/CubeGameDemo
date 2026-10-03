@@ -5,9 +5,9 @@ namespace Game.Level.Generation
         private readonly ObstacleGenerator _obstacleGenerator;
         private readonly AbilitiesGenerator _abilitiesGenerator;
 
-        public LevelGenerator(int obstacleSectionsCount, Abilities.AbilitiesFactory abilitiesFactory)
+        public LevelGenerator(ObstacleGenerationConfig config, int obstacleSectionsCount, Abilities.AbilitiesFactory abilitiesFactory)
         {
-            _obstacleGenerator  = new(obstacleSectionsCount);
+            _obstacleGenerator  = new(config.DisablePercentMax, config.DisablePercentMin, obstacleSectionsCount);
             _abilitiesGenerator = new(abilitiesFactory);
         }
 

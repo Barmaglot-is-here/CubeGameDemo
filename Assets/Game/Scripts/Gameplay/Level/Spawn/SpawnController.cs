@@ -15,7 +15,7 @@ namespace Game.Level
         public SpawnController(ILevelLoader loader, float spawnDistance,
                                EntitiesFactory factory)
         {
-            var spawnPoint      = LevelData.SpawnPoint.transform;
+            var spawnPoint      = SceneData.SpawnPoint.transform;
 
             _loader             = loader;
             _factory            = factory;
@@ -41,7 +41,7 @@ namespace Game.Level
 
         private AbilityContainer Spawn(BaseAbility ability)
         {
-            var container = _factory.CreateContainer(ability);
+            var container = _factory.CreateAbility(ability);
 
             return container;
         }

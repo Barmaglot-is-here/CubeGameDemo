@@ -12,7 +12,7 @@ namespace Game.Level
 
         public Obstacle CreateObstacle(ObstacleData data)
             => _obstacleFactory.Create(data);
-        public AbilityContainer CreateContainer(Abilities.BaseAbility ability)
+        public AbilityContainer CreateAbility(Abilities.BaseAbility ability)
             => _abilityFactory.Create(ability);
     }
 }

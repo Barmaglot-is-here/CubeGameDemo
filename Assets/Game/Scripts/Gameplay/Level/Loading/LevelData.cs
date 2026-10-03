@@ -5,12 +5,12 @@ namespace Game.Level.Loading
 {
     public struct LevelData
     {
-        public readonly Queue<ObstacleData> ObstacleData;
+        public readonly Queue<LevelChunk> Chuncks;
         public readonly float Speed;
 
-        public LevelData(Queue<ObstacleData> obstacleData, float speed)
+        public LevelData(Queue<LevelChunk> chuncks, float speed)
         {
-            ObstacleData = obstacleData;
+            Chuncks = chuncks;
             Speed = speed;
         }
     }

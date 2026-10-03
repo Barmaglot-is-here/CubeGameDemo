@@ -1,7 +1,7 @@
 ﻿using Game.Utils;
 using UnityEngine;
 
-namespace Game.Assets.Game.Scripts.Gameplay.Utils
+namespace Game
 {
     internal class SpawnPositionInitializer : MonoBehaviour
     {

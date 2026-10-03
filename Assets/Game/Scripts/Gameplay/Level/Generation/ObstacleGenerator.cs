@@ -6,13 +6,14 @@ namespace Game.Level.Generation
 {
     public class ObstacleGenerator
     {
-        private const int DISABLE_PERCENT_MAX = 70;
-        private const int DISABLE_PERCENT_MIN = 50;
-
+        private readonly int _disablePercentMax;
+        private readonly int _disablePercentMin;
         private readonly int _sectionsCount;
 
-        public ObstacleGenerator(int sectionsCount)
+        public ObstacleGenerator(int disablePercentMax, int disablePercentMin, int sectionsCount)
         {
+            _disablePercentMax = disablePercentMax;
+            _disablePercentMin = disablePercentMin;
             _sectionsCount = sectionsCount;
         }
 
@@ -23,7 +24,7 @@ namespace Game.Level.Generation
 
             int disabledSectionsCount = CalculateDisabledSectionsCount(_sectionsCount);
 
-            Exclude(enableList, 5);
+            Exclude(enableList, disabledSectionsCount);
 
             Apply(ref bools, enableList);
 
@@ -32,7 +33,7 @@ namespace Game.Level.Generation
 
         private int CalculateDisabledSectionsCount(int sectionsCount)
         {
-            int percent = UnityEngine.Random.Range(DISABLE_PERCENT_MIN, DISABLE_PERCENT_MAX);
+            int percent = UnityEngine.Random.Range(_disablePercentMin, _disablePercentMax);
 
             return sectionsCount * percent / 100;
         }

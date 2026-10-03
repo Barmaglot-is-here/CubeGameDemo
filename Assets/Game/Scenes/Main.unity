@@ -10962,6 +10962,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275808601}
   m_CullTransparentMesh: 1
+--- !u!1 &276349471
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 276349472}
+  - component: {fileID: 276349473}
+  m_Layer: 0
+  m_Name: LevelLoaderFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &276349472
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276349471}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1930351927}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &276349473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276349471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6fdd23d7f06a494ca21170fb85bd54a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game::Game.Level.LevelLoaderFactory
+  _obstacle: {fileID: 2180929115099416850, guid: cc7523731e5c2b842918ca1fffc78ec1, type: 3}
 --- !u!1 &278667931
 GameObject:
   m_ObjectHideFlags: 0
@@ -23414,7 +23459,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &618139598
 RectTransform:
   m_ObjectHideFlags: 0
@@ -50010,7 +50055,6 @@ Transform:
   - {fileID: 1905039207}
   - {fileID: 2029232323}
   - {fileID: 601802645}
-  - {fileID: 2070216045}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1423726951
@@ -66490,6 +66534,7 @@ Transform:
   m_Children:
   - {fileID: 1915697541}
   - {fileID: 697755163}
+  - {fileID: 276349472}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1930351928
@@ -69017,6 +69062,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: 5a79922daef44334b94e13a1f270c864, type: 2}
+  _loaderFactory: {fileID: 276349473}
 --- !u!1 &1999221972
 GameObject:
   m_ObjectHideFlags: 0
@@ -72041,6 +72087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPoint: {fileID: 1675724944}
+  _scoreTrigger: {fileID: 1624902965}
 --- !u!114 &2065538200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72429,52 +72476,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066883824}
   m_CullTransparentMesh: 1
---- !u!1 &2070216044
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2070216045}
-  - component: {fileID: 2070216046}
-  m_Layer: 0
-  m_Name: LevelResizeUtility
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2070216045
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2070216044}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1422067532}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2070216046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2070216044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0813c181f624ad141a6d739ae64ede85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Game::Game.Utils.LevelResizeUtility
-  _deathZone: {fileID: 1039998069}
-  _spawnPoint: {fileID: 0}
 --- !u!1 &2077383199
 GameObject:
   m_ObjectHideFlags: 0
@@ -75144,6 +75145,7 @@ GameObject:
   - component: {fileID: 2130274834}
   - component: {fileID: 2130274835}
   - component: {fileID: 2130274836}
+  - component: {fileID: 2130274837}
   m_Layer: 0
   m_Name: AbilitySpawnBounds
   m_TagString: Untagged
@@ -75242,6 +75244,20 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &2130274837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130274833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6ab4531e888a84ead2bc541e3e8141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game::Game.Assets.Game.Scripts.Gameplay.Utils.SpawnPositionInitializer
+  _screenBound: 1
+  _offcetX: 5
 --- !u!1001 &2132261864
 PrefabInstance:
   m_ObjectHideFlags: 0

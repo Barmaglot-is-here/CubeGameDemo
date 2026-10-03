@@ -9,9 +9,11 @@ namespace Game.Tools
     {
         public void Generate(int count)
         {
-            ObstacleGenerator obstacleGenerator = new(11);
+            //ObstacleGenerator obstacleGenerator = new(count);
 
-            obstacleGenerator.Generate();
+            //obstacleGenerator.Generate();
+
+            throw new NotImplementedException();
         }
 
         private LevelData GenerateLevel()

@@ -11,6 +11,9 @@ namespace Game.Level
         [SerializeField]
         private LevelConfig _config;
 
+        [SerializeField]
+        private LevelLoaderFactory _loaderFactory;
+
         private ScoreCounter _scoreCounter;
         private LevelSpeedController _speedController;
         private MovementController _movementController;
@@ -30,13 +33,9 @@ namespace Game.Level
             _scoreCounter           = new();
             _speedController        = new(_config.MaxSpeed, _config.SpeedGrow);
             _movementController     = new(_config.StartSpeed);
-            _spawnController        = new(DefaultLoader(), _config.SpawnDistance,
+            _spawnController        = new(_loaderFactory.Create<LevelGenerator>(), _config.SpawnDistance,
                                           Services.Get<EntitiesFactory>());
         }
-
-        //Temp
-        private ILevelLoader DefaultLoader()
-            => new LevelGenerator(11, Services.Get<Abilities.AbilitiesFactory>());
 
         private void RegisterServices()
         {

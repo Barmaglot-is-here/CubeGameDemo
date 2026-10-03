@@ -29,7 +29,7 @@ namespace Game.Level
 
         private Rect GetRect()
         {
-            var spawnPoint = LevelData.SpawnPoint;
+            var spawnPoint = SceneData.SpawnPoint;
 
             var width = _levelConfig.SpawnDistance - _paddingX * 2;
             var height = (_roof.position - _floor.position).y

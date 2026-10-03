@@ -24,7 +24,7 @@ namespace Game.Level
 
         public ScoreCounter()
         {
-            _scoreTrigger = GameObject.FindFirstObjectByType<ScoreTrigger>();
+            _scoreTrigger = SceneData.ScoreTrigger;
 
             _scoreTrigger.OnTrigger += IncrementScore;
 
