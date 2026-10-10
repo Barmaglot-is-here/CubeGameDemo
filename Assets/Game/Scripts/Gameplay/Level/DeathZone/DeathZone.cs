@@ -11,9 +11,9 @@ namespace Game.Level
         private void Awake()
         {
             _handlers = new();
-            _handlers.Add("Obstacle",   new DisableDeathHandler());
-            _handlers.Add("StartLine",  new DisableDeathHandler());
-            _handlers.Add("Ability",    new DestroyDeathHandler());
+            _handlers.Add("Obstacle",       new DisableDeathHandler());
+            _handlers.Add("StartLine",      new DisableDeathHandler());
+            _handlers.Add("Collectable",    new DestroyDeathHandler());
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

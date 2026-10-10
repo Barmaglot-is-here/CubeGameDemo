@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Level.Entities
 {
-    class StartLine : MonoBehaviour
+    class ResetStateComponent : MonoBehaviour
     {
         private void Awake()
         {

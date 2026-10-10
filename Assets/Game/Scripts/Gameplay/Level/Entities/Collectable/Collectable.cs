@@ -1,15 +1,15 @@
-using Game.Abilities;
 using GameCycleManagement;
+using System;
 using UnityEngine;
 
 namespace Game.Level.Entities
 {
     [RequireComponent(typeof(SpriteRenderer))]
-    [RequireComponent(typeof(BoxCollider2D))]
-    public class AbilityContainer : MonoBehaviour
+    public class Collectable : MonoBehaviour
     {
         private SpriteRenderer _view;
-        public BaseAbility Ability;
+        private Action _onCollect;
+
 
         private void Awake()
         {
@@ -18,12 +18,13 @@ namespace Game.Level.Entities
             GameLoop.Register(OnReset, FunctionType.Reset);
         }
 
-        public void Setup(BaseAbility ability, Sprite sprite)
+        public void Setup(Action onCollect, Sprite sprite)
         {
-            Ability = ability;
-
-            _view.sprite = sprite;
+            _onCollect      = onCollect;
+            _view.sprite    = sprite;
         }
+
+        public void Collect() => _onCollect.Invoke();
 
         private void OnReset() => Destroy(gameObject);
 

@@ -6,23 +6,19 @@ namespace Game.Level.Generation
 {
     public class ObstacleGenerator
     {
-        private readonly int _disablePercentMax;
-        private readonly int _disablePercentMin;
-        private readonly int _sectionsCount;
+        private readonly ObstacleGenerationConfig _config;
 
-        public ObstacleGenerator(int disablePercentMax, int disablePercentMin, int sectionsCount)
+        public ObstacleGenerator(ObstacleGenerationConfig config)
         {
-            _disablePercentMax = disablePercentMax;
-            _disablePercentMin = disablePercentMin;
-            _sectionsCount = sectionsCount;
+            _config = config;
         }
 
         public ObstacleData Generate()
         {
-            bool[] bools = new bool[_sectionsCount];
-            List<int> enableList = new(Enumerable.Range(0, _sectionsCount));
+            bool[] bools = new bool[_config.SectionsCount];
+            List<int> enableList = new(Enumerable.Range(0, _config.SectionsCount));
 
-            int disabledSectionsCount = CalculateDisabledSectionsCount(_sectionsCount);
+            int disabledSectionsCount = CalculateDisabledSectionsCount(_config.SectionsCount);
 
             Exclude(enableList, disabledSectionsCount);
 
@@ -33,7 +29,7 @@ namespace Game.Level.Generation
 
         private int CalculateDisabledSectionsCount(int sectionsCount)
         {
-            int percent = UnityEngine.Random.Range(_disablePercentMin, _disablePercentMax);
+            int percent = UnityEngine.Random.Range(_config.DisablePercentMin, _config.DisablePercentMax);
 
             return sectionsCount * percent / 100;
         }

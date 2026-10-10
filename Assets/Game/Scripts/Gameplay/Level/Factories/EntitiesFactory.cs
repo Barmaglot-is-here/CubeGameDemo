@@ -1,4 +1,5 @@
 using Game.Level.Entities;
+using Game.Level.Generation;
 using UnityEngine;
 
 namespace Game.Level
@@ -8,11 +9,11 @@ namespace Game.Level
         [SerializeField]
         private ObstacleFactory _obstacleFactory;
         [SerializeField]
-        private AbilitiesFactory _abilityFactory;
+        private CollectablesFactory _collectablesFactory;
 
         public Obstacle CreateObstacle(ObstacleData data)
             => _obstacleFactory.Create(data);
-        public AbilityContainer CreateAbility(Abilities.BaseAbility ability)
-            => _abilityFactory.Create(ability);
+        public Collectable CreateCollectable(CollectableSpawnData data)
+            => _collectablesFactory.Create(data);
     }
 }

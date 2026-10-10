@@ -9,7 +9,7 @@ namespace Game
         [SerializeField]
         private EntitiesFactory _entitiesFactory;
         [SerializeField]
-        private Abilities.AbilitiesFactory _abilitiesFactory;
+        private Abilities.AbilityCreationUtility _abilitiesFactory;
 
         private void Awake()
         {

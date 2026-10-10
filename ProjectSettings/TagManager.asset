@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Obstacle
   - StartLine
-  - Ability
+  - Collectable
   layers:
   - Default
   - TransparentFX

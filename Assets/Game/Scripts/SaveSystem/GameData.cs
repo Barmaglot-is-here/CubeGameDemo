@@ -16,6 +16,8 @@ namespace Game
             }
         }
 
+        public static int Coins { get; set; }
+
         static GameData()
         {
             _score = PlayerPrefs.GetInt("score", 0);

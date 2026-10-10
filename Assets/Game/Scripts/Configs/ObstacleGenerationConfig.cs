@@ -9,5 +9,6 @@ namespace Game
         public int DisablePercentMax { get; private set; } = 70;
         [field: SerializeField]
         public int DisablePercentMin { get; private set; } = 50;
+        public int SectionsCount { get; set; }
     }
 }

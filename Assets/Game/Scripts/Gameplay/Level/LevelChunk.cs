@@ -1,11 +1,11 @@
-using Game.Abilities;
 using Game.Level.Entities;
+using Game.Level.Generation;
 
 namespace Game.Level
 {
     public struct LevelChunk
     {
         public ObstacleData ObstacleData;
-        public BaseAbility Ability;
+        public CollectableSpawnData CollectableSpawnData;
     }
 }

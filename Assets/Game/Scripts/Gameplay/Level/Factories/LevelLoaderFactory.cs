@@ -13,6 +13,14 @@ namespace Game.Level
 
         [SerializeField]
         private ObstacleGenerationConfig _config;
+        [SerializeField]
+        private CollectableGenerationConfig _config2;
+
+        [Space]
+        [SerializeField]
+        private CoinCreationProvider _creationProvider;
+        [SerializeField]
+        private AbilityCreationProvider _abilityCreationProvider;
 
         public ILevelLoader Create<T>() where T : ILevelLoader => typeof(T) switch
         {
@@ -23,9 +31,9 @@ namespace Game.Level
 
         private LevelGenerator CreateGeneretor()
         {
-            int obstacleSegmentCount = ObstacleSegmentCounter.Count(_obstacle);
+            _config.SectionsCount = ObstacleSegmentCounter.Count(_obstacle);
 
-            return new LevelGenerator(_config, obstacleSegmentCount, Level.Services.Get<Abilities.AbilitiesFactory>());
+            return new LevelGenerator(_config, _config2, SceneData.CollectablesSpawnArea, _creationProvider, _abilityCreationProvider);
         }
 
         private LevelLoader CreateLoader()

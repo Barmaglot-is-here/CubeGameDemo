@@ -1,5 +1,5 @@
-using Game.Abilities;
 using Game.Level.Entities;
+using Game.Level.Generation;
 
 namespace Game.Level
 {
@@ -30,8 +30,8 @@ namespace Game.Level
 
             _currentObstacle = Spawn(chunk.ObstacleData);
 
-            if (chunk.Ability != null)
-                Spawn(chunk.Ability);
+            if (!chunk.CollectableSpawnData.IsEmpty)
+                Spawn(chunk.CollectableSpawnData);
 
             _distanceTracker.SetTarget(_currentObstacle.transform);
         }
@@ -39,9 +39,9 @@ namespace Game.Level
         private Obstacle Spawn(ObstacleData data)
             => _factory.CreateObstacle(data);
 
-        private AbilityContainer Spawn(BaseAbility ability)
+        private Collectable Spawn(CollectableSpawnData data)
         {
-            var container = _factory.CreateAbility(ability);
+            var container = _factory.CreateCollectable(data);
 
             return container;
         }

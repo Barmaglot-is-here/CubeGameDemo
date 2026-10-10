@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game.Level
 {
-    public class AbilitySpawnBounds : MonoBehaviour
+    public class CollectablesSpawnAreaSizeController : MonoBehaviour
     {
         [SerializeField]
         private LevelConfig _levelConfig;
@@ -16,7 +16,6 @@ namespace Game.Level
         private float _paddingY;
 
         private void Awake() => UpdateRect();
-
 
         [ContextMenu("UpdateRect")]
         private void UpdateRect()

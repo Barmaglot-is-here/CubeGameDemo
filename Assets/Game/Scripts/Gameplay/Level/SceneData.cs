@@ -22,7 +22,11 @@ namespace Game.Level
         [SerializeField]
         private ScoreTrigger _scoreTrigger;
 
+        [SerializeField]
+        private CollectablesSpawnArea _collectablesSpawnArea;
+
         public static Transform SpawnPoint => Instance._spawnPoint;
         public static ScoreTrigger ScoreTrigger => Instance._scoreTrigger;
+        public static CollectablesSpawnArea CollectablesSpawnArea => Instance._collectablesSpawnArea;
     }
 }

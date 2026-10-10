@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Abilities
 {
-    public class AbilitiesFactory : MonoBehaviour
+    public class AbilityCreationUtility : MonoBehaviour
     {
         [field: SerializeField]
         private AbilitiesConfig _config;
