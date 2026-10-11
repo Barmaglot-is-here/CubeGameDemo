@@ -44,22 +44,6 @@ namespace Game.Level
             Services.Add(_spawnController);
         }
 
-        public void EnableSimulation()
-        {
-            throw new NotImplementedException();
-
-            GameLoop.Register(_spawnController.Update, FunctionType.Update);
-            GameLoop.Register(_movementController.FixedUpdate, FunctionType.FixedUpdate);
-        }
-
-        public void DisbableSimutation()
-        {
-            throw new NotImplementedException();
-
-            GameLoop.Unregister(_spawnController.Update, FunctionType.Update);
-            GameLoop.Unregister(_movementController.FixedUpdate, FunctionType.FixedUpdate);
-        }
-
         private void RegisterEvents()
         {
             _scoreCounter.OnScoreChanged += _speedController.Update;

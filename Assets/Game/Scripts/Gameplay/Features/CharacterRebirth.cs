@@ -1,74 +1,76 @@
+using Codice.Client.Common;
 using Cysharp.Threading.Tasks;
 using Game.Level;
 using Game.Level.Entities;
 using GameCycleManagement;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Features
 {
-    public static class CharacterRebirth
+    public class CharacterRebirth : MonoBehaviour
     {
-        private const float SAFE_TIME = 2.0f;
+        [SerializeField]
+        private CharacterRebirthConfig _config;
 
-        private static readonly Character _character;
-        private static readonly Level.Level _level;
+        private Character _character;
+        private Level.Level _level;
 
-        static CharacterRebirth()
+        private static CharacterRebirth _instance;
+       
+        private IEnumerable<Obstacle> Obstacles => Object.FindObjectsByType<Obstacle>(FindObjectsInactive.Exclude,
+                                                   FindObjectsSortMode.None);
+
+        private void Awake()
         {
             _character  = Object.FindFirstObjectByType<Character>();
             _level      = Object.FindFirstObjectByType<Level.Level>();
+
+            _instance = this;
         }
 
-        public static void Invoke() => Run().Forget();
+        public static void Invoke() => _instance.Run().Forget();
 
-        private static async UniTask Run()
+        private async UniTask Run()
         {
             Enable();
 
-            await Update(SAFE_TIME);
+            await UniTask.WaitForSeconds(_config.SafeTimeDuration);
 
             Disable();
         }
 
-        private static async UniTask Update(float time)
+        private void Enable()
         {
-            float timeElapsed = 0;
+            DisableSimulation(Obstacles);
 
-            while (timeElapsed < time)
+            GameLoop.SetState<PlayState>();
+        }
+
+        private void Disable() => EnableSimulation(Obstacles);
+
+        private void DisableSimulation(IEnumerable<Obstacle> obstacles)
+        {
+            var spawnController = Level.Level.Services.Get<SpawnController>();
+
+            GameLoop.Unregister(spawnController.Update, FunctionType.Update);
+
+            foreach (var obstacle in obstacles)
             {
-                timeElapsed += Time.deltaTime;
+                obstacle.transform.position = SceneData.DeathZone.transform.position;
 
-                _character.Move();
-
-                await UniTask.WaitForFixedUpdate();
+                obstacle.GetComponent<Rigidbody2D>().simulated = false;
             }
         }
 
-        private static void Enable()
+        private void EnableSimulation(IEnumerable<Obstacle> obstacles)
         {
-            DisableObstacles();
-
-            GameLoop.SetState<PlayState>();
-
-            _level.DisbableSimutation();
-        }
-
-        private static void Disable()
-        {
-            _level.EnableSimulation();
-
             var spawnController = Level.Level.Services.Get<SpawnController>();
 
-            spawnController.Start();
-        }
-
-        private static void DisableObstacles()
-        {
-            var obstacles = Object.FindObjectsByType<Obstacle>(FindObjectsInactive.Exclude,
-                                                               FindObjectsSortMode.None);
+            GameLoop.Register(spawnController.Update, FunctionType.Update);
 
             foreach (var obstacle in obstacles)
-                obstacle.gameObject.SetActive(false);
+                obstacle.GetComponent<Rigidbody2D>().simulated = true;
         }
     }
 }

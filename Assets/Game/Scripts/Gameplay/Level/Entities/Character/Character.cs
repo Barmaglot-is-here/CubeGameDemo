@@ -24,10 +24,8 @@ namespace Game.Level.Entities
             GameLoop.Register(Play, FunctionType.Play);
             GameLoop.Register(Pause, FunctionType.Pause);
             GameLoop.Register(OnReset, FunctionType.Reset);
-            GameLoop.Register(OnFixedUpdate, FunctionType.FixedUpdate);
+            GameLoop.Register(Move, FunctionType.FixedUpdate);
         }
-
-        private void OnFixedUpdate() => movement.Move();
 
         public void ChangeDirectionUp() => movement.ChangeDirectionUp();
         public void ChangeDirectionDown() => movement.ChangeDirectionDown();

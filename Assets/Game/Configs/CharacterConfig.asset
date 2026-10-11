@@ -16,3 +16,4 @@ MonoBehaviour:
   <Mass>k__BackingField: 0.4
   <GravityScale>k__BackingField: 0.4
   <DashDuration>k__BackingField: 1.3
+  <RebirthSafeTime>k__BackingField: 3

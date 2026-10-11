@@ -6,8 +6,10 @@ namespace Game.Level
     {
         public Vector3 GetRandomPosition()
         {
-            float posX = Random.Range(-0.5f, 0.5f);
-            float posY = Random.Range(-0.5f, 0.5f);
+            var scale = transform.localScale / 2;
+
+            float posX = Random.Range(-scale.x, scale.x);
+            float posY = Random.Range(-scale.y, scale.y);
 
             return transform.position + new Vector3 (posX, posY);
         }

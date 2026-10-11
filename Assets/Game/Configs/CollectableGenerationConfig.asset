@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CollectableGenerationConfig
   m_EditorClassIdentifier: Game::Game.CollectableGenerationConfig
   <GeneralGenerationChance>k__BackingField: 100
-  <CoinSpawnChance>k__BackingField: 80
+  <CoinSpawnChance>k__BackingField: 60

@@ -18,15 +18,16 @@ namespace Game.Level
 
         [SerializeField]
         private Transform _spawnPoint;
-
         [SerializeField]
         private ScoreTrigger _scoreTrigger;
-
         [SerializeField]
         private CollectablesSpawnArea _collectablesSpawnArea;
+        [SerializeField]
+        private DeathZone _deathZone;
 
         public static Transform SpawnPoint => Instance._spawnPoint;
         public static ScoreTrigger ScoreTrigger => Instance._scoreTrigger;
         public static CollectablesSpawnArea CollectablesSpawnArea => Instance._collectablesSpawnArea;
+        public static DeathZone DeathZone => Instance._deathZone;
     }
 }

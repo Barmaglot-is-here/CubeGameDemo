@@ -20,6 +20,8 @@ namespace Game.UI
         [SerializeField]
         private ScoreView _scoreView;
         [SerializeField]
+        private CoinsView _coinsView;
+        [SerializeField]
         private PlayModeScoreView _playModeScoreView;
 
         private void Awake()
@@ -36,13 +38,24 @@ namespace Game.UI
         private void OnLevelsButtonCkick() => UIManager.Show<LevelsScreen>();
         private void OnScoreTableButtonCkick() => UIManager.Show<ScoreTableScreen>();
 
-        private void OnEnable() => LoadScore();
+        private void OnEnable()
+        {
+            LoadScore();
+            LoadCoins();
+        }
 
         private void LoadScore()
         {
             int score = GameData.Score;
 
             _scoreView.Show(score);
+        }
+
+        private void LoadCoins()
+        {
+            int coins = GameData.Coins;
+
+            _coinsView.Show(coins);
         }
 
         private void OnPlayButtonCkick()

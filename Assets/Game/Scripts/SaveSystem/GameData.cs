@@ -20,12 +20,14 @@ namespace Game
 
         static GameData()
         {
-            _score = PlayerPrefs.GetInt("score", 0);
+            _score  = PlayerPrefs.GetInt("score", 0);
+            Coins   = PlayerPrefs.GetInt("coins", 0);
         }
 
         public static void Save()
         {
             PlayerPrefs.SetInt("score", Score);
+            PlayerPrefs.SetInt("coins", Coins);
 
             PlayerPrefs.Save();
         }

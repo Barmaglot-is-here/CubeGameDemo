@@ -18517,6 +18517,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 482508096}
   m_CullTransparentMesh: 1
+--- !u!1 &483023757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 483023758}
+  - component: {fileID: 483023759}
+  m_Layer: 0
+  m_Name: '[Debug]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &483023758
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483023757}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1422067532}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &483023759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483023757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4acf3cf75250e5446b153d1afc3dd872, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game::Game.InGameDebug.RebirthKeyboardPlayer
 --- !u!1 &486215982
 GameObject:
   m_ObjectHideFlags: 0
@@ -19140,6 +19184,7 @@ MonoBehaviour:
   _scoreTableButton: {fileID: 1088793622}
   _playButton: {fileID: 482044973}
   _scoreView: {fileID: 1088793623}
+  _coinsView: {fileID: 634273269}
   _playModeScoreView: {fileID: 1741303433}
 --- !u!114 &496037818
 MonoBehaviour:
@@ -24381,6 +24426,7 @@ GameObject:
   - component: {fileID: 634273266}
   - component: {fileID: 634273268}
   - component: {fileID: 634273267}
+  - component: {fileID: 634273269}
   m_Layer: 5
   m_Name: Stars
   m_TagString: Untagged
@@ -24439,6 +24485,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634273265}
   m_CullTransparentMesh: 1
+--- !u!114 &634273269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634273265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1093a4635e27944a81c7b0f56586b04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game::Game.UI.CoinsView
+  _text: {fileID: 979318105}
 --- !u!1001 &637505105
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28861,7 +28920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d554fc4ec8209c49911e8be9f016448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Game::Game.Level.CoinCreationProvider
-  _sprite: {fileID: 3286163911610860551, guid: 8dc3121e4300d9c49a2738f2c92893aa, type: 3}
+  _sprite: {fileID: 3286163911610860551, guid: 2ac670cfc31de274f8b956513e561aba, type: 3}
 --- !u!1 &783492223
 GameObject:
   m_ObjectHideFlags: 0
@@ -50105,6 +50164,8 @@ Transform:
   - {fileID: 1905039207}
   - {fileID: 2029232323}
   - {fileID: 601802645}
+  - {fileID: 1546497826}
+  - {fileID: 483023758}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1423726951
@@ -53616,6 +53677,51 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1546497825
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1546497826}
+  - component: {fileID: 1546497827}
+  m_Layer: 0
+  m_Name: CharacterRebirth
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1546497826
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546497825}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.10054, y: 0.10711, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1422067532}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1546497827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546497825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f26bfd9b2042aa14ca425dc32fa6130c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game::Game.Features.CharacterRebirth
+  _config: {fileID: 11400000, guid: 7e1b84cb3395c5b42bc8212e567af534, type: 2}
 --- !u!1 &1550442384
 GameObject:
   m_ObjectHideFlags: 0
@@ -72185,6 +72291,7 @@ MonoBehaviour:
   _spawnPoint: {fileID: 1675724944}
   _scoreTrigger: {fileID: 1624902965}
   _collectablesSpawnArea: {fileID: 2130274838}
+  _deathZone: {fileID: 1039998071}
 --- !u!114 &2065538200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75261,7 +75368,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.5, y: 1.1600001, z: 0}
-  m_LocalScale: {x: 4, y: 6.6800003, z: 0}
+  m_LocalScale: {x: 3, y: 6.6800003, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2065538198}
@@ -75281,7 +75388,7 @@ MonoBehaviour:
   _levelConfig: {fileID: 11400000, guid: 5a79922daef44334b94e13a1f270c864, type: 2}
   _floor: {fileID: 665456276}
   _roof: {fileID: 800122237}
-  _paddingX: 1.5
+  _paddingX: 2
   _paddingY: 0.5
 --- !u!212 &2130274836
 SpriteRenderer:
