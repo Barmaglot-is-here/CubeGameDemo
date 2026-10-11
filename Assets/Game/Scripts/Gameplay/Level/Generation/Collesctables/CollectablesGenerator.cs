@@ -1,5 +1,4 @@
-﻿using Game.Abilities;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Game.Level.Generation
 {
@@ -38,7 +37,7 @@ namespace Game.Level.Generation
                 else
                     CreateAbility(ref data);
 
-                data.Position = _spawnArea.GetRandomPosition();
+                data.Position = GetPosition(data.View);
             }
 
             return data;
@@ -46,5 +45,21 @@ namespace Game.Level.Generation
 
         private void CreateCoin(ref CollectableSpawnData data) => _coinCreationProvider.Create(out data.View, out data.OnCollect);
         private void CreateAbility(ref CollectableSpawnData data) => _abilityCreationProvider.Create(out data.View, out data.OnCollect);
+
+        private Vector2 GetPosition(Sprite view)
+        {
+            var position = _spawnArea.GetRandomPosition();
+
+            Bounds areaBounds = _spawnArea.Bounds;
+            Bounds spriteBounds = view.bounds;
+            Vector2 min = areaBounds.min - spriteBounds.min;
+            Vector2 max = areaBounds.max - spriteBounds.max;
+
+            if (min.x > max.x || min.y > max.y)
+                throw new System.InvalidOperationException($"Sprite '{view.name}' does not fit inside the collectables spawn area.");
+
+            return new(Mathf.Clamp(position.x, min.x, max.x),
+                       Mathf.Clamp(position.y, min.y, max.y));
+        }
     }
 }
